@@ -119,7 +119,14 @@ const player = props.site.music
         class="panel profile"
       >
         <NuxtLink to="/about/" class="profile-avatar" :aria-label="t('about')"
-          ><img :src="site.avatar" alt="" width="256" height="256"
+          ><img
+            :src="site.avatar"
+            :srcset="site.avatarSrcset"
+            sizes="112px"
+            alt=""
+            width="256"
+            height="256"
+            loading="lazy"
         /></NuxtLink>
         <h2>{{ site.profileName }}</h2>
         <div class="profile-accent" />

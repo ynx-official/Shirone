@@ -392,6 +392,7 @@ export const vi: Translation = {
   [Key.homeLink]: "Về trang chủ",
   [Key.selectItem]: "Chọn mục",
   [Key.sourceData]: "Dữ liệu có cấu trúc",
+  [Key.localeName]: "Tiếng Việt",
   [Key.locale]: "Ngôn ngữ",
   [Key.cancel]: "Hủy",
   [Key.copyCode]: "Sao chép mã",

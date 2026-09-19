@@ -60,9 +60,14 @@ onBeforeUnmount(() => clearTimeout(timer));
     }"
   >
     <picture class="banner-media"
-      ><source media="(max-width:1023px)" :srcset="site.bannerMobile" />
+      ><source
+        media="(max-width:1023px)"
+        :srcset="site.bannerMobileSrcset || site.bannerMobile"
+        sizes="100vw" />
       <img
         :src="site.banner"
+        :srcset="site.bannerSrcset"
+        sizes="100vw"
         alt=""
         width="1920"
         height="1080"

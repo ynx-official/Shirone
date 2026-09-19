@@ -31,11 +31,17 @@ test("mobile retains cover, independent wallpaper and accessible navigation", as
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expect(page.locator(".post-cover").first()).toBeVisible();
+  const selectedBanner = await page
+    .locator(".banner-media img")
+    .evaluate((e: HTMLImageElement) => new URL(e.currentSrc).pathname);
+  const mobileCandidates = await page
+    .locator('.banner-media source[media="(max-width:1023px)"]')
+    .getAttribute("srcset");
   expect(
-    await page
-      .locator(".banner-media img")
-      .evaluate((e: HTMLImageElement) => e.currentSrc),
-  ).toContain("/banner/mobile/");
+    mobileCandidates
+      ?.split(",")
+      .map((candidate) => candidate.trim().split(/\s+/)[0]),
+  ).toContain(selectedBanner);
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);
@@ -57,19 +63,19 @@ test("archive grouping and dedicated collection filtering work", async ({
   await page.goto("/archive/");
   await page.getByRole("button", { name: "By Category", exact: true }).click();
   await expect(page.locator(".archive-group summary").first()).toContainText(
-    /Guides|Examples/,
+    /指南|示例/,
   );
   await expect(page.locator(".post-card")).toHaveCount(0);
   await page.goto("/projects/");
   await expect(page.locator(".project-card")).toHaveCount(3);
-  await page.getByRole("button", { name: "Android", exact: true }).click();
+  await page.getByRole("button", { name: "安卓应用", exact: true }).click();
   await expect(page.locator(".project-card")).toHaveCount(2);
   await page.getByRole("searchbox").fill("Folk");
   await expect(page.locator(".project-card")).toHaveCount(1);
   await page.goto("/albums/");
   await expect(page.locator(".album-card")).toHaveCount(3);
   await expect(page.locator(".album-cover img")).toHaveCount(3);
-  await page.getByRole("button", { name: "local", exact: true }).click();
+  await page.getByRole("button", { name: "本地", exact: true }).click();
   await expect(page.locator(".album-card")).toHaveCount(1);
 });
 test("display preferences persist and music stays mounted during navigation", async ({

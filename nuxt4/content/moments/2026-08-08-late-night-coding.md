@@ -1,14 +1,15 @@
 ---
-published: 2026-08-08T23:40:00+08:00
-mood: material-symbols:code-blocks-outline-rounded
+published: 2026-08-08T15:40:00.000Z
+mood: 'material-symbols:code-blocks-outline-rounded'
 tags:
-  - dev
-  - daily
+  - 开发
+  - 日常
 images:
   - src: /images/moments/night/window-sun.webp
-    alt: A girl by a sunlit window, the room dark around her
+    alt: 阳光下的窗边少女 1
+title: 深夜写代码的片刻
 ---
 
-Switched to a new wallpaper — a girl by a sunlit window, the room dark except for her.
+换了张窗边少女的壁纸，房间很暗，光线却刚好落在她身上。
 
-Coding past midnight, the screen light and the wallpaper light make quite a pair. Today's lesson: don't put side effects inside Svelte 5's `$derived`, or state updates become magic. Note to self, before I trip again.
+又写代码到深夜。今天提醒自己：计算属性保持纯粹，副作用放到明确的生命周期或监听器里。

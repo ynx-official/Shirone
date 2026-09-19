@@ -16,3 +16,16 @@ Theme preferences remain in `shirone:palette` and `shirone:theme`. The derived
 content or an authoritative preference. The head bootstrap only restores matching
 signatures and hex color values; invalid/unavailable storage falls back to SSR
 colors. Bump the cache version when changing the palette engine contract.
+
+UI locale preference uses the `shirone-locale` cookie (path `/`, SameSite=Lax,
+one-year lifetime). `useCopy` validates it against the ten existing locales and
+falls back to site configuration for SSR. State is request-scoped; switching does
+not change content, translate article bodies, or introduce locale-prefixed URLs.
+
+The i18n plugin initializes the active dictionary through `/api/i18n?lang=...`
+and serializes it under the `translations` SSR payload key. Only the server
+imports all locale modules. Language switches fetch the next dictionary before
+updating the locale/cookie; stale responses cannot overwrite a newer selection.
+Post summaries may include `imageSrcset`, and site data may include
+`bannerSrcset`, `bannerMobileSrcset`, and `avatarSrcset`. Original content images
+remain available; these fields point to generated local WebP candidates.

@@ -2,14 +2,14 @@
   "ExternalExample": {
     "mode": "external",
     "hidden": false,
-    "title": "External image set",
-    "description": "A remote album using explicit photo metadata and thumbnails.",
+    "title": "远方风景",
+    "description": "使用独立照片信息与缩略图展示的远程相册。",
     "date": "2025-08-28",
-    "location": "Remote source",
+    "location": "远程图库",
     "tags": [
-      "external",
-      "remote",
-      "example"
+      "远程",
+      "风景",
+      "示例"
     ],
     "layout": "masonry",
     "columns": 3,
@@ -19,11 +19,11 @@
         "id": "external-1",
         "src": "https://picsum.photos/seed/shirone-remote-1/1200/800",
         "thumbnail": "https://picsum.photos/seed/shirone-remote-1/600/400",
-        "alt": "A remote landscape photograph",
-        "title": "Remote landscape",
+        "alt": "远方风景照片",
+        "title": "远方的风景",
         "tags": [
-          "landscape",
-          "remote"
+          "风景",
+          "远程"
         ],
         "width": 1200,
         "height": 800
@@ -32,11 +32,11 @@
         "id": "external-2",
         "src": "https://picsum.photos/seed/shirone-remote-2/800/1200",
         "thumbnail": "https://picsum.photos/seed/shirone-remote-2/400/600",
-        "alt": "A remote portrait photograph",
-        "title": "Vertical study",
+        "alt": "竖幅构图的风景照片",
+        "title": "竖幅光影",
         "tags": [
-          "portrait",
-          "remote"
+          "竖幅",
+          "远程"
         ],
         "width": 800,
         "height": 1200
@@ -44,13 +44,13 @@
     ]
   },
   "HiddenExample": {
-    "title": "Hidden album",
-    "description": "This album is omitted from the index but remains available by direct URL.",
+    "title": "私藏片段",
+    "description": "此相册不会出现在公开索引中。",
     "date": "2025-08-28",
-    "location": "Private route",
+    "location": "私人收藏",
     "tags": [
-      "hidden",
-      "example"
+      "隐藏",
+      "示例"
     ],
     "layout": "grid",
     "columns": 3,
@@ -59,29 +59,29 @@
   "EncryptedExample": {
     "mode": "external",
     "hidden": false,
-    "title": "Protected image set",
-    "description": "A password-protected album backed by the reusable protected-content protocol.",
+    "title": "上锁的回忆",
+    "description": "用于演示密码保护与浏览器本地解锁的相册。",
     "date": "2025-05-22",
-    "location": "Private garden",
+    "location": "秘密花园",
     "tags": [
-      "protected",
-      "password",
-      "example"
+      "加密",
+      "密码",
+      "示例"
     ],
     "layout": "masonry",
     "columns": 3,
     "password": "123456",
-    "passwordHint": "Six digits",
+    "passwordHint": "六位数字",
     "cover": "https://picsum.photos/seed/shirone-protected-cover/800/600",
     "photos": [
       {
         "id": "protected-1",
         "src": "https://picsum.photos/seed/shirone-protected-1/1200/800",
         "thumbnail": "https://picsum.photos/seed/shirone-protected-1/600/400",
-        "alt": "A protected garden landscape",
-        "title": "Private landscape",
+        "alt": "加密相册中的花园风景",
+        "title": "花园一角",
         "tags": [
-          "garden"
+          "花园"
         ],
         "width": 1200,
         "height": 800
@@ -90,10 +90,10 @@
         "id": "protected-2",
         "src": "https://picsum.photos/seed/shirone-protected-2/800/1200",
         "thumbnail": "https://picsum.photos/seed/shirone-protected-2/400/600",
-        "alt": "A protected vertical photograph",
-        "title": "Private memory",
+        "alt": "加密相册中的竖幅照片",
+        "title": "记忆中的光",
         "tags": [
-          "memory"
+          "回忆"
         ],
         "width": 800,
         "height": 1200
@@ -101,14 +101,14 @@
     ]
   },
   "AcgExample": {
-    "title": "Some lovely pictures",
-    "description": "A local album scanned from this directory.",
+    "title": "收藏的美好画面",
+    "description": "从本地目录整理的一组插画与风景图片。",
     "date": "2025-08-01",
-    "location": "Local archive",
+    "location": "本地收藏",
     "tags": [
-      "local",
-      "webp",
-      "example"
+      "本地",
+      "插画",
+      "示例"
     ],
     "layout": "masonry",
     "columns": 3,

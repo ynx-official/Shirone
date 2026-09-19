@@ -387,6 +387,7 @@ export const th: Translation = {
   [Key.homeLink]: "หน้าหลัก",
   [Key.selectItem]: "เลือกรายการ",
   [Key.sourceData]: "ข้อมูลแบบมีโครงสร้าง",
+  [Key.localeName]: "ไทย",
   [Key.locale]: "ภาษา",
   [Key.cancel]: "ยกเลิก",
   [Key.copyCode]: "คัดลอกโค้ด",

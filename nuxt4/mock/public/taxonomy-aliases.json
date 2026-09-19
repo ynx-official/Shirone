@@ -1,0 +1,30 @@
+{
+  "categories": {
+    "Examples": "示例",
+    "Guides": "指南"
+  },
+  "tags": {
+    "Examples": "示例",
+    "Guides": "指南",
+    "Guide": "指南",
+    "Blogging": "博客",
+    "Demo": "示例",
+    "Example": "示例",
+    "Extensions": "扩展语法",
+    "Theme": "主题",
+    "Security": "安全",
+    "Encryption": "加密",
+    "Admonition": "提示块",
+    "Collapse": "折叠面板",
+    "Annotation": "注释",
+    "Typography": "排版",
+    "Tabs": "选项卡",
+    "Accessibility": "无障碍",
+    "Steps": "步骤",
+    "Video": "视频",
+    "Audio Reader": "语音播放",
+    "Gallery": "图集",
+    "Components": "组件",
+    "Image Grid": "图片网格"
+  }
+}

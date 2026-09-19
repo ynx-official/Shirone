@@ -23,7 +23,7 @@ test("without JavaScript article content remains readable", async ({
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:4323/posts/markdown/");
   await expect(page.locator("h1").first()).toBeVisible();
-  await expect(page.locator(".prose")).toContainText("An h1 header");
+  await expect(page.locator(".prose")).toContainText("从一段文字开始");
   await context.close();
 });
 test("navigation and theme have no hydration errors", async ({ page }) => {

@@ -1,40 +1,40 @@
 ---
-title: Markdown Marker Highlights
-published: 2026-08-28
-description: Highlight key phrases with token-driven marker syntax in Shirone Markdown.
-tags: [Demo, Markdown, Typography, Shirone]
-category: Guides
-lang: en
+title: Markdown 荧光标记
+published: 2026-08-28T00:00:00.000Z
+description: 通过语义配色突出文章中的关键词句。
+tags:
+  - 示例
+  - Markdown
+  - 排版
+  - Shirone
+category: 指南
+lang: zh_CN
 draft: false
 ---
 
-Marker highlights bring attention to a specific phrase without turning the surrounding paragraph into a separate component. They render as native `<mark>` elements during the build and inherit the active M3E color system.
+荧光标记用于强调段落中的重点，而不把整段文字变成独立组件。生成的 `<mark>` 元素会继承当前主题配色。
 
-## Default emphasis
+## 默认强调
 
-Use `==text==` when the article's primary color should carry the emphasis. This is useful for ==one decision that readers should retain== while they continue through an ordinary paragraph.
+使用 `==文本==` 标出 ==值得记住的一条结论==。
 
-The marker may contain ==nested **Markdown emphasis**== when the phrase needs a stronger hierarchy.
+标记内部也支持 ==嵌套的 **Markdown 强调**==。
 
-## Semantic colors
+## 语义颜色
 
-Use a suffix when the meaning needs a different tonal role. The available variants are `primary`, `secondary`, `tertiary`, `error`, and `tip`.
+- ==主色标记与当前主题保持一致=={.primary}
+- ==辅助色适合轻量的区分=={.secondary}
+- ==第三色适合另一类信息=={.tertiary}
+- ==错误色提示需要修正的问题=={.error}
+- ==提示色突出实用建议=={.tip}
 
-- ==Primary connects the phrase to the active theme=={.primary}
-- ==Secondary keeps a supporting distinction quiet=={.secondary}
-- ==Tertiary adds a separate editorial signal=={.tertiary}
-- ==Error identifies a condition that needs correction=={.error}
-- ==Tip highlights practical guidance=={.tip}
-
-## Author syntax
+## 写法示例
 
 ```markdown
-==Primary marker==
-
-==Secondary marker=={.secondary}
-==Tertiary marker=={.tertiary}
-==Error marker=={.error}
-==Tip marker=={.tip}
+==默认标记==
+==辅助标记=={.secondary}
+==错误标记=={.error}
+==实用建议=={.tip}
 ```
 
-Inline code such as `==literal marker syntax==` and fenced examples stay literal, so documentation can explain the syntax without triggering it.
+行内代码中的 `==标记语法==` 会按原样显示，方便在教程中解释写法。

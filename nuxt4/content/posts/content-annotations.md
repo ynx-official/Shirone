@@ -1,50 +1,53 @@
 ---
-title: Content Annotations
-published: 2026-08-27
-description: Add compact, accessible supporting notes to Shirone articles without interrupting the reading flow.
-tags: [Demo, Markdown, Annotation, Shirone]
-category: Guides
-lang: en
+title: 正文注释与补充说明
+published: 2026-08-27T00:00:00.000Z
+description: 通过紧凑、可访问的注释为正文补充背景信息。
+tags:
+  - 示例
+  - Markdown
+  - 注释
+  - Shirone
+category: 指南
+lang: zh_CN
 draft: false
 ---
 
-Content annotations keep supporting context close to a sentence without placing it directly in the reading flow. Activate the small note marker to reveal its content.
+注释让补充信息靠近相关句子，又不打断阅读。点击句子旁的小标记，就能查看解释。
 
-## Basic syntax
+## 基本写法
 
-Add a `[+label]` reference in ordinary prose, then define the matching note elsewhere in the same article.
+在正文中使用 `[+label]`，再在同一篇文章中定义对应的内容。
 
-```markdown
-Astro renders most of a page ahead of time and hydrates **interactive islands** [+islands] only when they need to become interactive.
+服务端渲染 [+ssr] 可以让浏览器在执行应用脚本之前先获得正文。
 
-[+islands]:
-  An island is an interactive UI component surrounded by static HTML. This keeps the default page lightweight while preserving focused interactivity.
-```
+[+ssr]:
+  服务端渲染通常简称 SSR。服务器生成页面 HTML，浏览器收到后即可展示内容，随后再接入交互行为。
 
-Astro renders most of a page ahead of time and hydrates **interactive islands** [+islands] only when they need to become interactive.
+## 丰富内容
 
-[+islands]:
-  An island is an interactive UI component surrounded by static HTML. This keeps the default page lightweight while preserving focused interactivity.
-
-## Rich content
-
-Definitions may contain paragraphs, emphasis, links, lists, and inline code [+rich-note] while the surrounding sentence continues normally.
+注释中可以包含列表、链接和强调 [+rich-note]，周围的句子仍按普通段落排版。
 
 [+rich-note]:
-  **Authoring guidance**
+  **编写建议**
 
-  - Keep the first sentence self-contained.
-  - Use a link when readers may need the primary source.
-  - Prefer concise examples such as `client:visible`.
+  - 第一句话先说清楚结论。
+  - 需要进一步查证时，附上原始资料链接。
+  - 用简短代码说明具体场景，例如 `useAsyncData`。
 
-  See the [Astro islands documentation](https://docs.astro.build/en/concepts/islands/) for the full model.
+  可以结合项目中的数据契约说明理解页面取数流程。
 
-## Multiple definitions
+## 同一个标记下的多条说明
 
-Reuse a label [+review] to present a short sequence of related notes behind one marker.
+内容发布前可以做一次简短检查 [+review]。
 
-[+review]: Start with the decision that changes the reader's next action.
-[+review]: Keep implementation evidence separate from background context.
-[+review]: Remove details that belong in the main article instead of the annotation.
+[+review]: 确认标题与摘要能准确表达正文内容。
+[+review]: 检查图片替代文本与链接目标。
+[+review]: 删除不应出现在公开页面中的私人信息。
 
-Undefined references such as `[+missing]` remain ordinary text, so an unfinished definition never creates an empty control.
+没有定义的引用，例如 `[+missing]`，会保留为普通文本。
+
+```markdown
+这是一条说明 [+note]。
+
+[+note]: 这里填写补充内容。
+```

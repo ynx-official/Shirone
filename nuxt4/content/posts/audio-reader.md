@@ -1,28 +1,31 @@
 ---
-title: "Audio Reader: Japanese Anime Mystery Voices"
-published: 2026-08-29
-description: A small collection of mysterious Japanese anime voice fragments, played on demand with Audio Reader.
-tags: [Example, Audio Reader]
+title: 语音片段与按需播放
+published: 2026-08-29T00:00:00.000Z
+description: 点击按钮后再加载音频，轻量展示一组语音片段。
+tags:
+  - 示例
+  - 语音播放
 series: media-embeds
 seriesOrder: 2
-category: Examples
+category: 示例
 draft: false
+lang: zh_CN
 ---
 
-These short Japanese voice fragments feel as though they were picked up from the edge of an anime scene: a teasing call, a bright greeting, a tiny laugh, and a few lines with no clear origin. They are mood samples rather than dialogue transcripts, so let the sound carry the meaning.
+这些短音频用于演示文章中的按需播放。页面打开时保持安静，只有点击播放按钮后才加载对应文件。
 
-Audio Reader keeps them quiet until you choose to listen. Each speaker button loads and plays its clip only after it is pressed.
+## 语音片段
+
+- **一句调侃**：:audio-reader[小小的吐槽]{src="/assets/audio/Baka.wav"}
+- **元气问候**：:audio-reader[你好呀]{src="/assets/audio/Ciallo.wav"}
+- **轻轻一笑**：:audio-reader[俏皮的笑声]{src="/assets/audio/Ehe.wav"}
+- **随口一说**：:audio-reader[日常片段]{src="/assets/audio/Imoi.wav"}
+- **玩笑时刻**：:audio-reader[开个玩笑]{src="/assets/audio/Zako.wav"}
+
+## 编写方式
 
 ```markdown
-:audio-reader[Clip title]{src="/assets/audio/filename.wav"}
+:audio-reader[音频说明]{src="/assets/audio/Baka.wav"}
 ```
 
-## The fragments
-
-- **Baka**: :audio-reader[バカ]{src="/assets/audio/Baka.wav"}
-- **Ciallo**: :audio-reader[Ciallo！！]{src="/assets/audio/Ciallo.wav"}
-- **Ehe**: :audio-reader[A joking sense]{src="/assets/audio/Ehe.wav"}
-- **Imoi**: :audio-reader[イモい]{src="/assets/audio/Imoi.wav"}
-- **Zako**: :audio-reader[雑魚じゃん、雑魚雑魚]{src="/assets/audio/Zako.wav"}
-
-`src` must use a site-root path or an HTTPS URL, and the directive label cannot be empty. Invalid or incomplete directives remain ordinary Markdown and do not load Audio Reader resources.
+`src` 应为站内绝对路径或 HTTPS 地址。标签不能为空，文字应简短说明音频内容。原始音轨保留原语言。

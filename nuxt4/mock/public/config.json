@@ -51,8 +51,8 @@
     }
   },
   "announcement": {
-    "title": "",
-    "content": "The only way to do great work is to love what you do",
+    "title": "站点公告",
+    "content": "欢迎来到白音小站。这里记录开发笔记、阅读心得和日常见闻，愿你在这里有所收获。",
     "closable": true,
     "link": {
       "enable": true,
@@ -90,7 +90,7 @@
       "envId": "",
       "scriptUrl": "https://cdn.jsdelivr.net/npm/twikoo@1.7.20/dist/twikoo.min.js",
       "lang": "auto",
-      "placeholder": "Share your thoughts..."
+      "placeholder": "分享你的想法吧……"
     },
     "giscus": {
       "repo": "",
@@ -130,27 +130,27 @@
     "categories": [
       {
         "key": "desk",
-        "label": "Desk Setup",
+        "label": "桌面设备",
         "icon": "material-symbols:desktop-windows-outline-rounded",
-        "description": "Workstation & home office hardware"
+        "description": "工作站与居家办公设备"
       },
       {
         "key": "mobile",
-        "label": "Mobile & EDC",
+        "label": "随身数码",
         "icon": "material-symbols:phone-iphone",
-        "description": "Daily portable devices & smart gadgets"
+        "description": "日常随身使用的数码产品"
       },
       {
         "key": "audio",
-        "label": "Audio & Visual",
+        "label": "影音设备",
         "icon": "material-symbols:headphones-rounded",
-        "description": "Headphones, speakers & monitoring gears"
+        "description": "耳机、音箱与影音设备"
       },
       {
         "key": "peripheral",
-        "label": "Peripherals",
+        "label": "键鼠外设",
         "icon": "material-symbols:keyboard-outline-rounded",
-        "description": "Keyboards, mice & desk accessories"
+        "description": "键盘、鼠标及桌面配件"
       }
     ]
   },
@@ -321,33 +321,33 @@
     "categories": [
       {
         "key": "open-world",
-        "label": "Open World",
+        "label": "开放世界",
         "icon": "material-symbols:explore-outline-rounded",
-        "description": "Open-world adventures"
+        "description": "探索自由辽阔的游戏世界"
       },
       {
         "key": "sandbox",
-        "label": "Sandbox",
+        "label": "沙盒建造",
         "icon": "material-symbols:widgets-rounded",
-        "description": "Building, crafting & creative worlds"
+        "description": "采集、创造与自由建造"
       },
       {
         "key": "rpg",
-        "label": "RPG",
+        "label": "角色扮演",
         "icon": "material-symbols:shield-outline-rounded",
-        "description": "Role-playing stories & builds"
+        "description": "体验故事与角色成长"
       },
       {
         "key": "action",
-        "label": "Action",
+        "label": "动作冒险",
         "icon": "material-symbols:swords-outline-rounded",
-        "description": "Action, fighting & shooters"
+        "description": "动作、格斗与射击游戏"
       },
       {
         "key": "casual",
-        "label": "Casual",
+        "label": "休闲娱乐",
         "icon": "material-symbols:extension-outline-rounded",
-        "description": "Cozy, casual & party games"
+        "description": "轻松治愈的休闲和聚会游戏"
       }
     ]
   },
@@ -369,25 +369,27 @@
     "siteSummary": "",
     "descriptionMaxLength": 200,
     "excludeTags": [
+      "私密",
+      "不公开",
       "secret",
       "private"
     ],
     "excludeCategories": [],
     "corePages": [
       {
-        "title": "Home",
+        "title": "首页",
         "url": "/",
-        "description": "Main blog entrance and latest post stream."
+        "description": "博客入口与最新文章列表。"
       },
       {
-        "title": "About",
+        "title": "关于",
         "url": "/about/",
-        "description": "Author profile, technical stack, and background."
+        "description": "作者介绍、技术栈与站点背景。"
       },
       {
-        "title": "Archive",
+        "title": "文章归档",
         "url": "/archive/",
-        "description": "Chronological index of all published writings."
+        "description": "按时间整理的已公开文章索引。"
       }
     ],
     "customSections": []
@@ -412,83 +414,83 @@
   "navBar": {
     "links": [
       {
-        "name": "Home",
+        "name": "首页",
         "url": "/",
         "icon": "material-symbols:home-outline-rounded",
         "pageKey": "home"
       },
       {
-        "name": "Archive",
+        "name": "归档",
         "url": "/archive/",
         "icon": "material-symbols:archive-outline-rounded",
         "pageKey": "archive"
       },
       {
-        "name": "Friends",
+        "name": "友链",
         "url": "/friends/",
         "icon": "material-symbols:handshake-outline-rounded",
         "pageKey": "friends"
       },
       {
-        "name": "Moments",
+        "name": "动态",
         "url": "/moments/",
         "icon": "material-symbols:auto-awesome-outline-rounded",
         "pageKey": "moments"
       },
       {
-        "name": "Anime",
+        "name": "番剧",
         "url": "/anime/",
         "icon": "material-symbols:live-tv-outline-rounded",
         "pageKey": "anime"
       },
       {
-        "name": "Compass",
+        "name": "导航",
         "url": "/compass/",
         "icon": "material-symbols:explore-rounded",
         "pageKey": "compass"
       },
       {
-        "name": "Albums",
+        "name": "相册",
         "url": "/albums/",
         "icon": "material-symbols:photo-library-outline-rounded",
         "pageKey": "albums"
       },
       {
-        "name": "More",
+        "name": "更多",
         "icon": "material-symbols:apps-rounded",
         "children": [
           {
-            "name": "Timeline",
+            "name": "时间线",
             "url": "/timeline/",
             "icon": "material-symbols:timeline-rounded",
             "pageKey": "timeline"
           },
           {
-            "name": "Projects",
+            "name": "项目",
             "url": "/projects/",
             "icon": "material-symbols:deployed-code-outline-rounded",
             "pageKey": "projects"
           },
           {
-            "name": "My Devices",
+            "name": "我的设备",
             "url": "/devices/",
             "icon": "material-symbols:devices-rounded",
             "pageKey": "devices"
           },
           {
-            "name": "Games",
+            "name": "游戏",
             "url": "/games/",
             "icon": "material-symbols:sports-esports-outline-rounded",
             "pageKey": "games"
           },
           {
-            "name": "Skills",
+            "name": "技能",
             "url": "/skills/",
             "icon": "material-symbols:workspaces-outline-rounded",
             "pageKey": "skills"
           },
           {
-            "name": "About",
+            "name": "关于",
             "url": "/about/",
             "icon": "material-symbols:info-outline-rounded",
             "pageKey": "about"
@@ -500,7 +502,8 @@
             "pageKey": "github",
             "external": true
           }
-        ]
+        ],
+        "pageKey": "more"
       }
     ]
   },
@@ -519,7 +522,7 @@
   "profile": {
     "avatar": "assets/images/demo-avatar.webp",
     "name": "Shirone",
-    "bio": "The rain remembers what the sky forgot to say.",
+    "bio": "记录技术探索，收藏生活里的微小光亮。",
     "links": [
       {
         "name": "X",
@@ -545,12 +548,12 @@
     "categories": [
       {
         "key": "theme",
-        "label": "Theme",
+        "label": "博客主题",
         "icon": "material-symbols:palette-outline-rounded"
       },
       {
         "key": "android",
-        "label": "Android",
+        "label": "安卓应用",
         "icon": "material-symbols:android-rounded"
       }
     ]
@@ -683,7 +686,7 @@
     "site": "https://shirone.mysqil.com/",
     "base": "/",
     "title": "Shirone",
-    "subtitle": "A Material 3 anime blog",
+    "subtitle": "记录技术探索与生活片段的个人博客",
     "topAppBar": {
       "contentAlign": "center"
     },
@@ -695,7 +698,7 @@
       "reduceMotion": true,
       "texture": true
     },
-    "lang": "en",
+    "lang": "zh_CN",
     "timeZone": "Asia/Shanghai",
     "themeColor": {
       "hue": 315,
@@ -730,11 +733,11 @@
         "enable": true,
         "title": "Shirone",
         "subtitle": [
-          "特別なことはないけど、君がいると十分です",
-          "今でもあなたは私の光",
-          "君ってさ、知らないうちに私の毎日になってたよ",
-          "君と話すと、なんか毎日がちょっと楽しくなるんだ",
-          "今日はなんでもない日。でも、ちょっとだけいい日"
+          "把平凡的日子，写成值得珍藏的故事。",
+          "在代码与文字之间，慢慢找到自己的节奏。",
+          "记录每一次好奇，也记录每一份热爱。",
+          "愿今天的灵感，成为明天的小小进步。",
+          "你好，欢迎来到我的数字小天地。"
         ],
         "typewriter": {
           "enable": true,
@@ -779,17 +782,17 @@
     "categories": [
       {
         "key": "frontend",
-        "label": "Frontend",
+        "label": "前端开发",
         "icon": "material-symbols:web-rounded"
       },
       {
         "key": "backend",
-        "label": "Backend",
+        "label": "后端开发",
         "icon": "material-symbols:dns-rounded"
       },
       {
         "key": "tooling",
-        "label": "Tooling",
+        "label": "开发工具",
         "icon": "material-symbols:construction-rounded"
       }
     ]
@@ -801,27 +804,27 @@
     "categories": [
       {
         "key": "milestone",
-        "label": "Milestones",
+        "label": "重要节点",
         "icon": "material-symbols:flag-rounded"
       },
       {
         "key": "project",
-        "label": "Projects",
+        "label": "项目经历",
         "icon": "material-symbols:code-rounded"
       },
       {
         "key": "career",
-        "label": "Career",
+        "label": "工作经历",
         "icon": "material-symbols:work-rounded"
       },
       {
         "key": "education",
-        "label": "Education",
+        "label": "教育经历",
         "icon": "material-symbols:school-rounded"
       },
       {
         "key": "life",
-        "label": "Life",
+        "label": "日常生活",
         "icon": "material-symbols:favorite-rounded"
       }
     ],

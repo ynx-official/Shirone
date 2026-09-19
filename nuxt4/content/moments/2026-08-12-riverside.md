@@ -1,18 +1,19 @@
 ---
-published: 2026-08-12T18:30:00+08:00
-mood: material-symbols:sentiment-excited-outline-rounded
+published: 2026-08-12T10:30:00.000Z
+mood: 'material-symbols:sentiment-excited-outline-rounded'
 tags:
-  - wallpaper
-  - daily
+  - 壁纸
+  - 日常
 images:
   - src: /images/moments/girls-trio/girl-1.webp
-    alt: Lovely girl wallpaper one
+    alt: 收藏的人物插画 1
   - src: /images/moments/girls-trio/girl-2.webp
-    alt: Lovely girl wallpaper two
+    alt: 收藏的人物插画 2
   - src: /images/moments/girls-trio/girl-3.webp
-    alt: Lovely girl wallpaper three
+    alt: 收藏的人物插画 3
+title: 三张新的壁纸
 ---
 
-Three new wallpapers, all lovely girls.
+又收藏了三张人物壁纸，颜色轻盈，看着就很开心。
 
-My desktop got brighter, and so did my mood for writing code. Turns out you don't need much — just enough eye candy.
+桌面亮了一点，写代码的心情也跟着好了一点。生活的小满足，有时就是这么简单。

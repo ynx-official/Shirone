@@ -1,35 +1,15 @@
 ---
-title: Markdown Field Cards
-description: API and component parameter documentation cards.
-published: 2026-08-30
-category: Guides
+title: Markdown 参数卡片
+description: 用字段分组说明组件参数、类型和默认值。
+published: 2026-08-30T00:00:00.000Z
+category: 指南
 draft: true
+lang: zh_CN
 ---
 
-Use `field-group` when several related options belong to the same API or component. Put the field name on the opening line, then add metadata tags before the description.
+参数卡片将字段名、类型、状态和说明放在一起，适合 API 与组件文档。
 
-:::: field-group
-
-::: field tex
-@type object
-@optional
-
-TeX parser options.
-:::
-
-::: field output
-@type `'svg' | 'chtml'`
-@default `'svg'`
-@optional
-
-Output format, SVG or generic HTML.
-:::
-
-::::
-
-## Basic Fields
-
-Required, optional, and deprecated statuses can be mixed in one group. Default values are kept separate from the type so they remain easy to scan.
+## 字段分组
 
 :::: field-group
 
@@ -37,7 +17,7 @@ Required, optional, and deprecated statuses can be mixed in one group. Default v
 @type string
 @required
 
-The visible title of the component. This value is shown in the page heading and should be short enough to scan quickly.
+组件的可见标题，建议简洁准确。
 :::
 
 ::: field disabled
@@ -45,67 +25,34 @@ The visible title of the component. This value is shown in the page heading and 
 @default `false`
 @optional
 
-Whether the control starts in a disabled state.
+是否禁用当前控件。
 :::
 
 ::: field locale
 @type `'en' | 'zh-CN' | 'ja-JP'`
-@default `'en'`
+@default `'zh-CN'`
 @optional
 
-Locale used for formatting dates, numbers, and accessible labels.
-:::
-
-::::
-
-## Rich Descriptions
-
-Descriptions are ordinary Markdown. Links, emphasis, lists, and inline code remain available after the metadata lines.
-
-:::: field-group
-
-::: field render
-@type `(value: unknown) => string`
-@required
-
-Render a value into the final output. The callback should return a **safe string** and may use the `formatValue` helper.
-
-- Keep rendering deterministic.
-- Avoid network requests inside the callback.
-:::
-
-::: field retries
-@type number
-@default `3`
-@optional
-
-Maximum number of attempts before the request is reported as failed.
+用于日期、数字和界面文案的语言。
 :::
 
 ::: field legacyMode
 @type boolean
 @deprecated
 
-Kept for backwards compatibility. New integrations should use `compatibility` instead.
+仅保留用于兼容旧配置，新代码不应继续使用。
 :::
 
 ::::
 
-## Standalone Field
-
-A single field can be used without a group when documenting one option next to an example or code block.
+## 单独的字段
 
 ::: field format
 @type `'short' | 'long'`
 @default `'short'`
 @optional
 
-Controls how the result is formatted.
+控制结果的格式。说明中仍然可以使用 **强调**、列表与代码。
 :::
 
-## Authoring Notes
-
-- `@type` and `@default` values are rendered as code tokens.
-- `@required`, `@optional`, and `@deprecated` add a status badge.
-- Any normal Markdown after the metadata becomes the field description.
-- Unknown `@tags` remain visible as description text instead of being discarded.
+这篇文章保持草稿状态，不进入公开列表和搜索索引。

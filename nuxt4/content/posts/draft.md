@@ -1,22 +1,22 @@
 ---
-title: Draft Example
-published: 2022-07-01
-tags: [Markdown, Blogging, Demo]
-category: Examples
+title: 尚未发布的草稿
+published: 2022-07-01T00:00:00.000Z
+tags:
+  - Markdown
+  - 博客
+  - 示例
+category: 示例
 draft: true
+description: 用于验证草稿不会进入公开页面与搜索索引。
+lang: zh_CN
 ---
 
-# This Article is a Draft
+# 整理中的笔记
 
-This article is currently in a draft state and is not published. Therefore, it will not be visible to the general audience. The content is still a work in progress and may require further editing and review.
+这是一篇尚未完成的草稿。先记录思路，等结构与示例完整后再继续整理。
 
-When the article is ready for publication, you can update the "draft" field to "false" in the Frontmatter:
+- 补充操作截图。
+- 核对示例代码。
+- 完成最终检查。
 
-```markdown
----
-title: Draft Example
-published: 2024-01-11T04:40:26.381Z
-tags: [Markdown, Blogging, Demo]
-category: Examples
-draft: false
----
+草稿不应出现在公开首页、订阅源或搜索索引中。

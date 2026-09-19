@@ -392,6 +392,7 @@ export const en: Translation = {
   [Key.homeLink]: "Go home",
   [Key.selectItem]: "Select an item",
   [Key.sourceData]: "Structured data",
+  [Key.localeName]: "English",
   [Key.locale]: "Language",
   [Key.cancel]: "Cancel",
   [Key.copyCode]: "Copy code",

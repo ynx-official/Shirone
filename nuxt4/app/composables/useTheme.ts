@@ -104,7 +104,22 @@ export function useTheme(listenToSystem = false) {
         if (["2021", "2025"].includes(saved.spec)) spec.value = saved.spec;
       }
     } catch {}
-    await setMode(mode.value);
+    dark.value =
+      mode.value === "dark" ||
+      (mode.value === "auto" &&
+        matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.classList.toggle("dark", dark.value);
+    const defaults = site.value?.themeColor;
+    // The build already emits both light/dark palettes for the configured theme.
+    // Load the color engine only when a saved customization needs recomputing.
+    if (
+      !defaults ||
+      hue.value !== defaults.hue ||
+      style.value !== defaults.style ||
+      spec.value !== defaults.spec
+    ) {
+      await apply();
+    }
     ready.value = true;
   });
   onBeforeUnmount(() => query?.removeEventListener("change", systemChanged));

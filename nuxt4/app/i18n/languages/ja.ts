@@ -390,6 +390,7 @@ export const ja: Translation = {
   [Key.homeLink]: "ホームへ",
   [Key.selectItem]: "項目を選択",
   [Key.sourceData]: "構造化データ",
+  [Key.localeName]: "日本語",
   [Key.locale]: "言語",
   [Key.cancel]: "キャンセル",
   [Key.copyCode]: "コードをコピー",

@@ -104,7 +104,9 @@ const status = computed(() => {
         >{{ value }}</span
       >
       <span v-for="tag in item.tags" :key="tag" class="chip">{{ tag }}</span
-      ><span v-if="item.category" class="chip">{{ item.category }}</span>
+      ><span v-if="item.category" class="chip">{{
+        item.data.categoryLabel || item.category
+      }}</span>
     </div>
     <p v-if="item.data.progress">
       {{ t("progress") }} · {{ item.data.progress.watched }} /

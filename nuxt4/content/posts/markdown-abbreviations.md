@@ -1,37 +1,36 @@
 ---
-title: Markdown Abbreviations
-published: 2026-08-28
-description: Define common acronyms once and keep their full meaning available in normal article text.
-tags: [Demo, Markdown, Typography, Shirone]
-category: Guides
-lang: en
+title: Markdown 缩略语
+published: 2026-08-28T00:00:00.000Z
+description: 为专业缩写提供清晰的中文解释。
+tags:
+  - 示例
+  - Markdown
+  - 排版
+  - Shirone
+category: 指南
+lang: zh_CN
 draft: false
 ---
 
-Abbreviations keep technical writing compact while preserving the full term for readers who need it. A defined term renders as a native `abbr` element with its meaning available on hover and to assistive technology.
+技术文章经常使用缩写。为它们定义完整含义后，读者可以通过悬停或辅助技术查看解释。
 
-## In context
+## 在正文中使用
 
-SSR-first output keeps the initial document visible before JavaScript runs. When measuring its reading experience, LCP and CLS reveal whether the first visible content is fast and stable.
+SSR 让页面在脚本运行之前就有可阅读的内容。评估首屏体验时，可以结合 LCP 和 CLS 观察加载速度与布局稳定性。
 
-An abbreviation can also appear next to ordinary Markdown such as **SSR** guidance, but literal code such as `SSR` and links like [LCP documentation](https://web.dev/articles/lcp) remain untouched.
+**SSR** 可以与普通 Markdown 强调一起使用，而 `SSR` 这样的代码字面量保持原样。
 
-## Define terms
+*[SSR]: 服务端渲染
+*[LCP]: 最大内容绘制
+*[CLS]: 累积布局偏移
 
-Place definitions anywhere in the same Markdown document. They do not render as visible paragraphs, and only matching terms in that article receive the semantic abbreviation treatment.
+## 定义方式
 
 ```markdown
-*[SSR]: Server-Side Rendering
-*[LCP]: Largest Contentful Paint
-*[CLS]: Cumulative Layout Shift
+*[SSR]: 服务端渲染
+*[LCP]: 最大内容绘制
 
-SSR makes an HTML response available before client code runs.
+SSR 让浏览器更早获得页面正文。
 ```
 
-*[SSR]: Server-Side Rendering
-*[LCP]: Largest Contentful Paint
-*[CLS]: Cumulative Layout Shift
-
-## Authoring boundaries
-
-Terms must begin with a letter or number and may contain letters, numbers, periods, underscores, plus signs, and hyphens. Each definition applies to the current article only; an invalid or duplicate definition remains ordinary Markdown instead of silently replacing another term.
+定义仅对当前文章生效。建议第一次使用缩写时同时说明它与当前话题的关系。

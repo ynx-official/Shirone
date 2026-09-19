@@ -59,6 +59,8 @@ const { t } = useCopy();
       :aria-label="post.title"
       ><img
         :src="post.image"
+        :srcset="post.imageSrcset"
+        sizes="(max-width: 767px) 40vw, 420px"
         alt=""
         width="420"
         height="280"

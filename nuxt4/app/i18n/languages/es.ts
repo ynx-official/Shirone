@@ -393,6 +393,7 @@ export const es: Translation = {
   [Key.homeLink]: "Ir al inicio",
   [Key.selectItem]: "Selecciona un elemento",
   [Key.sourceData]: "Datos estructurados",
+  [Key.localeName]: "Español",
   [Key.locale]: "Idioma",
   [Key.cancel]: "Cancelar",
   [Key.copyCode]: "Copiar código",

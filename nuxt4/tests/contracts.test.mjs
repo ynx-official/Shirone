@@ -26,7 +26,7 @@ test("public payload excludes drafts and encrypted plaintext", () => {
   assert.equal(protectedPost.password, undefined);
   assert(
     !JSON.stringify(db).includes(
-      "Congratulations! You have successfully unlocked",
+      "恭喜！你已成功解锁",
     ),
   );
 });

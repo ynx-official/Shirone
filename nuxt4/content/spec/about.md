@@ -1,26 +1,22 @@
-# About Shirone
+# 关于白音
 
-Welcome to the demo site of **Shirone** (白音) — an expressive, anime-inspired blog theme built on the **Material 3 Expressive (M3E)** design system.
+欢迎来到 **Shirone（白音）**，一个记录技术探索与生活片段的个人博客。
 
-::github{repo="LyraVoid/Shirone"}
+## 这里有什么
 
-## ✦ Design & Philosophy
+- 开发过程中的笔记、思考与可复用示例。
+- 读书、摄影、音乐和日常见闻。
+- 项目、技能、设备与游戏的整理。
+- 可以在浏览器中编辑与预览的管理演示。
 
-Shirone aims to combine the warmth of expressive anime aesthetics with the rigor of modern web engineering:
+## 技术与设计
 
-- **Dynamic Chromatic Spell**: Full dynamic HCT palette generation responding seamlessly to light/dark modes and user preferences with zero layout shifts.
-- **Seamless Shell Navigation**: Persistent application shell driven by Swup for continuous music playback, smooth page transitions, and preserved state.
-- **Rich Story Grimoire**: Markdown and MDX authoring with KaTeX math, Mermaid diagrams, interactive admonitions, expressive code blocks, and adaptive image galleries.
-- **Zero Extra Burden**: Optional integrations (comments, analytics, music widgets) load dynamically on demand — zero DOM footprint and zero bundle overhead when disabled.
+本站使用 **Nuxt 4、Vue 3、TypeScript 和 Nitro SSR**，以 M3E 设计令牌统一颜色、排版与组件样式。
 
-## ✦ Tech Stack
+界面支持多种语言，中文是默认语言。语言切换只改变界面文案，不自动翻译文章正文。
 
-- **Framework**: [Astro 7](https://astro.build/) & [Svelte 5](https://svelte.dev/) (Runes-driven islands)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) & [Stylus](https://stylus-lang.com/)
-- **Design Standard**: [Material 3 Expressive](https://m3.material.io/)
-- **Typography**: Outfit & Yozai (悠哉圆体) with automated build-time subsetting
-- **Search Engine**: [Pagefind](https://pagefind.app/) offline full-text search
+## 演示说明
 
-## ✦ Credits
+当前内容为中文 mock 数据，未连接真实数据库、对象存储或发布接口。管理界面的修改保存在本地浏览器中，公开页面继续读取构建时的数据。
 
-- **Font**: [Yozai Font (悠哉字体)](https://github.com/lxgw/yozai-font) by [lxgw](https://github.com/lxgw)
+如果喜欢这里的内容，可以通过订阅源持续关注，也欢迎从导航页发现更多有趣的站点。

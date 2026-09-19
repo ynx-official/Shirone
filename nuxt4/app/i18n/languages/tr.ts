@@ -394,6 +394,7 @@ export const tr: Translation = {
   [Key.homeLink]: "Ana sayfa",
   [Key.selectItem]: "Öğe seçin",
   [Key.sourceData]: "Yapılandırılmış veri",
+  [Key.localeName]: "Türkçe",
   [Key.locale]: "Dil",
   [Key.cancel]: "İptal",
   [Key.copyCode]: "Kodu kopyala",

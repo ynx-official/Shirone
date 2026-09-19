@@ -1,64 +1,61 @@
 ---
-title: Mermaid Diagram Gallery
-published: 2024-05-02
-description: A gallery of Mermaid diagrams for processes, interactions, data models, schedules, and project history.
-tags: [Demo, Example, Markdown, Mermaid]
-category: Examples
-lang: en
+title: Mermaid 图表示例集
+published: 2024-05-02T00:00:00.000Z
+description: 用流程、关系、排期和数据图表说明复杂信息。
+tags:
+  - 示例
+  - Markdown
+  - Mermaid
+category: 示例
+lang: zh_CN
 draft: false
 ---
 
-Mermaid turns text descriptions in Markdown into diagrams. The examples below use Shirone's content workflow to demonstrate diagram types commonly used in technical articles and project notes.
+Mermaid 将文本描述转换为图表。下面保留了常见图表类型，适合说明流程、数据关系、排期和阅读路径。
 
-## Flowchart
-
-Flowcharts describe a process, including decisions and paths that return to an earlier step.
+## 流程图
 
 ```mermaid
 flowchart TD
-    accTitle: Article publishing workflow
-    accDescr: An article moves through writing, validation, preview, and build before publication. Failed validation returns it for revision.
-    Draft[Write Markdown] --> Check{Validation passed?}
-    Check -->|No| Revise[Revise article]
+    accTitle: 流程图示例
+    accDescr: 使用流程图说明博客中的信息关系与工作过程。
+    Draft[编写文章] --> Check{检查通过？}
+    Check -->|否| Revise[修改内容]
     Revise --> Check
-    Check -->|Yes| Preview[Preview locally]
-    Preview --> Build[Build static page]
-    Build --> Publish[Publish]
+    Check -->|是| Preview[本地预览]
+    Preview --> Build[生成页面]
+    Build --> Publish[发布]
 ```
 
-## Sequence Diagram
-
-Sequence diagrams present collaboration between participants in chronological order. This example follows a Swup navigation from request to Mermaid rendering.
+## 时序图
 
 ```mermaid
 sequenceDiagram
-    accTitle: Diagram rendering after in-site navigation
-    accDescr: A reader starts navigation, Swup replaces the article content, and the Mermaid renderer enhances diagrams on the new page.
-    actor Reader
-    participant Browser
-    participant Swup
-    participant Content as Article region
-    participant Renderer as Mermaid renderer
-    Reader->>Browser: Open another article
-    Browser->>Swup: Start in-site navigation
-    Swup->>Content: Replace page content
-    Swup-->>Renderer: Emit content:replace
-    Renderer->>Content: Find Mermaid containers
-    Renderer-->>Browser: Insert themed SVGs
+    accTitle: 时序图示例
+    accDescr: 使用时序图说明博客中的信息关系与工作过程。
+    actor Reader as 读者
+    participant Browser as 浏览器
+    participant Swup as 路由器
+    participant Content as 文章区域
+    participant Renderer as 图表渲染器
+    Reader->>Browser: 打开另一篇文章
+    Browser->>Swup: 开始站内导航
+    Swup->>Content: 替换页面内容
+    Swup-->>Renderer: 通知页面更新
+    Renderer->>Content: 查找图表容器
+    Renderer-->>Browser: 插入主题图表
 ```
 
-## Entity Relationship Diagram
-
-Entity relationship diagrams model structured data and the connections between authors, posts, tags, and comments.
+## 实体关系图
 
 ```mermaid
 erDiagram
-    accTitle: Blog content relationships
-    accDescr: Authors write posts, posts receive comments, and join records connect posts to multiple tags.
-    AUTHOR ||--o{ POST : writes
-    POST ||--o{ COMMENT : receives
-    POST ||--o{ POST_TAG : classified_by
-    TAG ||--o{ POST_TAG : groups
+    accTitle: 实体关系图示例
+    accDescr: 使用实体关系图说明博客中的信息关系与工作过程。
+    AUTHOR ||--o{ POST : 撰写
+    POST ||--o{ COMMENT : 收到
+    POST ||--o{ POST_TAG : 关联
+    TAG ||--o{ POST_TAG : 分组
     AUTHOR {
         string id PK
         string display_name
@@ -84,14 +81,12 @@ erDiagram
     }
 ```
 
-## Class Diagram
-
-Class diagrams communicate responsibilities, public methods, and dependency directions in a software design.
+## 类图
 
 ```mermaid
 classDiagram
-    accTitle: Markdown rendering modules
-    accDescr: The content pipeline uses a Mermaid plugin to create fallback markup, which the client renderer later enhances into an SVG.
+    accTitle: 类图示例
+    accDescr: 使用类图说明博客中的信息关系与工作过程。
     class ContentPipeline {
         +render(markdown)
         +collectMetadata()
@@ -110,144 +105,132 @@ classDiagram
         +surface
         +outline
     }
-    ContentPipeline --> MermaidPlugin : uses
-    DiagramRenderer --> MermaidPlugin : enhances output
-    DiagramRenderer --> ThemeTokens : reads
+    ContentPipeline --> MermaidPlugin : 使用
+    DiagramRenderer --> MermaidPlugin : 增强输出
+    DiagramRenderer --> ThemeTokens : 读取
 ```
 
-## State Diagram
-
-State diagrams show the lifecycle of an object and the events that move it between states.
+## 状态图
 
 ```mermaid
 stateDiagram-v2
-    accTitle: Article lifecycle
-    accDescr: An article moves from draft to review and publication. It may return for revision or eventually be archived.
+    accTitle: 状态图示例
+    accDescr: 使用状态图说明博客中的信息关系与工作过程。
+    state "草稿" as Draft
+    state "审核中" as InReview
+    state "已发布" as Published
+    state "已归档" as Archived
     [*] --> Draft
-    Draft --> InReview : submit
-    InReview --> Draft : request changes
-    InReview --> Published : approve
-    Published --> Draft : retract
-    Published --> Archived : archive
+    Draft --> InReview : 提交
+    InReview --> Draft : 请求修改
+    InReview --> Published : 通过
+    Published --> Draft : 撤回
+    Published --> Archived : 归档
     Archived --> [*]
 ```
 
-## XY Chart
-
-XY charts combine bars and lines to compare values and trends over a shared axis.
+## 趋势图
 
 ```mermaid
 xychart-beta
-    accTitle: Six weeks of content performance
-    accDescr: Bars show normalized weekly publishing volume, while the line shows normalized reading completion.
-    title "Six weeks of content performance"
-    x-axis "Week" [1, 2, 3, 4, 5, 6]
-    y-axis "Relative score" 0 --> 100
+    accTitle: 趋势图示例
+    accDescr: 使用趋势图说明博客中的信息关系与工作过程。
+    title "六周内容表现"
+    x-axis "周次" [1, 2, 3, 4, 5, 6]
+    y-axis "相对数值" 0 --> 100
     bar [36, 52, 44, 68, 76, 84]
     line [48, 55, 62, 61, 73, 81]
 ```
 
-## Pie Chart
-
-Pie charts provide a compact comparison of how categories contribute to a whole.
+## 饼图
 
 ```mermaid
 pie showData
-    accTitle: Article topics by share
-    accDescr: Engineering accounts for forty percent, design systems for twenty-five percent, and the remainder is split between guides and essays.
-    title Article topics by share
-    "Engineering" : 40
-    "Design systems" : 25
-    "Guides" : 20
-    "Essays" : 15
+    accTitle: 饼图示例
+    accDescr: 使用饼图说明博客中的信息关系与工作过程。
+    title 文章主题占比
+    "工程实践" : 40
+    "设计系统" : 25
+    "使用指南" : 20
+    "生活随笔" : 15
 ```
 
-## Gantt Chart
-
-Gantt charts arrange tasks, dependencies, and milestones along a calendar timeline.
+## 甘特图
 
 ```mermaid
 gantt
-    accTitle: Theme release plan
-    accDescr: The release plan moves from requirements and interaction design through component development, testing, and release.
-    title Theme release plan
+    accTitle: 甘特图示例
+    accDescr: 使用甘特图说明博客中的信息关系与工作过程。
+    title 主题发布计划
     dateFormat YYYY-MM-DD
     axisFormat %m/%d
-    section Design
-    Confirm requirements :done, brief, 2024-05-06, 2d
-    Refine interactions :done, interaction, after brief, 3d
-    section Implementation
-    Develop components :active, components, after interaction, 6d
-    Write examples :examples, after interaction, 4d
-    section Validation
-    Automated tests :tests, after components, 3d
-    Release :milestone, release, after tests, 0d
+    section 设计
+    确认需求 :done, brief, 2024-05-06, 2d
+    细化交互 :done, interaction, after brief, 3d
+    section 实现
+    开发组件 :active, components, after interaction, 6d
+    编写示例 :examples, after interaction, 4d
+    section 验证
+    自动化测试 :tests, after components, 3d
+    发布 :milestone, release, after tests, 0d
 ```
 
-## Mind Map
-
-Mind maps expand a central topic into related areas and supporting concepts.
+## 思维导图
 
 ```mermaid
 mindmap
   root((Shirone))
-    Content experience
+    内容体验
       Markdown
-      Search
-      Diagrams
-    Interface system
-      M3E tokens
-      Responsive layout
-      Color schemes
-    Engineering quality
-      Astro Check
+      搜索
+      图表
+    界面系统
+      M3E 令牌
+      响应式布局
+      主题配色
+    工程质量
+      类型检查
       Playwright
-      Accessibility
+      无障碍
 ```
 
-## Timeline
-
-Timelines summarize significant events or phases without requiring exact calendar durations.
+## 时间线
 
 ```mermaid
 timeline
-    title Mermaid support evolution
-    Pipeline design : Detect Mermaid fences
-                    : Preserve source fallback
-    Client enhancement : Load the runtime on demand
-                       : Apply theme tokens
-    Reliability : Support Swup navigation
-                : Verify responsive and accessible output
+    title 图表支持的演进
+    处理流程设计 : 检测图表代码块
+                    : 保留源码回退
+    客户端增强 : 按需加载运行时
+                       : 应用主题令牌
+    可靠性 : 支持站内导航
+                : 验证响应式和无障碍输出
 ```
 
-## User Journey
-
-User journey diagrams combine actions, participants, and experience scores across the stages of a task.
+## 用户旅程
 
 ```mermaid
 journey
-    accTitle: A reader understanding a technical article
-    accDescr: The reader discovers an article, combines prose with diagrams to understand it, and then explores related topics.
-    title A reader understanding a technical article
-    section Discover
-      Browse the article list: 4: Reader
-      Choose a topic: 5: Reader
-    section Understand
-      Read the article: 4: Reader
-      Inspect a relationship diagram: 5: Reader
-    section Continue
-      Open a related article: 4: Reader
-      Bookmark the page: 3: Reader
+    accTitle: 用户旅程示例
+    accDescr: 使用用户旅程说明博客中的信息关系与工作过程。
+    title 阅读技术文章的过程
+    section 发现
+      浏览文章列表: 4: 读者
+      选择主题: 5: 读者
+    section 理解
+      阅读正文: 4: 读者
+      查看关系图: 5: 读者
+    section 延伸
+      打开相关文章: 4: 读者
+      收藏页面: 3: 读者
 ```
 
-## Git Graph
-
-Git graphs show how work progresses on a feature branch before it merges into the main line.
+## Git 分支图
 
 ```mermaid
 gitGraph
-    accTitle: Mermaid feature branch history
-    accDescr: A feature branch adds the renderer and tests before merging into the main branch for release.
+    accTitle: Git 分支图示例
+    accDescr: 使用Git 分支图说明博客中的信息关系与工作过程。
     commit id: "base"
     branch mermaid
     checkout mermaid
@@ -258,33 +241,31 @@ gitGraph
     commit id: "release"
 ```
 
-## Kanban Board
-
-Kanban boards group tasks by workflow state to make current progress easy to scan.
+## 看板
 
 ```mermaid
 kanban
-  backlog[Backlog]
-    docs[Write author documentation]
-    examples[Expand example data]
-  active[In progress]
-    themes[Verify theme adaptation]
-  complete[Complete]
-    fallback[Source fallback]
-    rendering[Client rendering]
+  backlog[待处理]
+    docs[编写写作说明]
+    examples[补充示例数据]
+  active[进行中]
+    themes[验证主题适配]
+  complete[已完成]
+    fallback[源码回退]
+    rendering[客户端渲染]
 ```
 
-## Sankey Diagram
+## 桑基图
 
-Sankey diagrams use link width to show how traffic or another quantity flows between nodes.
+当前图表解析器的桑基图节点仅支持 ASCII，因此示例保留节点标识：Home（首页）、Discover（发现）、Read（阅读）、Explore（探索）、Theme（主题）、External（外部链接）。
 
 ```mermaid
 sankey-beta
-Landing,Reading,720
-Discovery,Reading,430
-Reading,Explore,360
-Reading,Topics,210
-Reading,Outbound,140
+Home,Read,720
+Discover,Read,430
+Read,Explore,360
+Read,Theme,210
+Read,External,140
 ```
 
-Each example uses a standard `mermaid` code fence. The server preserves readable source markup, and the browser enhances it into an SVG that follows the active theme. Diagrams render again when the theme changes or when Swup navigates to this article.
+图表按文章实际需要加载。切换主题后会使用当前配色重新渲染，源码仍可作为无法运行图表时的回退内容。

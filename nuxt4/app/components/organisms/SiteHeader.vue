@@ -2,7 +2,7 @@
 import type { Site, NavigationLink } from "#shared/types/content";
 import LocalIcon from "~/components/atoms/LocalIcon.vue";
 defineProps<{ site: Site }>();
-const { t } = useCopy();
+const { t, locale, localeOptions } = useCopy();
 function navLabel(link: NavigationLink) {
   const translated = t(link.label);
   return translated === link.label ? link.name || translated : translated;
@@ -197,6 +197,24 @@ onBeforeUnmount(() => {
         </div>
       </nav>
       <div class="header-actions">
+        <label class="language-control icon-button" :title="t('locale')">
+          <LocalIcon name="material-symbols:translate-rounded" />
+          <select
+            v-model="locale"
+            :aria-label="t('locale')"
+            @pointerdown="close"
+            @keydown="close"
+          >
+            <option
+              v-for="option in localeOptions"
+              :key="option.value"
+              :value="option.value"
+              :lang="option.lang"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+        </label>
         <NuxtLink to="/search/" class="icon-button" :aria-label="t('search')"
           ><LocalIcon name="search" /></NuxtLink
         ><button

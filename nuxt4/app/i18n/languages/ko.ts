@@ -389,6 +389,7 @@ export const ko: Translation = {
   [Key.homeLink]: "홈으로",
   [Key.selectItem]: "항목 선택",
   [Key.sourceData]: "구조화 데이터",
+  [Key.localeName]: "한국어",
   [Key.locale]: "언어",
   [Key.cancel]: "취소",
   [Key.copyCode]: "코드 복사",

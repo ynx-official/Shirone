@@ -6,6 +6,10 @@ interface Database {
   paths: Record<string, string>;
   collections: Record<string, Entity[]>;
   spec: Record<string, string>;
+  taxonomyAliases?: {
+    categories: Record<string, string>;
+    tags: Record<string, string>;
+  };
 }
 export async function database(): Promise<Database> {
   const value =
@@ -66,9 +70,18 @@ export async function pageData(
     if (query.date)
       posts = posts.filter((p) => p.published.startsWith(String(query.date)));
     if (query.tag)
-      posts = posts.filter((p) => p.tags.includes(String(query.tag)));
+      posts = posts.filter((p) =>
+        p.tags.includes(
+          db.taxonomyAliases?.tags[String(query.tag)] || String(query.tag),
+        ),
+      );
     if (query.category)
-      posts = posts.filter((p) => p.category === String(query.category));
+      posts = posts.filter(
+        (p) =>
+          p.category ===
+          (db.taxonomyAliases?.categories[String(query.category)] ||
+            String(query.category)),
+      );
     if (query.uncategorized === "true")
       posts = posts.filter((p) => !p.category);
     if (query.q) {

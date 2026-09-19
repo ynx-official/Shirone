@@ -1,23 +1,25 @@
 ---
-title: "Markdown File Includes"
-published: 2026-08-28
-description: "Build-time Markdown file and slice includes."
-tags: [Markdown, Shirone]
-category: Guides
+title: Markdown 文件引用
+published: 2026-08-28T00:00:00.000Z
+description: 在构建时复用已登记的内容片段。
+tags:
+  - Markdown
+  - Shirone
+category: 指南
 draft: false
+lang: zh_CN
 ---
 
-Shirone can include a local Markdown file or a safe slice of one.
+长文中的公共说明和代码示例可以放入独立文件，再在构建时引用。
 
-<!-- @include: src/content/snippets/include-example.md#public-api -->
+<!-- @include: content/snippets/include-example.md#public-api -->
 
-The full file and line-range forms are also supported:
+也可以引用整个文件或指定行范围：
 
 ```markdown
-<!-- @include: src/content/snippets/include-example.md -->
-<!-- @include: src/content/snippets/include-example.md{1-4} -->
-<!-- @include: src/content/snippets/include-example.md{5-} -->
-<!-- @include: src/content/snippets/include-example.md{-4} -->
+<!-- @include: content/snippets/include-example.md -->
+<!-- @include: content/snippets/include-example.md{1-4} -->
+<!-- @include: content/snippets/include-example.md{5-} -->
 ```
 
-Include comments inside fenced code remain literal.
+代码块里的引用标记会保留为示例，不会再次展开。浏览器预览只允许读取预先登记的内容。

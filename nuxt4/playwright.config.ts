@@ -4,7 +4,27 @@ export default defineConfig({
   fullyParallel: false,
   workers: 1,
   timeout: 45000,
-  use: { baseURL: "http://127.0.0.1:4322", trace: "retain-on-failure" },
+  use: {
+    // Existing interaction regressions explicitly use English; Chinese defaults
+    // are checked in chinese-mock.spec.ts with this preference cleared.
+    storageState: {
+      cookies: [
+        {
+          name: "shirone-locale",
+          value: "en",
+          domain: "127.0.0.1",
+          path: "/",
+          expires: -1,
+          httpOnly: false,
+          secure: false,
+          sameSite: "Lax",
+        },
+      ],
+      origins: [],
+    },
+    baseURL: "http://127.0.0.1:4322",
+    trace: "retain-on-failure",
+  },
   webServer: [
     {
       command: "pnpm dev --host 127.0.0.1",

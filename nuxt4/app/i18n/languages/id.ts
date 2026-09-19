@@ -395,6 +395,7 @@ export const id: Translation = {
   [Key.homeLink]: "Ke beranda",
   [Key.selectItem]: "Pilih item",
   [Key.sourceData]: "Data terstruktur",
+  [Key.localeName]: "Bahasa Indonesia",
   [Key.locale]: "Bahasa",
   [Key.cancel]: "Batal",
   [Key.copyCode]: "Salin kode",

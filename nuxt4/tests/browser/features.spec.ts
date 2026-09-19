@@ -29,7 +29,7 @@ test("all public route families, posts, feeds and concurrent SSR respond", async
         const result = await request.get(`http://127.0.0.1:4323${path}`);
         expect(result.status(), path).toBe(200);
         expect(await result.text(), path).not.toContain(
-          "Congratulations! You have successfully unlocked",
+          "恭喜！你已成功解锁",
         );
       }),
     );
@@ -62,13 +62,13 @@ test("protected article decrypts locally and clears on navigation", async ({
   await expect(page.getByRole("alert")).toBeVisible();
   await page.locator("input[type=password]").fill("shirone-secret");
   await page.locator("article form button").click();
-  await expect(page.locator(".prose")).toContainText("Congratulations!");
+  await expect(page.locator(".prose")).toContainText("恭喜！");
   await Promise.all([
     page.waitForURL((url) => url.pathname === "/"),
     page.locator("a.brand").click(),
   ]);
   await expect(page.locator(".post-card").first()).toBeVisible();
-  expect(await page.content()).not.toContain("Congratulations!");
+  expect(await page.content()).not.toContain("恭喜！");
 });
 
 test("media persists in IndexedDB and can be removed", async ({ page }) => {

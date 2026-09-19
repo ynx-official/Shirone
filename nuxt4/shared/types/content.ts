@@ -8,6 +8,7 @@ export interface Post {
   category: string;
   series: string;
   image: string;
+  imageSrcset?: string;
   url: string;
   pinned: boolean;
   protected: boolean;
@@ -42,6 +43,9 @@ export interface Site {
   };
   wallpaperMode: string;
   bannerMobile: string;
+  bannerSrcset?: string;
+  bannerMobileSrcset?: string;
+  avatarSrcset?: string;
   bannerOptions: {
     dim: { enable: boolean; opacity: number };
     waves: { enable: boolean };

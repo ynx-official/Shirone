@@ -1,115 +1,101 @@
 ---
-title: Markdown Option Groups
-published: 2026-08-28
-description: Present related Markdown alternatives in compact, synchronized M3E option groups.
-tags: [Demo, Markdown, Tabs, Shirone]
-category: Guides
-lang: en
+title: Markdown 选项组
+published: 2026-08-28T00:00:00.000Z
+description: 使用可同步的选项卡展示不同环境下的操作方法。
+tags:
+  - 示例
+  - Markdown
+  - 选项卡
+  - Shirone
+category: 指南
+lang: zh_CN
 draft: false
 ---
 
-Option groups keep equivalent instructions together without repeating the surrounding explanation. Each option accepts full block Markdown, while the selected value can synchronize with another group on the same page.
+选项组适合并列展示相同任务的不同做法。每个选项都可以包含完整的 Markdown 内容。
 
-## Choose a package manager
+## 选择包管理器
 
-Use `@tab:active` to select the initial option. A suffix after `#` supplies a stable value without changing the visible title.
+`@tab:active` 指定默认项，`#` 后的稳定标识用于同步选择。
 
 ::: tabs#package-manager
 
 @tab npm
 
-Install the package with npm:
+使用 npm 安装项目依赖：
 
-```powershell
-npm install astro
+```sh
+npm install
 ```
 
 @tab:active **pnpm**#pnpm
 
-Install the package with pnpm:
+当前项目使用 pnpm，请优先遵循仓库的锁文件：
 
-```powershell
-pnpm.cmd add astro
+```sh
+pnpm install --frozen-lockfile
 ```
 
 @tab Bun#bun
 
-Install the package with Bun:
+其他环境可参考对应包管理器的命令：
 
-```powershell
-bun add astro
+```sh
+bun install
 ```
 
 :::
 
-## Run the project
+## 运行项目
 
-This group shares the `package-manager` id. Selecting an option above updates the matching command below and remembers that choice for the next visit.
+下面的组使用同一个 `package-manager` 标识，会同步所选命令。
 
 ::: tabs#package-manager
 
 @tab npm
 
-```powershell
+```sh
 npm run dev
 ```
 
 @tab pnpm
 
-```powershell
-pnpm.cmd dev
+```sh
+pnpm dev
 ```
 
 @tab Bun#bun
 
-```powershell
+```sh
 bun run dev
 ```
 
 :::
 
-## Many alternatives
-
-Longer option rows remain on one line and scroll within their own navigation area on narrow screens.
+## 更多场景
 
 ::: tabs
 
-@tab Local workstation
+@tab 本地开发
 
-Use the local toolchain while developing a feature.
+在本机调试功能，快速检查页面变化。
 
-@tab Hosted preview environment
+@tab 预览环境
 
-Publish a temporary preview for review.
+生成可供检查的临时预览。
 
-@tab Continuous integration
+@tab 持续集成
 
-Run deterministic validation for every change.
+为每次修改执行确定性的自动化检查。
 
-@tab Production deployment
+@tab 生产部署
 
-Promote a verified artifact to production.
+部署已通过检查的独立构建产物。
 
-@tab Offline recovery workflow
+@tab 离线恢复
 
-Restore from a local artifact when the network is unavailable.
-
-:::
-
-## Author syntax
-
-````markdown
-::: tabs#package-manager
-
-@tab npm
-
-Use npm instructions here.
-
-@tab:active **pnpm**#pnpm
-
-Use pnpm instructions here.
+网络不可用时，从本地产物恢复运行。
 
 :::
-````
 
-Each group needs at least two `@tab` sections, and every section needs body content separated from its marker by a blank line. Invalid or incomplete groups remain readable as ordinary Markdown.
+每组至少需要两个选项，标记与正文之间应当空一行。手机端的长选项栏可以在自身范围内横向滚动。

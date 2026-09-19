@@ -1,13 +1,13 @@
-## Included API
+## 可复用的接口示例
 
-This paragraph is expanded from a neighboring Markdown file.
+这段文字来自独立的 Markdown 文件。
 
 <!-- #region public-api -->
 ```ts
 export function greet(name: string) {
-  return `Hello, ${name}`;
+  return `你好，${name}！`;
 }
 ```
 <!-- #endregion public-api -->
 
-This line is outside the named region.
+公共片段可以集中维护，再由文章按需引用。

@@ -1,4 +1,4 @@
-import {prepareImage} from './images.mjs';
+import {prepareImage, responsiveImage} from './images.mjs';
 await import('./generate-moment-thumbnails.mjs');
 import { readFile,writeFile,mkdir,readdir,copyFile,cp,rm } from 'node:fs/promises';
 import { join,dirname,relative,resolve } from 'node:path';
@@ -13,6 +13,8 @@ import {pathToFileURL} from 'node:url';
 await import('./build-preview.mjs');
 const config=JSON.parse(await readFile('mock/public/config.json','utf8'));
 const rawData=JSON.parse(await readFile('mock/public/data.json','utf8'));
+const taxonomyAliases=JSON.parse(await readFile('mock/public/taxonomy-aliases.json','utf8'));
+const settingsLabels=JSON.parse(await readFile('mock/admin/settings-labels.json','utf8'));
 const domains=['posts','categories','tags','series','moments','albums','friends','compass','anime','projects','skills','devices','games','timeline','music','settings'];
 const collections=Object.fromEntries(domains.map(d=>[d,[]]));
 const entity=(id,title,data={})=>({id:String(id),title:String(title),description:'',body:'',date:'',status:'published',tags:[],category:'',series:'',image:'',data});
@@ -34,11 +36,10 @@ for(const file of await walk('content')){
  if(data.encrypted && !String(data.password||'').trim())throw Error(`Missing encryption password: ${file}`);
  let body=content;
  if(file.endsWith('.mdx') && id !== 'mdx-showcase')throw Error(`MDX requires an explicit Vue migration: ${file}`);
- if(file.endsWith('.mdx'))body='# Vue component showcase\n\nThe original Svelte MDX example is migrated to native Vue components.\n\n:::tip\nThis page uses the same Material design tokens as the blog.\n:::\n';
  body=body.replaceAll('src/content/','content/');
  // Relative assets remain scoped to their source article and are copied, never parent-imported.
  const assets=await readdir(dirname(file));
- for(const asset of assets){if(!/\.(webp|png|jpe?g|gif|svg|avif|mp3|mp4)$/i.test(asset))continue;const dest=join('public/content-assets',group,id,asset);await mkdir(dirname(dest),{recursive:true});await copyFile(join(dirname(file),asset),dest);body=body.replaceAll(`](./${asset})`,`](/content-assets/${group}/${id}/${asset})`).replaceAll(`](${asset})`,`](/content-assets/${group}/${id}/${asset})`)}
+ for(const asset of assets){if(!/\.(webp|png|jpe?g|gif|svg|avif|mp3|mp4)$/i.test(asset))continue;const dest=join('public/content-assets',group,id,asset);await mkdir(dirname(dest),{recursive:true});await copyFile(join(dirname(file),asset),dest);body=body.replaceAll(`](./${asset})`,`](/content-assets/${group}/${id}/${asset})`).replaceAll(`](${asset})`,`](/content-assets/${group}/${id}/${asset})`).replaceAll(`](./${asset} `,`](/content-assets/${group}/${id}/${asset} `).replaceAll(`](${asset} `,`](/content-assets/${group}/${id}/${asset} `)}
  const expandedSource=body.replace(/(<!--\s*@include:\s*)(content\/snippets\/[^\s#{}]+)/g,(_,prefix,path)=>prefix+resolve(path));
  const compiled=await compileMarkdown(expandedSource,file);
  if(group==='spec'){spec[id]=compiled.html;continue}
@@ -73,22 +74,34 @@ for(const [folder,d] of Object.entries(JSON.parse(await readFile('mock/admin/alb
 collections.albums.sort((a,b)=>b.date.localeCompare(a.date));
 // Never ship source metadata (including album passwords) under public/.
 for(const folder of Object.keys(JSON.parse(await readFile('mock/admin/albums.json','utf8'))))await rm(`public/images/albums/${folder}/info.json`,{force:true});
-collections.settings=Object.entries(config).map(([key,value])=>entity(key,key,value));
+for(const [domain,items] of Object.entries(collections))for(const item of items){const category=config[domain]?.categories?.find(c=>c.key===item.category);if(category)item.data.categoryLabel=category.label;}
+collections.settings=Object.entries(config).map(([key,value])=>entity(key,settingsLabels[key]||key,value));
 const site={title:config.site.title,subtitle:config.site.subtitle,url:config.site.site,lang:config.site.lang,avatar:'/assets/images/demo-avatar.webp',bio:config.profile.bio,banner:'/assets/images/banner/desktop/1.webp',pages:['archive','tags','categories','series',...Object.keys(rawData).filter(k=>k!=='music'),'moments','albums','about'],links:[{label:'home',url:'/'},{label:'archive',url:'/archive/'},{label:'moments',url:'/moments/'},{label:'albums',url:'/albums/'},{label:'about',url:'/about/'}]};
 site.widgets=config.sidebar.enable?config.sidebar.components:[];site.arrangement=config.sidebar.arrangement;site.sidebarEnabled=config.sidebar.enable;site.announcement=config.announcement;site.contextMenu=config.contextMenu.enable;site.stats={posts:posts.length,dates:posts.map(p=>p.published),words:posts.reduce((sum,p)=>sum+(p.html?.replace(/<[^>]*>/g,' ').split(/\s+/).length||0),0)};site.taxonomy=Object.fromEntries(['categories','tags','series'].map(domain=>[domain,collections[domain].map(e=>({id:e.id,title:e.title,url:domain==='series'?`/series/${e.id}/`:`/archive/?${domain==='categories'?'category':'tag'}=${encodeURIComponent(e.title)}`}))]));
 site.progressIndicator={style:config.site.progressIndicator?.style || 'dual'};site.displaySettings=config.site.displaySettings;site.wallpaperMode=config.site.wallpaperMode.defaultMode;
 site.bannerMobile='/'+config.site.banner.src.mobile[0].replace(/^\//,'');site.bannerOptions=config.site.banner;site.texture=config.site.texture;site.profileName=config.profile.name;site.profileLinks=config.profile.links;site.today=new Date().toISOString().slice(0,10);site.themeColor=config.site.themeColor;site.layout=config.postList.layout;
 site.links=config.navBar.links.map(link=>({...link,label:link.pageKey||link.name.toLowerCase(),children:link.children?.map(child=>({...child,label:child.pageKey||child.name}))}));
-for(const domain of ['categories','tags','series']){site.taxonomy[domain].sort((a,b)=>a.title.localeCompare(b.title,'en'));for(const e of site.taxonomy[domain])e.count=posts.filter(p=>domain==='tags'?p.tags.includes(e.title):domain==='categories'?p.category===e.title:p.series===e.id).length;}
+for(const domain of ['categories','tags','series']){site.taxonomy[domain].sort((a,b)=>a.title.localeCompare(b.title,config.site.lang.replace('_','-')));for(const e of site.taxonomy[domain])e.count=posts.filter(p=>domain==='tags'?p.tags.includes(e.title):domain==='categories'?p.category===e.title:p.series===e.id).length;}
 site.stats.words=posts.filter(p=>!p.protected).reduce((n,p)=>n+(p.words||0),0);site.stats.moments=collections.moments.length;site.stats.categories=collections.categories.length;site.stats.tags=collections.tags.length;site.stats.series=collections.series.length;site.stats.days=Math.floor((Date.now()-Math.min(...posts.map(p=>new Date(p.published).getTime())))/86400000);site.stats.updated=posts.map(p=>p.published).sort().at(-1).slice(0,10);
 site.pages=site.pages.filter(key=>config[key]?.enable!==false);site.links=site.links.filter(link=>link.children||link.external||link.url==='/'||site.pages.includes(link.url?.split('/')[1]));
 if(config.music.enable&&config.sidebar.components.some(w=>w.type==='music'&&w.enable)){const tracks=config.music.provider==='custom'?config.music.tracks:rawData.music;if(tracks?.length)site.music={tracks,volume:config.music.defaultVolume};}
 if(config.comment.enable&&config.comment.provider!=='none')site.comments=config.comment;if(config.umami.enable&&config.umami.websiteId&&config.umami.scriptUrl)site.analytics=config.umami;
-await writeFile('.generated/public.json',JSON.stringify({site,posts,paths,collections:Object.fromEntries(Object.entries(collections).filter(([d])=>!['settings','posts'].includes(d))),spec}));
+// Build responsive assets once; public list DTOs never send full-size covers.
+for (const post of posts) {
+ const image = await responsiveImage(post.image, [420, 840]);
+ post.image = image.src; post.imageSrcset = image.srcset;
+}
+const desktopBanner = await responsiveImage(site.banner, [1280, 1920]);
+site.banner = desktopBanner.src; site.bannerSrcset = desktopBanner.srcset;
+const mobileBanner = await responsiveImage(site.bannerMobile, [480, 768, 1024]);
+site.bannerMobile = mobileBanner.src; site.bannerMobileSrcset = mobileBanner.srcset;
+const avatar = await responsiveImage(site.avatar, [128, 256]);
+site.avatar = avatar.src; site.avatarSrcset = avatar.srcset;
+await writeFile('.generated/public.json',JSON.stringify({site,posts,paths,taxonomyAliases,collections:Object.fromEntries(Object.entries(collections).filter(([d])=>!['settings','posts'].includes(d))),spec}));
 const adminCollections=structuredClone(collections); adminCollections.albums=adminCollections.albums.filter(e=>!e.data.protected); for(const list of Object.values(adminCollections)) for(const e of list) {delete e.html;delete e.toc;delete e.syntaxes;delete e.styles;delete e.minutes;delete e.words;}
 await writeFile('.generated/admin.json',JSON.stringify({version:1,updatedAt:new Date().toISOString(),collections:adminCollections}));
 const {index}=await createIndex();
-for(const post of posts.filter(p=>!p.protected))await index.addHTMLFile({url:post.url,content:`<html lang="${site.lang}"><head><title>${post.title.replaceAll('<','&lt;')}</title></head><body><main data-pagefind-body><h1>${post.title.replaceAll('<','&lt;')}</h1>${post.html}</main></body></html>`});
+for(const post of posts.filter(p=>!p.protected))await index.addHTMLFile({url:post.url,content:`<html lang="${site.lang.replace('_','-')}"><head><title>${post.title.replaceAll('<','&lt;')}</title></head><body><main data-pagefind-body><h1>${post.title.replaceAll('<','&lt;')}</h1>${post.html}</main></body></html>`});
 await index.writeFiles({outputPath:'public/pagefind'});await index.deleteIndex();
 const design=parse((await readFile('docs/design-reference.md','utf8')).split('---')[1]);
 let tokens=':root{'+Object.entries(design.colors).map(([k,v])=>`--${k}:${v};`).join('')+'--font-sans:system-ui,sans-serif;--font-mono:ui-monospace,monospace;}';

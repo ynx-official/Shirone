@@ -1,38 +1,39 @@
 ---
-title: Include Video in the Posts
-published: 2023-08-01
-description: This post demonstrates how to include embedded video in a blog post.
-tags: [Example, Video]
+title: 在文章中嵌入视频
+published: 2023-08-01T00:00:00.000Z
+description: 演示不同视频来源的嵌入方式与按需播放。
+tags:
+  - 示例
+  - 视频
 series: media-embeds
 seriesOrder: 1
-category: Examples
+category: 示例
 draft: false
+lang: zh_CN
 ---
 
-Just copy the embed code from YouTube or other platforms, and paste it in the markdown file.
+视频可以补充操作过程或展示最终效果。先用正文说明观看目的，再提供播放器。
 
-```yaml
----
-title: Include Video in the Post
-published: 2023-10-19
-// ...
----
+## 编写示例
 
-<iframe width="100%" height="468" src="https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+```markdown
+::youtube{id="5gIf0_xpFPI" title="视频演示" preload="auto"}
 ```
 
-## YouTube
+## YouTube 示例
 
-::youtube{id="5gIf0_xpFPI" title="YouTube video" preload="auto"}
+::youtube{id="5gIf0_xpFPI" title="YouTube 视频演示" preload="auto"}
 
-## Bilibili
+## 哔哩哔哩示例
 
-::bilibili{bvid="BV1fK4y1s7Qf" title="Bilibili video" p=1 preload="auto"}
+::bilibili{bvid="BV1fK4y1s7Qf" title="哔哩哔哩视频演示" p=1 preload="auto"}
 
-## AcFun
+## AcFun 示例
 
-::acfun{acid="ac48649632" title="AcFun video" preload="auto"}
+::acfun{acid="ac48649632" title="AcFun 视频演示" preload="auto"}
 
-## ArtPlayer
+## 独立视频文件
 
-::artplayer{src="https://www.pexels.com/download/video/38538991/" title="Sintel trailer" preload="auto"}
+::artplayer{src="https://www.pexels.com/download/video/38538991/" title="风景视频片段" preload="auto"}
+
+第三方内容的可用性由对应平台决定。为不能播放的情况提供文字说明，可以让文章仍然完整。

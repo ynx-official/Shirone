@@ -10,7 +10,6 @@ const runtime = useRuntimeConfig(),
   route = useRoute();
 const { data: site } = await useAsyncData("site", repository.site);
 const { t, locale } = useCopy();
-if (site.value) locale.value = site.value.lang;
 const pageKey = computed(() => `page:${route.fullPath}`);
 const { data: currentPage } = await useAsyncData(pageKey, () =>
   repository.page(route.path, route.query),
@@ -49,7 +48,7 @@ const contextActions = site.value?.contextMenu
   : undefined;
 useHead(() => ({
   htmlAttrs: {
-    lang: locale.value,
+    lang: locale.value.replace("_", "-"),
     "data-texture-preset": site.value?.texture.enable ? texture.value : "none",
     class: { dark: dark.value, "motion-reduced": reduced.value },
   },

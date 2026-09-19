@@ -1,11 +1,23 @@
 <script setup lang="ts">
-import CollectionView from "~/components/organisms/CollectionView.vue";
-import ArchiveView from "~/components/organisms/ArchiveView.vue";
+const CollectionView = defineAsyncComponent(
+  () => import("~/components/organisms/CollectionView.vue"),
+);
+const ArchiveView = defineAsyncComponent(
+  () => import("~/components/organisms/ArchiveView.vue"),
+);
 import PostCard from "~/components/molecules/PostCard.vue";
-import DataTile from "~/components/molecules/DataTile.vue";
-import PostView from "~/components/organisms/PostView.vue";
-import AlbumView from "~/components/organisms/AlbumView.vue";
-import MarkdownBody from "~/components/content/MarkdownBody.vue";
+const DataTile = defineAsyncComponent(
+  () => import("~/components/molecules/DataTile.vue"),
+);
+const PostView = defineAsyncComponent(
+  () => import("~/components/organisms/PostView.vue"),
+);
+const AlbumView = defineAsyncComponent(
+  () => import("~/components/organisms/AlbumView.vue"),
+);
+const MarkdownBody = defineAsyncComponent(
+  () => import("~/components/content/MarkdownBody.vue"),
+);
 const route = useRoute(),
   repository = usePublicRepository(),
   { t } = useCopy();

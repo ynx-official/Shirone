@@ -380,6 +380,7 @@ enum I18nKey {
   selectItem = "selectItem",
   sourceData = "sourceData",
   locale = "locale",
+  localeName = "localeName",
   copyCode = "copyCode",
   searchError = "searchError",
   enable = "enable",

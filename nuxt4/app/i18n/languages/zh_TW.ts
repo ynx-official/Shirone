@@ -378,6 +378,7 @@ export const zh_TW: Translation = {
   [Key.homeLink]: "返回首頁",
   [Key.selectItem]: "選擇項目",
   [Key.sourceData]: "結構化資料",
+  [Key.localeName]: "繁體中文",
   [Key.locale]: "語言",
   [Key.cancel]: "取消",
   [Key.copyCode]: "複製程式碼",

@@ -39,7 +39,10 @@ const items = computed(() =>
   ),
 );
 const categoryLabel = (value: string) =>
-  value.charAt(0).toUpperCase() + value.slice(1);
+  String(
+    props.items.find((item) => item.category === value)?.data.categoryLabel ||
+      value.charAt(0).toUpperCase() + value.slice(1),
+  );
 </script>
 <template>
   <section class="panel collection-panel" :class="domain + '-panel'">

@@ -201,3 +201,5 @@ function reset() {
     </div>
   </section>
 </template>
+
+<style src="~/assets/styles/display-settings.css"></style>

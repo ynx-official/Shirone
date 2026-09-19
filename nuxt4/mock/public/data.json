@@ -1,7 +1,7 @@
 {
   "anime": [
     {
-      "title": "Lycoris Recoil",
+      "title": "莉可丽丝",
       "cover": "/assets/anime/lkls.webp",
       "link": "https://www.bilibili.com/bangumi/media/md28338623",
       "status": "completed",
@@ -10,12 +10,12 @@
         "watched": 12,
         "total": 12
       },
-      "description": "Girl's gunfight",
+      "description": "少女们在日常与任务之间寻找属于自己的生活。",
       "year": "2022",
       "studio": "A-1 Pictures",
       "genres": [
-        "Action",
-        "Slice of Life"
+        "动作",
+        "日常"
       ],
       "period": {
         "start": "2022-07",
@@ -23,7 +23,7 @@
       }
     },
     {
-      "title": "Yowamushi Pedal",
+      "title": "飙速宅男",
       "cover": "/assets/anime/rynh.webp",
       "link": "https://www.bilibili.com/bangumi/media/md2590",
       "status": "watching",
@@ -32,12 +32,12 @@
         "watched": 8,
         "total": 12
       },
-      "description": "Girl's daily life, sweet and healing",
+      "description": "以自行车运动为主题的青春成长故事。",
       "year": "2015",
       "studio": "Nexus",
       "genres": [
-        "Daily life",
-        "Healing"
+        "运动",
+        "青春"
       ],
       "period": {
         "start": "2015-07",
@@ -45,7 +45,7 @@
       }
     },
     {
-      "title": "Asteroid in Love",
+      "title": "恋爱小行星",
       "cover": "/assets/anime/laxxx.webp",
       "link": "https://www.bilibili.com/bangumi/media/md28224128",
       "status": "watching",
@@ -54,12 +54,12 @@
         "watched": 5,
         "total": 12
       },
-      "description": "Meeting girls among the stars, pure love and healing",
+      "description": "从一次星空下的相遇开始，一起探索天文与地质。",
       "year": "2020",
       "studio": "Doga Kobo",
       "genres": [
-        "Romance",
-        "Healing"
+        "日常",
+        "治愈"
       ],
       "period": {
         "start": "2020-01",
@@ -67,7 +67,7 @@
       }
     },
     {
-      "title": "Is the Order a Rabbit?",
+      "title": "请问您今天要来点兔子吗？",
       "cover": "/assets/anime/tz1.webp",
       "link": "https://www.bilibili.com/bangumi/media/md2762",
       "status": "planned",
@@ -76,12 +76,12 @@
         "watched": 12,
         "total": 12
       },
-      "description": "A group of girls' warm daily life",
+      "description": "咖啡馆里的相遇，串起温暖又轻松的日常。",
       "year": "2014",
       "studio": "White Fox",
       "genres": [
-        "Daily life",
-        "Healing"
+        "日常",
+        "治愈"
       ],
       "period": {
         "start": "2014-04",
@@ -89,7 +89,7 @@
       }
     },
     {
-      "title": "The Secret of the Magic Girl",
+      "title": "魔法少女的秘密",
       "cover": "/assets/anime/cmmn.webp",
       "link": "https://www.bilibili.com/bangumi/media/md26625039",
       "status": "watching",
@@ -98,13 +98,13 @@
         "watched": 8,
         "total": 12
       },
-      "description": "Muli, Muli!",
+      "description": "记录少女们面对未知力量与校园生活的故事。",
       "year": "2024",
       "studio": "C2C",
       "genres": [
-        "Daily life",
-        "Healing",
-        "Magic"
+        "日常",
+        "治愈",
+        "魔法"
       ],
       "period": {
         "start": "2025-07",
@@ -115,89 +115,93 @@
   "compass": [
     {
       "key": "dev",
-      "name": "Development",
+      "name": "开发资源",
       "icon": "material-symbols:code-rounded",
-      "blurb": "Sites I keep open while writing code",
+      "blurb": "写代码时常用的文档与社区。",
       "entries": [
         {
           "label": "GitHub",
           "href": "https://github.com",
-          "note": "Code hosting & collaboration",
+          "note": "代码托管与开源协作平台",
           "icon": "fa6-brands:github"
         },
         {
           "label": "MDN",
           "href": "https://developer.mozilla.org",
-          "note": "Authoritative web docs",
+          "note": "系统查阅 Web 开发文档",
           "icon": "material-symbols:menu-book-rounded"
         },
         {
           "label": "Stack Overflow",
           "href": "https://stackoverflow.com",
-          "note": "Q&A and debugging"
+          "note": "编程问答与问题排查社区"
         }
       ]
     },
     {
       "key": "design",
-      "name": "Design",
+      "name": "设计灵感",
       "icon": "material-symbols:palette-outline-rounded",
-      "blurb": "Colors, icons and inspiration",
+      "blurb": "收集配色、图标与设计灵感。",
       "entries": [
         {
           "label": "Iconify",
           "href": "https://icon-sets.iconify.design",
-          "note": "Searchable open-source icon sets"
+          "note": "搜索开源图标集合"
         },
         {
           "label": "Material Symbols",
           "href": "https://fonts.google.com/icons",
-          "note": "Official M3 icon set",
+          "note": "Material Design 官方图标库",
           "icon": "material-symbols:star-rounded"
         },
         {
           "label": "Excalidraw",
           "href": "https://excalidraw.com",
-          "note": "Hand-drawn whiteboard collaboration"
+          "note": "手绘风格的协作白板"
         }
       ]
     },
     {
       "key": "tools",
-      "name": "Tools",
+      "name": "实用工具",
       "icon": "material-symbols:build-outline-rounded",
       "entries": [
         {
           "label": "Squoosh",
           "href": "https://squoosh.app",
-          "note": "Image compression & conversion"
+          "note": "图片压缩与格式转换"
         },
         {
           "label": "Regex101",
           "href": "https://regex101.com",
-          "note": "Regex testing & debugging"
+          "note": "正则表达式测试与调试"
         }
-      ]
+      ],
+      "blurb": "让日常工作更高效的小工具。"
     },
     {
       "key": "reads",
-      "name": "Reading",
+      "name": "阅读收藏",
       "icon": "material-symbols:auto-stories-outline-rounded",
       "entries": [
         {
           "label": "Hacker News",
-          "href": "https://news.ycombinator.com"
+          "href": "https://news.ycombinator.com",
+          "note": "技术创业与行业资讯"
         },
         {
           "label": "V2EX",
-          "href": "https://www.v2ex.com"
+          "href": "https://www.v2ex.com",
+          "note": "开发者分享与交流社区"
         },
         {
           "label": "Solidot",
           "href": "https://www.solidot.org",
-          "note": "Tech and culture news"
+          "note": "科技与文化资讯"
         }
-      ]
+      ],
+      "blurb": "关注技术发展，也保持对生活的好奇。"
     }
   ],
   "devices": [
@@ -208,7 +212,7 @@
       "category": "desk",
       "status": "active",
       "specs": "M3 Max / 64GB / 2TB",
-      "description": "Primary workstation for development, design, and heavy rendering workloads.",
+      "description": "用于开发、设计与渲染的主力工作电脑。",
       "icon": "material-symbols:laptop-mac-rounded",
       "featured": true,
       "year": "2024",
@@ -220,8 +224,8 @@
       "brand": "Apple",
       "category": "mobile",
       "status": "active",
-      "specs": "Natural Titanium / 256GB",
-      "description": "Daily driver smartphone with outstanding cameras and a smooth 120Hz ProMotion display.",
+      "specs": "原色钛金属 / 256GB",
+      "description": "日常通信与拍照使用的手机，兼顾便携和流畅体验。",
       "icon": "material-symbols:phone-iphone",
       "featured": true,
       "year": "2024"
@@ -232,19 +236,19 @@
       "brand": "Sony",
       "category": "audio",
       "status": "active",
-      "specs": "Silver / ANC / LDAC",
-      "description": "Industry-leading noise-canceling headphones for immersive coding sessions and travels.",
+      "specs": "银色 / 主动降噪 / LDAC",
+      "description": "写代码与出行时使用的降噪耳机，让注意力回到当下。",
       "icon": "material-symbols:headphones-rounded",
       "year": "2023"
     },
     {
       "id": "custom-keyboard-75",
-      "name": "Custom 75% Mechanical Keyboard",
-      "brand": "Custom",
+      "name": "客制化 75% 机械键盘",
+      "brand": "客制化",
       "category": "peripheral",
       "status": "active",
-      "specs": "Anodized Aluminum / Linear Switches",
-      "description": "Custom gasket-mounted keyboard tuned for deep, quiet typing acoustics.",
+      "specs": "阳极氧化铝外壳 / 线性轴",
+      "description": "自己搭配的机械键盘，偏爱安静、扎实的敲击手感。",
       "icon": "material-symbols:keyboard-outline-rounded",
       "year": "2025"
     },
@@ -254,8 +258,8 @@
       "brand": "Apple",
       "category": "mobile",
       "status": "backup",
-      "specs": "Space Gray / 128GB",
-      "description": "Secondary mobile screen and digital notepad for sketching ideas and reading papers.",
+      "specs": "深空灰 / 128GB",
+      "description": "用来阅读论文、记录灵感和绘制草图的备用屏幕。",
       "icon": "material-symbols:tablet-mac-rounded",
       "year": "2021"
     }
@@ -265,38 +269,38 @@
       "id": 1,
       "title": "Mizuki",
       "imgurl": "https://avatars.githubusercontent.com/u/225602409?v=4&s=640",
-      "desc": "Another Fuwari-based blog theme with docs",
+      "desc": "基于 Fuwari 的博客主题，附有完整使用文档。",
       "siteurl": "https://mizuki.mysqil.com",
       "tags": [
-        "Blog",
-        "Theme"
+        "博客",
+        "主题"
       ]
     },
     {
       "id": 2,
       "title": "Astro",
       "imgurl": "https://avatars.githubusercontent.com/u/44914786?v=4&s=640",
-      "desc": "The web framework for content-driven websites",
+      "desc": "面向内容型网站的 Web 开发框架。",
       "siteurl": "https://astro.build",
       "tags": [
-        "Framework"
+        "开发框架"
       ]
     },
     {
       "id": 3,
       "title": "Material 3",
       "imgurl": "https://avatars.githubusercontent.com/u/19478152?v=4&s=640",
-      "desc": "Material Design 3 — the next generation of Material Design",
+      "desc": "Material Design 3 设计规范与组件资源。",
       "siteurl": "https://m3.material.io",
       "tags": [
-        "Design"
+        "设计"
       ]
     }
   ],
   "games": [
     {
       "id": "nte-neverness-to-everness",
-      "name": "NTE: Neverness to Everness",
+      "name": "异环",
       "developer": "Hotta Studio",
       "category": "open-world",
       "status": "playing",
@@ -307,17 +311,17 @@
       "platform": "PC",
       "year": "2026",
       "tags": [
-        "Open World",
-        "Urban",
-        "Supernatural"
+        "开放世界",
+        "都市",
+        "超自然"
       ],
-      "description": "A supernatural urban open-world RPG. As an anomaly-user who senses the “waves” of people and anomalies, you join E.T.D Squad Six and investigate the city's paranormal events.",
+      "description": "在充满异常现象的都市中自由探索，与伙伴一起调查事件，发现城市背后的故事。",
       "link": "https://yh.wanmei.com/main.html",
       "featured": true
     },
     {
       "id": "minecraft",
-      "name": "Minecraft",
+      "name": "我的世界",
       "developer": "Mojang Studios",
       "category": "sandbox",
       "status": "playing",
@@ -328,18 +332,18 @@
       "platform": "PC",
       "year": "2011",
       "tags": [
-        "Sandbox",
-        "Survival",
-        "Building"
+        "沙盒",
+        "生存",
+        "建造"
       ],
-      "description": "A blocky sandbox where you mine, craft and build across procedurally generated worlds. Survive the night, or just keep building — alone or with friends.",
+      "description": "在方块组成的世界里采集资源、搭建家园。既可以独自冒险，也可以与朋友一起创造。",
       "link": "https://www.minecraft.net/"
     }
   ],
   "music": [
     {
       "id": "dazbee",
-      "title": "口笛で愛は歌えない",
+      "title": "口哨唱不出爱",
       "artist": "Dazbee",
       "cover": "assets/images/music/dazbee.webp",
       "source": "/assets/music/url/dazbee.mp3",
@@ -347,7 +351,7 @@
     },
     {
       "id": "hitori",
-      "title": "ひとり上手",
+      "title": "习惯独处",
       "artist": "Kaya",
       "cover": "assets/images/music/hitori.webp",
       "source": "/assets/music/url/hitori.mp3",
@@ -355,15 +359,15 @@
     },
     {
       "id": "xryx",
-      "title": "眩耀夜行",
-      "artist": "スリーズブーケ",
+      "title": "炫耀夜行",
+      "artist": "瑟莉兹花束",
       "cover": "assets/images/music/xryx.webp",
       "source": "/assets/music/url/xryx.mp3",
       "duration": 245
     },
     {
       "id": "cl",
-      "title": "春雷の頃",
+      "title": "春雷时节",
       "artist": "22/7",
       "cover": "assets/images/music/cl.webp",
       "source": "/assets/music/url/cl.mp3",
@@ -374,18 +378,18 @@
     {
       "key": "shirone",
       "title": "Shirone",
-      "summary": "An Astro blog theme shaped around an M3E component system, expressive content, and resilient client navigation.",
+      "summary": "基于 Nuxt 4、Vue 3 与 M3E 设计令牌构建的独立博客应用，支持服务端渲染和本地内容管理演示。",
       "category": "theme",
       "phase": "building",
       "technologies": [
-        "Astro",
-        "Svelte",
+        "Nuxt 4",
+        "Vue 3",
         "TypeScript",
         "Tailwind CSS"
       ],
       "icon": "material-symbols:deployed-code-outline-rounded",
       "cover": "/assets/projects/shirone.webp",
-      "coverAlt": "Shirone theme homepage preview",
+      "coverAlt": "白音博客首页预览",
       "featured": true,
       "repository": "https://github.com/LyraVoid/Shirone",
       "year": "2026"
@@ -393,7 +397,7 @@
     {
       "key": "folkpatch",
       "title": "FolkPatch",
-      "summary": "A kernel-level root solution for Android, built on APatch.",
+      "summary": "基于 APatch 构建的安卓内核级权限管理项目。",
       "category": "android",
       "phase": "building",
       "technologies": [
@@ -407,7 +411,7 @@
     {
       "key": "kernelpatch",
       "title": "KernelPatch",
-      "summary": "A kernel patch framework that powers APatch-style root on Android by loading code into the running kernel.",
+      "summary": "通过向运行中的内核加载代码，为安卓权限管理提供支持的内核补丁框架。",
       "category": "android",
       "phase": "shipped",
       "technologies": [
@@ -422,147 +426,147 @@
   "skills": [
     {
       "name": "JavaScript",
-      "description": "ES2020+ syntax, async plumbing, and event-driven browser code.",
+      "description": "现代语法、异步流程与浏览器事件处理。",
       "icon": "simple-icons:javascript",
       "category": "frontend",
       "level": "advanced"
     },
     {
       "name": "TypeScript",
-      "description": "Typed application code and maintainable contracts.",
+      "description": "用清晰的类型约束编写易维护的应用代码。",
       "icon": "simple-icons:typescript",
       "category": "frontend",
       "level": "expert"
     },
     {
       "name": "Astro",
-      "description": "Content-focused sites with fast server-rendered output.",
+      "description": "构建以内容为中心、服务端输出轻量的网站。",
       "icon": "simple-icons:astro",
       "category": "frontend",
       "level": "advanced"
     },
     {
       "name": "Svelte",
-      "description": "Focused interactive islands and component systems.",
+      "description": "编写交互组件与可复用的界面系统。",
       "icon": "simple-icons:svelte",
       "category": "frontend",
       "level": "advanced"
     },
     {
       "name": "React",
-      "description": "Composable component trees with hooks and client state.",
+      "description": "通过组件组合、状态与 Hooks 构建应用界面。",
       "icon": "simple-icons:react",
       "category": "frontend",
       "level": "intermediate"
     },
     {
       "name": "Vue",
-      "description": "Progressive component authoring for rapid single-page apps.",
+      "description": "使用组合式 API 开发响应式界面与应用。",
       "icon": "simple-icons:vuedotjs",
       "category": "frontend",
       "level": "intermediate"
     },
     {
       "name": "Tailwind CSS",
-      "description": "Utility-first styling for rapidly composed interfaces.",
+      "description": "使用工具类快速构建一致的界面样式。",
       "icon": "simple-icons:tailwindcss",
       "category": "frontend",
       "level": "advanced"
     },
     {
       "name": "Sass",
-      "description": "Nesting, variables, and mixins for maintainable stylesheets.",
+      "description": "用嵌套、变量与混入维护复杂样式。",
       "icon": "simple-icons:sass",
       "category": "frontend",
       "level": "intermediate"
     },
     {
       "name": "Node.js",
-      "description": "Build tooling, services, and content pipelines.",
+      "description": "开发服务、构建工具与内容处理流程。",
       "icon": "simple-icons:nodedotjs",
       "category": "backend",
       "level": "advanced"
     },
     {
       "name": "Python",
-      "description": "Scripting, data wrangling, and service automation.",
+      "description": "编写自动化脚本，整理数据与日常任务。",
       "icon": "simple-icons:python",
       "category": "backend",
       "level": "intermediate"
     },
     {
       "name": "Java",
-      "description": "Typed OO code for larger service and tooling layers.",
+      "description": "面向对象建模与服务端应用开发。",
       "icon": "simple-icons:openjdk",
       "category": "backend",
       "level": "intermediate"
     },
     {
       "name": "Go",
-      "description": "Concurrent services and small high-performance tools.",
+      "description": "编写并发服务与轻量高效的命令行工具。",
       "icon": "simple-icons:go",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "Rust",
-      "description": "Memory-safe systems code and performance-critical paths.",
+      "description": "探索内存安全的系统开发与性能优化。",
       "icon": "simple-icons:rust",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "C++",
-      "description": "Native modules and performance-sensitive components.",
+      "description": "开发原生模块与性能敏感组件。",
       "icon": "simple-icons:cplusplus",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "C",
-      "description": "Low-level systems work close to the runtime.",
+      "description": "理解底层内存、运行时与系统接口。",
       "icon": "simple-icons:c",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "Kotlin",
-      "description": "Concise JVM/Android code with modern null safety.",
+      "description": "学习安卓应用开发与空安全设计。",
       "icon": "simple-icons:kotlin",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "Swift",
-      "description": "Native Apple-platform code and small CLIs.",
+      "description": "编写苹果平台应用及小型命令行工具。",
       "icon": "simple-icons:swift",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "Ruby",
-      "description": "Readable scripting and quick automation.",
+      "description": "用易读的脚本完成快速自动化。",
       "icon": "simple-icons:ruby",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "PHP",
-      "description": "Server-rendered web code and content platforms.",
+      "description": "开发服务端页面与内容管理应用。",
       "icon": "simple-icons:php",
       "category": "backend",
       "level": "beginner"
     },
     {
       "name": "PostgreSQL",
-      "description": "Relational data modeling and application queries.",
+      "description": "设计关系型数据模型并优化应用查询。",
       "icon": "simple-icons:postgresql",
       "category": "backend",
       "level": "intermediate"
     },
     {
       "name": "Playwright",
-      "description": "User-facing regression and accessibility testing.",
+      "description": "验证真实用户流程、浏览器兼容性与无障碍体验。",
       "icon": "simple-icons:playwright",
       "category": "tooling",
       "level": "advanced"
@@ -570,25 +574,25 @@
   ],
   "timeline": [
     {
-      "title": "Shirone Theme M3E Major Architecture Upgrade",
+      "title": "白音博客 M3E 架构升级",
       "date": "2026.08",
       "category": "milestone",
-      "subtitle": "Open Source Project",
-      "description": "Refactored the entire blog theme into a Material 3 Expressive atomic component system with token-driven styling, complete keyboard navigation, and full accessibility compliance.",
+      "subtitle": "开源项目",
+      "description": "将博客整理为基于 Material 3 Expressive 的原子组件体系，以设计令牌统一样式，并补齐键盘操作与无障碍检查。",
       "highlights": [
-        "Implemented dynamic HCT palette calculation and state layer tokens",
-        "Added multi-page capabilities: Timeline, Skills, Projects, and Protected Albums",
-        "Zero-error strict type-checking and automated visual regression locks"
+        "引入动态 HCT 配色与状态层令牌",
+        "增加时间线、技能、项目和加密相册展示页",
+        "建立类型检查与自动化界面回归流程"
       ],
       "tags": [
-        "Astro",
-        "Svelte 5",
+        "Nuxt 4",
+        "Vue 3",
         "M3E",
         "Tailwind 4"
       ],
       "links": [
         {
-          "label": "GitHub Repository",
+          "label": "项目仓库",
           "url": "https://github.com/LyraVoid/Shirone",
           "icon": "fa6-brands:github"
         }
@@ -597,37 +601,37 @@
       "featured": true
     },
     {
-      "title": "Senior Frontend Engineer",
-      "date": "2025.03 – Present",
+      "title": "高级前端工程师",
+      "date": "2025.03 – 至今",
       "category": "career",
-      "subtitle": "Technology Lab",
-      "location": "Tokyo, Japan",
-      "description": "Leading frontend architecture, web performance optimization, and interactive design system development for modern web platforms.",
+      "subtitle": "技术实验室",
+      "location": "日本·东京",
+      "description": "负责前端架构、页面性能优化与交互设计系统建设。",
       "highlights": [
-        "Spearheaded design system unification across web products",
-        "Reduced core bundle load times by 40% using modern SSR and asset pipelines"
+        "推动多个产品共用一致的设计系统",
+        "通过 SSR 与资源优化改善页面加载体验"
       ],
       "tags": [
         "TypeScript",
-        "Architecture",
-        "Performance",
-        "Design System"
+        "架构设计",
+        "性能优化",
+        "设计系统"
       ],
       "icon": "material-symbols:work-rounded",
       "featured": true
     },
     {
-      "title": "Full-Stack Web Application Launch",
+      "title": "全栈应用上线",
       "date": "2024.11",
       "category": "project",
-      "subtitle": "Independent Creation",
-      "description": "Designed and built an end-to-end creative workflow application with real-time collaboration and cloud synchronization.",
+      "subtitle": "独立开发",
+      "description": "从需求设计到交付，完成一款支持协作与同步的创作工具。",
       "highlights": [
-        "Designed intuitive fluid canvas interface with low-latency interaction",
-        "Built serverless backend APIs with edge caching and relational persistence"
+        "设计操作直观、响应流畅的画布界面",
+        "实现带缓存与关系型存储的后端接口"
       ],
       "tags": [
-        "Svelte",
+        "Vue",
         "Node.js",
         "PostgreSQL",
         "Cloudflare"
@@ -635,33 +639,33 @@
       "icon": "material-symbols:deployed-code-outline-rounded"
     },
     {
-      "title": "Computer Science & Engineering Degree",
+      "title": "计算机科学与工程专业毕业",
       "date": "2020.09 – 2024.06",
       "category": "education",
-      "subtitle": "University of Technology",
-      "location": "Hangzhou, China",
-      "description": "Focused on computer systems, software engineering, human-computer interaction, and distributed architectures.",
+      "subtitle": "理工大学",
+      "location": "中国·杭州",
+      "description": "学习计算机系统、软件工程、人机交互与分布式架构。",
       "highlights": [
-        "Graduated with honors and outstanding graduate thesis award",
-        "Led university open source student community and hackathons"
+        "完成毕业设计并获得优秀论文评价",
+        "组织校园开源交流与编程活动"
       ],
       "tags": [
-        "Computer Science",
-        "Algorithms",
-        "Software Engineering"
+        "计算机科学",
+        "算法",
+        "软件工程"
       ],
       "icon": "material-symbols:school-rounded"
     },
     {
-      "title": "Started Personal Blog & Tech Notes",
+      "title": "开始写个人博客",
       "date": "2022.04",
       "category": "life",
-      "subtitle": "First Step into Tech Writing",
-      "description": "Published my first article online and began documenting frontend exploration, creative coding, and personal reflections.",
+      "subtitle": "技术写作的第一步",
+      "description": "发布第一篇文章，开始记录前端探索、创意编程与日常思考。",
       "tags": [
-        "Blogging",
-        "Writing",
-        "Open Web"
+        "博客",
+        "写作",
+        "开放网络"
       ],
       "icon": "material-symbols:edit-note-rounded"
     }

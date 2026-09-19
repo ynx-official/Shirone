@@ -1,475 +1,228 @@
 ---
-title: "Image Gallery Grid: Syntax and Complete Examples"
-published: 2026-07-13
-description: "A complete guide to image gallery grid syntax, parameters, cropping, responsive behavior, captions, and lightbox navigation."
-tags: [Markdown, Gallery, Image Grid, Demo]
-category: "Examples"
+title: 图片网格：布局与完整示例
+published: 2026-07-13T00:00:00.000Z
+description: 对照不同列数、比例、裁切与灯箱效果，整理图文内容。
+tags:
+  - Markdown
+  - 图集
+  - 图片网格
+  - 示例
+category: 示例
 draft: false
+lang: zh_CN
 ---
 
-`:::grid` is the blog's image gallery container directive. It arranges ordinary Markdown images in a responsive grid with a consistent aspect ratio and automatically enables lightbox viewing. Use it for article images, screenshots, portfolios, or small albums.
+图片网格用来组织同一主题下的多张图片。点击图片可以查看大图，布局会随屏幕宽度调整。
 
-Images in the same gallery use the same card ratio. By default, center cropping fills every card and keeps each row tidy; clicking an image opens the complete original in a lightbox. Every gallery has its own lightbox group and does not mix with other images in the post.
-
-> This post is both feature documentation and a visual test page. View the examples at desktop, tablet, and mobile widths, then click any image to verify lightbox grouping.
-
-## Minimal Syntax
-
-Write Markdown images directly between `:::grid` and the closing `:::`:
-
-````markdown
-:::grid
-![Image description](./image-1.webp)
-
-![Image description](./image-2.webp)
-:::
-````
-
-Each image must occupy its own paragraph, with a blank line between images. Keep only images in a gallery; write paragraphs, lists, and code blocks outside the container.
-
-Here is the result of the minimal syntax. Without parameters, the grid uses three columns, a `16/10` ratio, and `cover` by default.
-
-:::grid
-![Minimal syntax result: first image](./landscape-1.webp)
-
-![Minimal syntax result: second image](./landscape-2.webp)
-:::
-
-## Parameters at a Glance
-
-Write all parameters in braces after the opening directive: `:::grid{parameter="value"}`.
-
-| Parameter | Allowed values | Default | Purpose |
-| --- | --- | --- | --- |
-| `columns` | Integers from `1` to `6` | `3` | Number of columns per row on desktop. Invalid values fall back to `3`. |
-| `aspect` | A positive ratio, such as `16/9`, `3/4`, or `1/1` | `16/10` | The displayed card ratio, not the original image ratio. |
-| `fit` | `cover`, `contain` | `cover` | Image fitting mode. `cover` crops to fill; `contain` preserves the complete image and may leave empty space. |
-
-Complete example:
-
-````markdown
-:::grid{columns="3" aspect="16/9" fit="cover"}
-![First image](./image-1.webp "Optional caption")
-
-![Second image](./image-2.webp "Optional caption")
-
-![Third image](./image-3.webp "Optional caption")
-:::
-````
-
-The following result uses the three-column landscape syntax above. Compare the card ratio, column count, and the way a title takes precedence over alt text as the caption:
-
-:::grid{columns="3" aspect="16/9" fit="cover"}
-![Parameter example: first landscape image](./landscape-1.webp "Landscape caption 1")
-
-![Parameter example: second landscape image](./landscape-2.webp "Landscape caption 2")
-
-![Parameter example: third landscape image](./landscape-3.webp "Landscape caption 3")
-:::
-
-## Captions and Alt Text
-
-An image's alt text serves both as accessible alternative text and as its default caption. When an image has an optional title, the title is used as the caption instead:
+## 基本写法
 
 ```markdown
-![Text used for accessibility](./image.webp "Caption shown below the image")
+:::grid{columns="3" aspect="16/9" fit="cover"}
+![风景插画](./landscape-1.webp "图片说明")
+:::
 ```
 
-In the same row, captions align to the bottom of every card. A wrapping caption does not make the others float at a different height. Ratio text such as `3:4` and `16:9` can be written directly in body text, headings, and alt text without escaping.
+## 最简网格
 
-This example demonstrates the default alt-text caption, an explicit title caption, and bottom alignment for a longer caption:
+:::grid
+![风景插画，示例 1](./landscape-1.webp "风景插画 · 1")
+
+![风景插画，示例 2](./landscape-2.webp "风景插画 · 2")
+:::
+
+## 列数与图片比例
+
+:::grid{columns="3" aspect="16/9" fit="cover"}
+![风景插画，示例 3](./landscape-1.webp "风景插画 · 3")
+
+![风景插画，示例 4](./landscape-2.webp "风景插画 · 4")
+
+![风景插画，示例 5](./landscape-3.webp "风景插画 · 5")
+:::
+
+## 图片说明与替代文本
 
 :::grid{columns="3" aspect="1/1"}
-![This image has no title, so its alt text is the caption](./square-1.webp)
+![人物插画，示例 6](./square-1.webp "人物插画 · 6")
 
-![Second square image with accessible alt text](./square-2.webp "This title is displayed as the caption")
+![人物插画，示例 7](./square-2.webp "人物插画 · 7")
 
-![Accessible description of a 3:4 poster](./square-3.webp "This is a longer caption for checking that every caption remains aligned to the bottom of its card when it wraps")
+![人物插画，示例 8](./square-3.webp "人物插画 · 8")
 :::
 
-## Layout and Cropping
+## 裁切与完整显示
 
-Desktop layouts use the number of columns specified by `columns`. Below `768px`, grids use at most two columns; below `480px`, they switch to one column. The card wrapper fixes the `aspect` ratio and clips rounded corners, while the image fills the card without the theme's default image margins.
-
-- Choose `cover`: the recommended default. Images are cropped from the center to fill the card, making the gallery look consistent.
-- Choose `contain`: the full original image is shown without cropping. When its ratio differs from the card, the theme background remains visible; use this for images that cannot be cropped.
-- To preserve the complete image without empty space, set `aspect` close to the original image ratio or place the image in a grid of its own.
-
-The following examples place the same portrait images in `16/9` cards with `cover` and `contain`. The first crops them; the second preserves the full image and leaves background space.
-
-````markdown
 :::grid{columns="3" aspect="16/9" fit="cover"}
-![Image description](./image-1.webp "Optional caption")
+![人物插画，示例 9](./default-portrait-1.webp "人物插画 · 9")
 
-![Image description](./image-2.webp "Optional caption")
+![人物插画，示例 10](./default-portrait-2.webp "人物插画 · 10")
+
+![人物插画，示例 11](./default-portrait-3.webp "人物插画 · 11")
 :::
 
 :::grid{columns="3" aspect="16/9" fit="contain"}
-![Image description](./image-1.webp "Optional caption")
+![人物插画，示例 12](./default-portrait-1.webp "人物插画 · 12")
 
-![Image description](./image-2.webp "Optional caption")
-:::
-````
+![人物插画，示例 13](./default-portrait-2.webp "人物插画 · 13")
 
-:::grid{columns="3" aspect="16/9" fit="cover"}
-![First cover result](./default-portrait-1.webp "Cover: center crop")
-
-![Second cover result](./default-portrait-2.webp "Cover: fill the card")
-
-![Third cover result](./default-portrait-3.webp "Cover: a more consistent layout")
+![人物插画，示例 14](./default-portrait-3.webp "人物插画 · 14")
 :::
 
-:::grid{columns="3" aspect="16/9" fit="contain"}
-![First contain result](./default-portrait-1.webp "Contain: preserve the complete original")
-
-![Second contain result](./default-portrait-2.webp "Contain: empty space may appear")
-
-![Third contain result](./default-portrait-3.webp "Contain: suitable for edge details")
-:::
-
-## Default Configuration
-
-Without attributes, the default is three columns, a `16/10` ratio, and `cover` cropping. These three portrait images verify default cropping and captions.
-
-````markdown
-:::grid
-![Image description](./image-1.webp)
-
-![Image description](./image-2.webp)
-
-![Image description](./image-3.webp)
-:::
-````
+## 默认布局
 
 :::grid
-![Default configuration: portrait image one](./default-portrait-1.webp)
+![人物插画，示例 15](./default-portrait-1.webp "人物插画 · 15")
 
-![Default configuration: portrait image two](./default-portrait-2.webp)
+![人物插画，示例 16](./default-portrait-2.webp "人物插画 · 16")
 
-![Default configuration: portrait image three](./default-portrait-3.webp)
+![人物插画，示例 17](./default-portrait-3.webp "人物插画 · 17")
 :::
 
-## Three-Column Portraits: 3:4
-
-With `aspect="3/4"`, the three portrait images fill consistently proportioned vertical cards. If an original image has a different ratio, `cover` crops its edges from the center.
-
-````markdown
-:::grid{columns="3" aspect="3/4"}
-![Portrait image description](./portrait-1.webp)
-
-![Portrait image description](./portrait-2.webp)
-
-![Portrait image description](./portrait-3.webp)
-:::
-````
+## 三列竖幅图片
 
 :::grid{columns="3" aspect="3/4"}
-![3:4 test image one](./default-portrait-1.webp "Portrait 1")
+![人物插画，示例 18](./default-portrait-1.webp "人物插画 · 18")
 
-![3:4 test image two](./default-portrait-2.webp "Portrait 2")
+![人物插画，示例 19](./default-portrait-2.webp "人物插画 · 19")
 
-![3:4 test image three](./default-portrait-3.webp "Portrait 3")
+![人物插画，示例 20](./default-portrait-3.webp "人物插画 · 20")
 :::
 
-## Three-Column Landscapes: 16:9
-
-This set demonstrates a common video-cover ratio in a three-column layout. Cropping is minimal when the landscape images are close to the card ratio.
-
-````markdown
-:::grid{columns="3" aspect="16/9"}
-![Landscape image description](./landscape-1.webp)
-
-![Landscape image description](./landscape-2.webp)
-
-![Landscape image description](./landscape-3.webp)
-:::
-````
+## 三列横幅图片
 
 :::grid{columns="3" aspect="16/9"}
-![16:9 test image one](./feature-landscape-1.webp)
+![风景插画，示例 21](./feature-landscape-1.webp "风景插画 · 21")
 
-![16:9 test image two](./feature-landscape-2.webp)
+![风景插画，示例 22](./feature-landscape-2.webp "风景插画 · 22")
 
-![16:9 test image three](./feature-landscape-3.webp)
+![风景插画，示例 23](./feature-landscape-3.webp "风景插画 · 23")
 :::
 
-## Two-Column Squares: 1:1
-
-Two columns work well when larger preview cards are needed. The third image moves to the next row. The final row keeps its grid-track width instead of stretching images to fill the row.
-
-````markdown
-:::grid{columns="2" aspect="1/1"}
-![Square image description](./square-1.webp)
-
-![Square image description](./square-2.webp)
-
-![Square image description](./square-3.webp)
-:::
-````
+## 两列方形图片
 
 :::grid{columns="2" aspect="1/1"}
-![1:1 test image one](./mixed-square-1.webp)
+![人物插画，示例 24](./mixed-square-1.webp "人物插画 · 24")
 
-![1:1 test image two](./mixed-square-2.webp)
+![人物插画，示例 25](./mixed-square-2.webp "人物插画 · 25")
 
-![1:1 test image three](./mixed-square-3.webp)
+![人物插画，示例 26](./mixed-square-3.webp "人物插画 · 26")
 :::
 
-## Four Columns with `contain`
-
-`fit="contain"` does not crop the original image. When the image ratio differs from the card ratio, the theme background remains visible. This is intentional, not a layout issue. It also verifies that four-column grids and separate lightbox groups do not interfere with each other.
-
-````markdown
-:::grid{columns="4" aspect="16/9" fit="contain"}
-![Image description](./image-1.webp)
-
-![Image description](./image-2.webp)
-
-![Image description](./image-3.webp)
-:::
-````
+## 四列完整显示
 
 :::grid{columns="4" aspect="16/9" fit="contain"}
-![Contain: portrait image one](./default-portrait-1.webp)
+![人物插画，示例 27](./default-portrait-1.webp "人物插画 · 27")
 
-![Contain: portrait image two](./default-portrait-2.webp)
+![人物插画，示例 28](./default-portrait-2.webp "人物插画 · 28")
 
-![Contain: portrait image three](./default-portrait-3.webp)
+![人物插画，示例 29](./default-portrait-3.webp "人物插画 · 29")
 :::
 
-## Single-Column Detail Image
-
-One column is suitable when an image needs a larger reading size. It remains one column on desktop, tablet, and mobile, and the original is still available in the lightbox.
-
-````markdown
-:::grid{columns="1" aspect="16/9"}
-![Image description](./detail.webp)
-:::
-````
+## 单列细节展示
 
 :::grid{columns="1" aspect="16/9"}
-![Single-column test image](./feature-landscape-1.webp)
+![风景插画，示例 30](./feature-landscape-1.webp "风景插画 · 30")
 :::
 
-## Sparse Five-Column Row
-
-Five columns verify a higher supported column count. With only three images, the final row remains left-aligned instead of stretching the images.
-
-````markdown
-:::grid{columns="5" aspect="1/1"}
-![Thumbnail description](./thumb-1.webp)
-
-![Thumbnail description](./thumb-2.webp)
-
-![Thumbnail description](./thumb-3.webp)
-:::
-````
+## 五列稀疏排列
 
 :::grid{columns="5" aspect="1/1"}
-![Five-column test image one](./mixed-square-1.webp)
+![人物插画，示例 31](./mixed-square-1.webp "人物插画 · 31")
 
-![Five-column test image two](./mixed-square-2.webp)
+![人物插画，示例 32](./mixed-square-2.webp "人物插画 · 32")
 
-![Five-column test image three](./mixed-square-3.webp)
+![人物插画，示例 33](./mixed-square-3.webp "人物插画 · 33")
 :::
 
-## Mixed Images in Six Columns
-
-Six columns are the current maximum. Mixing landscape and portrait images verifies `cover` cropping, captions on narrow cards, and a dense desktop layout. For readable article content, two to four columns are usually preferable.
-
-````markdown
-:::grid{columns="6" aspect="1/1"}
-![Image description](./image-1.webp)
-
-![Image description](./image-2.webp)
-
-![Image description](./image-3.webp)
-
-![Image description](./image-4.webp)
-
-![Image description](./image-5.webp)
-
-![Image description](./image-6.webp)
-:::
-````
+## 六列混合构图
 
 :::grid{columns="6" aspect="1/1"}
-![Six-column test image one](./default-portrait-1.webp)
+![人物插画，示例 34](./default-portrait-1.webp "人物插画 · 34")
 
-![Six-column test image two](./default-portrait-2.webp)
+![人物插画，示例 35](./default-portrait-2.webp "人物插画 · 35")
 
-![Six-column test image three](./default-portrait-3.webp)
+![人物插画，示例 36](./default-portrait-3.webp "人物插画 · 36")
 
-![Six-column test image four](./feature-landscape-1.webp)
+![风景插画，示例 37](./feature-landscape-1.webp "风景插画 · 37")
 
-![Six-column test image five](./feature-landscape-2.webp)
+![风景插画，示例 38](./feature-landscape-2.webp "风景插画 · 38")
 
-![Six-column test image six](./feature-landscape-3.webp)
+![风景插画，示例 39](./feature-landscape-3.webp "风景插画 · 39")
 :::
 
-## Four-Column Squares: 1:1
-
-Four square images with the same ratio are a typical four-column layout. Desktop displays all four in one row; tablet collapses to two columns and mobile to one.
-
-````markdown
-:::grid{columns="4" aspect="1/1"}
-![Square image description](./square-1.webp)
-
-![Square image description](./square-2.webp)
-
-![Square image description](./square-3.webp)
-
-![Square image description](./square-4.webp)
-:::
-````
+## 四列方形图片
 
 :::grid{columns="4" aspect="1/1"}
-![Square image one](./square-1.webp)
+![人物插画，示例 40](./square-1.webp "人物插画 · 40")
 
-![Square image two](./square-2.webp)
+![人物插画，示例 41](./square-2.webp "人物插画 · 41")
 
-![Square image three](./square-3.webp)
+![人物插画，示例 42](./square-3.webp "人物插画 · 42")
 
-![Square image four](./square-4.webp)
+![人物插画，示例 43](./square-4.webp "人物插画 · 43")
 :::
 
-## Six-Column Landscapes: 16:9
-
-Six landscape columns work well for thumbnail previews, portfolios, and screenshot indexes. Even if original ratios differ slightly, `cover` fills every `16/9` card consistently.
-
-````markdown
-:::grid{columns="6" aspect="16/9"}
-![Landscape image description](./landscape-1.webp)
-
-![Landscape image description](./landscape-2.webp)
-
-![Landscape image description](./landscape-3.webp)
-
-![Landscape image description](./landscape-4.webp)
-
-![Landscape image description](./landscape-5.webp)
-
-![Landscape image description](./landscape-6.webp)
-:::
-````
+## 六列横幅图片
 
 :::grid{columns="6" aspect="16/9"}
-![Landscape image one](./landscape-1.webp)
+![风景插画，示例 44](./landscape-1.webp "风景插画 · 44")
 
-![Landscape image two](./landscape-2.webp)
+![风景插画，示例 45](./landscape-2.webp "风景插画 · 45")
 
-![Landscape image three](./landscape-3.webp)
+![风景插画，示例 46](./landscape-3.webp "风景插画 · 46")
 
-![Landscape image four](./landscape-4.webp)
+![风景插画，示例 47](./landscape-4.webp "风景插画 · 47")
 
-![Landscape image five](./landscape-5.webp)
+![风景插画，示例 48](./landscape-5.webp "风景插画 · 48")
 
-![Landscape image six](./landscape-6.webp)
+![风景插画，示例 49](./landscape-6.webp "风景插画 · 49")
 :::
 
-## Three-Column Portraits: 3:4
-
-This group of six portrait images demonstrates a common layout for people, posters, or mobile screenshots. The images form two rows of three, with captions aligned to the bottom.
-
-````markdown
-:::grid{columns="3" aspect="3/4"}
-![Portrait image description](./portrait-1.webp)
-
-![Portrait image description](./portrait-2.webp)
-
-![Portrait image description](./portrait-3.webp)
-
-![Portrait image description](./portrait-4.webp)
-
-![Portrait image description](./portrait-5.webp)
-
-![Portrait image description](./portrait-6.webp)
-:::
-````
+## 三列竖幅图片
 
 :::grid{columns="3" aspect="3/4"}
-![Portrait image one](./portrait-1.webp)
+![人物插画，示例 50](./portrait-1.webp "人物插画 · 50")
 
-![Portrait image two](./portrait-2.webp)
+![人物插画，示例 51](./portrait-2.webp "人物插画 · 51")
 
-![Portrait image three](./portrait-3.webp)
+![人物插画，示例 52](./portrait-3.webp "人物插画 · 52")
 
-![Portrait image four](./portrait-4.webp)
+![人物插画，示例 53](./portrait-4.webp "人物插画 · 53")
 
-![Portrait image five](./portrait-5.webp)
+![人物插画，示例 54](./portrait-5.webp "人物插画 · 54")
 
-![Portrait image six](./portrait-6.webp)
+![人物插画，示例 55](./portrait-6.webp "人物插画 · 55")
 :::
 
-## Edge-Critical Content: `cover` and Lightbox
-
-These images contain important text or details near their edges. `cover` keeps the grid tidy but may crop those edges; click an image to view the uncropped original in the lightbox. Use clear captions for edge-sensitive images, or use `contain` below.
-
-````markdown
-:::grid{columns="3" aspect="16/9" fit="cover"}
-![Edge-critical content](./critical-1.webp "Open the lightbox to view the complete edge content")
-
-![Edge-critical content](./critical-2.webp "Open the lightbox to view the complete edge content")
-
-![Edge-critical content](./critical-3.webp "Open the lightbox to view the complete edge content")
-:::
-````
+## 裁切边缘与灯箱
 
 :::grid{columns="3" aspect="16/9" fit="cover"}
-![First edge-critical image](./critical-1.webp "Open the lightbox to view the complete edge content")
+![人物插画，示例 56](./critical-1.webp "人物插画 · 56")
 
-![Second edge-critical image](./critical-2.webp "Open the lightbox to view the complete edge content")
+![人物插画，示例 57](./critical-2.webp "人物插画 · 57")
 
-![Third edge-critical image](./critical-3.webp "Open the lightbox to view the complete edge content")
+![人物插画，示例 58](./critical-3.webp "人物插画 · 58")
 :::
 
-## Extreme Ratios with `contain`
-
-For banners, long screenshots, and other extreme image ratios, `contain` displays the complete original. Unlike `cover`, it may leave theme-background space, but it never crops content.
-
-````markdown
-:::grid{columns="3" aspect="16/9" fit="contain"}
-![Complete screenshot description](./wide-1.webp)
-
-![Complete screenshot description](./wide-2.webp)
-
-![Complete screenshot description](./wide-3.webp)
-:::
-````
+## 特殊比例图片
 
 :::grid{columns="3" aspect="16/9" fit="contain"}
-![Extreme-ratio image one](./extreme-1.webp)
+![宽幅画面，示例 59](./extreme-1.webp "宽幅画面 · 59")
 
-![Extreme-ratio image two](./extreme-2.webp)
+![宽幅画面，示例 60](./extreme-2.webp "宽幅画面 · 60")
 
-![Extreme-ratio image three](./extreme-3.webp)
+![宽幅画面，示例 61](./extreme-3.webp "宽幅画面 · 61")
 :::
 
-## Transparent Images
-
-Transparent images reveal the card's theme background. This single-column `contain` example makes the transparent areas, original edges, and lightbox behavior easy to inspect.
-
-````markdown
-:::grid{columns="1" aspect="16/9" fit="contain"}
-![Transparent image description](./transparent.webp)
-:::
-````
+## 透明背景图片
 
 :::grid{columns="1" aspect="16/9" fit="contain"}
-![Transparent-background test image](./transparent-1.webp)
+![透明背景插画，示例 62](./transparent-1.webp "透明背景插画 · 62")
 :::
 
-## Lightbox Navigation
+## 检查要点
 
-Click any image in a grid to open the Fancybox lightbox. There you can zoom, rotate, enter fullscreen, view thumbnails, and navigate with the arrow keys. Navigation is limited to the current `:::grid` container: for example, clicking "16:9 test image one" only opens the other two landscape images in that section.
-
-Ordinary Markdown images in the same post continue to be handled separately; they are not added to any grid gallery.
-
-## Checklist
-
-1. Images in each grid have consistent dimensions, with captions below the cards.
-2. Images scale slightly on hover; after clicking, they can be zoomed, rotated, and navigated with the keyboard.
-3. Clicking "16:9 test image one" lets the lightbox browse only the other two landscape images in that section.
-4. Below 768px, grids use at most two columns; below 480px, they use one column.
-5. Portrait images in "Four Columns with `contain`" are fully visible with empty space and no cropping.
-6. Five- and six-column grids retain their specified column count on wide screens, then collapse to two or one column according to the responsive rules.
+- 替代文本说明图片内容，标题补充观看背景。
+- `cover` 填满卡片，`contain` 保留整张图片。
+- 小屏幕下减少列数，图片不会撑宽页面。
+- 每组灯箱只在当前网格内切换图片。
