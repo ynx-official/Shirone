@@ -1,0 +1,15 @@
+node_modules/
+.nuxt/
+.output/
+.generated/
+.cache/
+playwright-report/
+test-results/
+.env
+public/pagefind/
+public/preview/
+public/styles/katex/
+public/styles/expressive-engine.css
+public/content-assets/
+public/assets/album-thumbnails/
+public/assets/moments/thumbnails/

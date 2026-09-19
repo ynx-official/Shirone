@@ -1,0 +1,9 @@
+node_modules
+.nuxt
+.output
+.cache
+.generated
+.env
+.git
+playwright-report
+test-results

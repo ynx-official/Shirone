@@ -1,0 +1,27 @@
+# TEMPLATE ONLY: GitHub does not execute workflows from this directory.
+# Later copy to repository-root .github/workflows/nuxt4.yml after review.
+name: Nuxt application
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: nuxt4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.14.4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: nuxt4/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm content:build
+      - run: pnpm typecheck && pnpm lint && pnpm test
+      - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - run: node scripts/verify-standalone.mjs

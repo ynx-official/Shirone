@@ -1,0 +1,836 @@
+{
+  "about": {
+    "enable": true,
+    "title": "$t:about",
+    "description": "$t:about"
+  },
+  "albums": {
+    "enable": true,
+    "title": "$t:albums",
+    "description": "$t:albumsBanner"
+  },
+  "anime": {
+    "enable": true,
+    "title": "$t:anime",
+    "description": "$t:animeBanner",
+    "source": {
+      "kind": "local"
+    },
+    "fallback": {
+      "kind": "local"
+    },
+    "providers": {
+      "bangumi": {
+        "enable": false,
+        "userId": "",
+        "request": {
+          "pageSize": 50,
+          "maxItems": 300,
+          "minDelayMs": 200
+        }
+      },
+      "bilibili": {
+        "enable": false,
+        "vmid": "",
+        "sessdataEnv": "BILI_SESSDATA",
+        "cover": {
+          "mode": "local",
+          "useWebp": true
+        },
+        "request": {
+          "pageSize": 30,
+          "maxItems": 300,
+          "minDelayMs": 300
+        }
+      }
+    },
+    "snapshot": {
+      "directory": "src/data/anime-snapshots",
+      "staleAfterDays": 30,
+      "keepLastValid": true
+    }
+  },
+  "announcement": {
+    "title": "",
+    "content": "The only way to do great work is to love what you do",
+    "closable": true,
+    "link": {
+      "enable": true,
+      "text": "GitHub",
+      "url": "https://github.com",
+      "external": true
+    }
+  },
+  "article": {
+    "lastUpdated": {
+      "enable": true,
+      "minimumAgeDays": 90
+    },
+    "discovery": {
+      "enable": true,
+      "related": {
+        "enable": true,
+        "count": 3
+      },
+      "random": {
+        "enable": true,
+        "count": 2
+      }
+    },
+    "share": {
+      "enable": true,
+      "includeCover": true
+    }
+  },
+  "comment": {
+    "enable": false,
+    "provider": "none",
+    "lazy": true,
+    "twikoo": {
+      "envId": "",
+      "scriptUrl": "https://cdn.jsdelivr.net/npm/twikoo@1.7.20/dist/twikoo.min.js",
+      "lang": "auto",
+      "placeholder": "Share your thoughts..."
+    },
+    "giscus": {
+      "repo": "",
+      "repoId": "",
+      "category": "Announcements",
+      "categoryId": "",
+      "mapping": "pathname",
+      "strict": false,
+      "reactionsEnabled": true,
+      "emitMetadata": false,
+      "inputPosition": "bottom",
+      "theme": {
+        "light": "light",
+        "dark": "dark"
+      },
+      "lang": "auto",
+      "scriptUrl": "https://giscus.app/client.js"
+    }
+  },
+  "compass": {
+    "enable": true,
+    "title": "$t:compass",
+    "description": "$t:compassBanner"
+  },
+  "contextMenu": {
+    "enable": true,
+    "actions": [
+      "copySelection",
+      "backToTop",
+      "sharePageLink"
+    ]
+  },
+  "devices": {
+    "enable": true,
+    "title": "$t:devices",
+    "description": "$t:devicesBanner",
+    "categories": [
+      {
+        "key": "desk",
+        "label": "Desk Setup",
+        "icon": "material-symbols:desktop-windows-outline-rounded",
+        "description": "Workstation & home office hardware"
+      },
+      {
+        "key": "mobile",
+        "label": "Mobile & EDC",
+        "icon": "material-symbols:phone-iphone",
+        "description": "Daily portable devices & smart gadgets"
+      },
+      {
+        "key": "audio",
+        "label": "Audio & Visual",
+        "icon": "material-symbols:headphones-rounded",
+        "description": "Headphones, speakers & monitoring gears"
+      },
+      {
+        "key": "peripheral",
+        "label": "Peripherals",
+        "icon": "material-symbols:keyboard-outline-rounded",
+        "description": "Keyboards, mice & desk accessories"
+      }
+    ]
+  },
+  "expressiveCode": {
+    "theme": "github-dark",
+    "lightTheme": "github-light",
+    "darkTheme": "github-dark"
+  },
+  "fab": {
+    "enable": true,
+    "align": "end",
+    "size": "regular",
+    "offset": {
+      "bottom": "var(--m3e-space-8)",
+      "right": "var(--m3e-space-6)"
+    },
+    "items": [
+      {
+        "type": "top",
+        "enable": true,
+        "devices": [
+          "mobile",
+          "tablet",
+          "desktop"
+        ]
+      },
+      {
+        "type": "toc",
+        "enable": true,
+        "devices": [
+          "mobile",
+          "tablet"
+        ],
+        "pages": [
+          "post"
+        ],
+        "depth": 3,
+        "closeOnSelect": true
+      },
+      {
+        "type": "comment",
+        "enable": true,
+        "devices": [
+          "mobile",
+          "tablet"
+        ],
+        "pages": [
+          "post"
+        ]
+      },
+      {
+        "type": "home",
+        "enable": true,
+        "devices": [
+          "mobile",
+          "tablet"
+        ],
+        "onlySubPages": true
+      }
+    ]
+  },
+  "font": {
+    "mode": "custom",
+    "fontFamilies": [
+      {
+        "id": "outfit-body",
+        "family": "Outfit",
+        "role": "body",
+        "source": "fontsource",
+        "variants": [
+          {
+            "file": "@fontsource/outfit/400.css",
+            "weight": 400,
+            "style": "normal"
+          },
+          {
+            "file": "@fontsource/outfit/500.css",
+            "weight": 500,
+            "style": "normal"
+          },
+          {
+            "file": "@fontsource/outfit/700.css",
+            "weight": 700,
+            "style": "normal"
+          }
+        ],
+        "fallback": [
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif"
+        ],
+        "display": "swap",
+        "preload": false
+      },
+      {
+        "id": "yozai-cjk",
+        "family": "Yozai Medium",
+        "role": "cjk",
+        "source": "local",
+        "variants": [
+          {
+            "file": "src/assets/fonts/Yozai-Medium.ttf",
+            "weight": 500,
+            "style": "normal"
+          }
+        ],
+        "fallback": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "display": "swap",
+        "preload": false
+      },
+      {
+        "id": "jetbrains-mono",
+        "family": "JetBrains Mono",
+        "role": "mono",
+        "source": "fontsource",
+        "variants": [
+          {
+            "file": "@fontsource-variable/jetbrains-mono/index.css",
+            "weight": "100 800",
+            "style": "normal"
+          },
+          {
+            "file": "@fontsource-variable/jetbrains-mono/wght-italic.css",
+            "weight": "100 800",
+            "style": "italic"
+          }
+        ],
+        "fallback": [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace"
+        ],
+        "display": "swap",
+        "preload": false
+      }
+    ],
+    "subsetting": {
+      "enable": true,
+      "includeContent": true,
+      "includeI18n": true,
+      "includeConfig": true,
+      "includeCommon": true,
+      "allowRemoteText": true
+    },
+    "budget": {
+      "maxTotalBytes": 6291456,
+      "maxFamilyBytes": 4194304
+    }
+  },
+  "footer": {
+    "enable": false
+  },
+  "friends": {
+    "enable": true,
+    "title": "$t:friends",
+    "description": "$t:friendsBanner"
+  },
+  "games": {
+    "enable": true,
+    "title": "$t:games",
+    "description": "$t:gamesBanner",
+    "categories": [
+      {
+        "key": "open-world",
+        "label": "Open World",
+        "icon": "material-symbols:explore-outline-rounded",
+        "description": "Open-world adventures"
+      },
+      {
+        "key": "sandbox",
+        "label": "Sandbox",
+        "icon": "material-symbols:widgets-rounded",
+        "description": "Building, crafting & creative worlds"
+      },
+      {
+        "key": "rpg",
+        "label": "RPG",
+        "icon": "material-symbols:shield-outline-rounded",
+        "description": "Role-playing stories & builds"
+      },
+      {
+        "key": "action",
+        "label": "Action",
+        "icon": "material-symbols:swords-outline-rounded",
+        "description": "Action, fighting & shooters"
+      },
+      {
+        "key": "casual",
+        "label": "Casual",
+        "icon": "material-symbols:extension-outline-rounded",
+        "description": "Cozy, casual & party games"
+      }
+    ]
+  },
+  "i18n": {},
+  "imageBloom": {
+    "enable": true,
+    "blurRadius": 20,
+    "opacity": 0.7,
+    "transitionDuration": 300
+  },
+  "license": {
+    "enable": true,
+    "name": "CC BY-NC-SA 4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "llms": {
+    "enable": true,
+    "generateFull": true,
+    "siteSummary": "",
+    "descriptionMaxLength": 200,
+    "excludeTags": [
+      "secret",
+      "private"
+    ],
+    "excludeCategories": [],
+    "corePages": [
+      {
+        "title": "Home",
+        "url": "/",
+        "description": "Main blog entrance and latest post stream."
+      },
+      {
+        "title": "About",
+        "url": "/about/",
+        "description": "Author profile, technical stack, and background."
+      },
+      {
+        "title": "Archive",
+        "url": "/archive/",
+        "description": "Chronological index of all published writings."
+      }
+    ],
+    "customSections": []
+  },
+  "moments": {
+    "enable": true,
+    "title": "$t:moments",
+    "description": "$t:momentsBanner"
+  },
+  "music": {
+    "enable": true,
+    "provider": "local",
+    "meting": {
+      "server": "netease",
+      "type": "playlist",
+      "id": "14164869977",
+      "preload": "none"
+    },
+    "defaultVolume": 0.7,
+    "defaultMode": "sequence"
+  },
+  "navBar": {
+    "links": [
+      {
+        "name": "Home",
+        "url": "/",
+        "icon": "material-symbols:home-outline-rounded",
+        "pageKey": "home"
+      },
+      {
+        "name": "Archive",
+        "url": "/archive/",
+        "icon": "material-symbols:archive-outline-rounded",
+        "pageKey": "archive"
+      },
+      {
+        "name": "Friends",
+        "url": "/friends/",
+        "icon": "material-symbols:handshake-outline-rounded",
+        "pageKey": "friends"
+      },
+      {
+        "name": "Moments",
+        "url": "/moments/",
+        "icon": "material-symbols:auto-awesome-outline-rounded",
+        "pageKey": "moments"
+      },
+      {
+        "name": "Anime",
+        "url": "/anime/",
+        "icon": "material-symbols:live-tv-outline-rounded",
+        "pageKey": "anime"
+      },
+      {
+        "name": "Compass",
+        "url": "/compass/",
+        "icon": "material-symbols:explore-rounded",
+        "pageKey": "compass"
+      },
+      {
+        "name": "Albums",
+        "url": "/albums/",
+        "icon": "material-symbols:photo-library-outline-rounded",
+        "pageKey": "albums"
+      },
+      {
+        "name": "More",
+        "icon": "material-symbols:apps-rounded",
+        "children": [
+          {
+            "name": "Timeline",
+            "url": "/timeline/",
+            "icon": "material-symbols:timeline-rounded",
+            "pageKey": "timeline"
+          },
+          {
+            "name": "Projects",
+            "url": "/projects/",
+            "icon": "material-symbols:deployed-code-outline-rounded",
+            "pageKey": "projects"
+          },
+          {
+            "name": "My Devices",
+            "url": "/devices/",
+            "icon": "material-symbols:devices-rounded",
+            "pageKey": "devices"
+          },
+          {
+            "name": "Games",
+            "url": "/games/",
+            "icon": "material-symbols:sports-esports-outline-rounded",
+            "pageKey": "games"
+          },
+          {
+            "name": "Skills",
+            "url": "/skills/",
+            "icon": "material-symbols:workspaces-outline-rounded",
+            "pageKey": "skills"
+          },
+          {
+            "name": "About",
+            "url": "/about/",
+            "icon": "material-symbols:info-outline-rounded",
+            "pageKey": "about"
+          },
+          {
+            "name": "GitHub",
+            "url": "https://github.com/LyraVoid/Shirone",
+            "icon": "fa6-brands:github",
+            "pageKey": "github",
+            "external": true
+          }
+        ]
+      }
+    ]
+  },
+  "permalink": {
+    "enable": false,
+    "format": "%postname%"
+  },
+  "postList": {
+    "pageSize": 8,
+    "layout": {
+      "mode": "list",
+      "cover": "right",
+      "cardWidth": "regular"
+    }
+  },
+  "profile": {
+    "avatar": "assets/images/demo-avatar.webp",
+    "name": "Shirone",
+    "bio": "The rain remembers what the sky forgot to say.",
+    "links": [
+      {
+        "name": "X",
+        "icon": "fa6-brands:x-twitter",
+        "url": "https://x.com"
+      },
+      {
+        "name": "Steam",
+        "icon": "fa6-brands:steam",
+        "url": "https://store.steampowered.com"
+      },
+      {
+        "name": "GitHub",
+        "icon": "fa6-brands:github",
+        "url": "https://github.com/LyraVoid/Shirone"
+      }
+    ]
+  },
+  "projects": {
+    "enable": true,
+    "title": "$t:projects",
+    "description": "$t:projectsBanner",
+    "categories": [
+      {
+        "key": "theme",
+        "label": "Theme",
+        "icon": "material-symbols:palette-outline-rounded"
+      },
+      {
+        "key": "android",
+        "label": "Android",
+        "icon": "material-symbols:android-rounded"
+      }
+    ]
+  },
+  "series": {
+    "enable": true,
+    "title": "$t:series",
+    "description": "",
+    "cardPosition": "bottom"
+  },
+  "sidebar": {
+    "enable": true,
+    "arrangement": "dual",
+    "side": "left",
+    "components": [
+      {
+        "type": "profile",
+        "enable": true,
+        "slot": "top"
+      },
+      {
+        "type": "music",
+        "enable": true,
+        "slot": "top"
+      },
+      {
+        "type": "announcement",
+        "enable": true,
+        "slot": "top",
+        "pages": [
+          "home"
+        ]
+      },
+      {
+        "type": "categories",
+        "enable": true,
+        "slot": "sticky",
+        "collapseAfter": 5,
+        "pages": [
+          "home",
+          "archive",
+          "friends",
+          "moments",
+          "anime",
+          "compass",
+          "skills",
+          "projects",
+          "devices",
+          "games",
+          "timeline",
+          "albums",
+          "about",
+          "post"
+        ]
+      },
+      {
+        "type": "series",
+        "enable": true,
+        "slot": "sticky",
+        "collapseAfter": 5,
+        "pages": [
+          "home",
+          "archive",
+          "friends",
+          "moments",
+          "anime",
+          "compass",
+          "skills",
+          "projects",
+          "devices",
+          "games",
+          "timeline",
+          "albums",
+          "about",
+          "post"
+        ]
+      },
+      {
+        "type": "tags",
+        "enable": true,
+        "slot": "sticky",
+        "collapseAfter": 6,
+        "pages": [
+          "home",
+          "archive",
+          "friends",
+          "moments",
+          "anime",
+          "compass",
+          "skills",
+          "projects",
+          "devices",
+          "games",
+          "timeline",
+          "albums",
+          "about",
+          "post"
+        ]
+      },
+      {
+        "type": "stats",
+        "enable": true,
+        "slot": "top",
+        "column": "secondary",
+        "pages": [
+          "home",
+          "archive",
+          "categories",
+          "tags"
+        ]
+      },
+      {
+        "type": "calendar",
+        "enable": true,
+        "slot": "top",
+        "column": "secondary"
+      },
+      {
+        "type": "toc",
+        "enable": true,
+        "slot": "sticky",
+        "column": "secondary",
+        "pages": [
+          "post"
+        ]
+      }
+    ]
+  },
+  "site": {
+    "site": "https://shirone.mysqil.com/",
+    "base": "/",
+    "title": "Shirone",
+    "subtitle": "A Material 3 anime blog",
+    "topAppBar": {
+      "contentAlign": "center"
+    },
+    "displaySettings": {
+      "colorStyle": true,
+      "colorSpec": true,
+      "wallpaperMode": true,
+      "layoutMode": true,
+      "reduceMotion": true,
+      "texture": true
+    },
+    "lang": "en",
+    "timeZone": "Asia/Shanghai",
+    "themeColor": {
+      "hue": 315,
+      "fixed": false,
+      "style": "tonalSpot",
+      "spec": "2025"
+    },
+    "wallpaperMode": {
+      "defaultMode": "banner"
+    },
+    "texture": {
+      "enable": true,
+      "defaultPreset": "starlight",
+      "defaultOpacity": 0.12,
+      "allowMotion": true
+    },
+    "banner": {
+      "src": {
+        "desktop": [
+          "assets/images/banner/desktop/1.webp"
+        ],
+        "mobile": [
+          "assets/images/banner/mobile/1.webp"
+        ]
+      },
+      "position": "center",
+      "dim": {
+        "enable": true,
+        "opacity": 0.24
+      },
+      "homeText": {
+        "enable": true,
+        "title": "Shirone",
+        "subtitle": [
+          "特別なことはないけど、君がいると十分です",
+          "今でもあなたは私の光",
+          "君ってさ、知らないうちに私の毎日になってたよ",
+          "君と話すと、なんか毎日がちょっと楽しくなるんだ",
+          "今日はなんでもない日。でも、ちょっとだけいい日"
+        ],
+        "typewriter": {
+          "enable": true,
+          "speed": 100,
+          "deleteSpeed": 50,
+          "pauseTime": 2000,
+          "loop": true
+        }
+      },
+      "carousel": {
+        "enable": true,
+        "interval": 6000,
+        "fadeDuration": 1200,
+        "animation": "ken-burns"
+      },
+      "waves": {
+        "enable": true
+      }
+    },
+    "imageOptimization": {
+      "noReferrerDomains": [
+        "*.hdslb.com"
+      ]
+    },
+    "toc": {
+      "enable": true,
+      "depth": 2
+    },
+    "progressIndicator": {
+      "style": "dual"
+    },
+    "favicon": [
+      {
+        "src": "/logo/icon.webp"
+      }
+    ]
+  },
+  "skills": {
+    "enable": true,
+    "title": "$t:skills",
+    "description": "$t:skillsBanner",
+    "categories": [
+      {
+        "key": "frontend",
+        "label": "Frontend",
+        "icon": "material-symbols:web-rounded"
+      },
+      {
+        "key": "backend",
+        "label": "Backend",
+        "icon": "material-symbols:dns-rounded"
+      },
+      {
+        "key": "tooling",
+        "label": "Tooling",
+        "icon": "material-symbols:construction-rounded"
+      }
+    ]
+  },
+  "timeline": {
+    "enable": true,
+    "title": "$t:timeline",
+    "description": "$t:timelineBanner",
+    "categories": [
+      {
+        "key": "milestone",
+        "label": "Milestones",
+        "icon": "material-symbols:flag-rounded"
+      },
+      {
+        "key": "project",
+        "label": "Projects",
+        "icon": "material-symbols:code-rounded"
+      },
+      {
+        "key": "career",
+        "label": "Career",
+        "icon": "material-symbols:work-rounded"
+      },
+      {
+        "key": "education",
+        "label": "Education",
+        "icon": "material-symbols:school-rounded"
+      },
+      {
+        "key": "life",
+        "label": "Life",
+        "icon": "material-symbols:favorite-rounded"
+      }
+    ],
+    "order": "desc"
+  },
+  "umami": {
+    "enable": false,
+    "shareUrl": "",
+    "websiteId": "",
+    "scriptUrl": ""
+  }
+}

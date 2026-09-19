@@ -1,0 +1,11 @@
+import {ExpressiveCodeEngine} from '@expressive-code/core';
+import {pluginShiki,loadShikiTheme} from '@expressive-code/plugin-shiki';
+import {pluginFrames} from '@expressive-code/plugin-frames';
+import {pluginLineNumbers} from '@expressive-code/plugin-line-numbers';
+import {pluginCollapsibleSections} from '@expressive-code/plugin-collapsible-sections';
+import {visit} from 'unist-util-visit';
+import {writeFile,mkdir} from 'node:fs/promises';
+const engine=new ExpressiveCodeEngine({themes:await Promise.all(['github-light','github-dark'].map(loadShikiTheme)),themeCssSelector:theme=>theme.type==='dark'?'.dark':':root:not(.dark)',useDarkModeMediaQuery:false,plugins:[pluginShiki(),pluginFrames({showCopyToClipboardButton:false}),pluginLineNumbers(),pluginCollapsibleSections()]});
+const css=new Set([await engine.getBaseStyles(),await engine.getThemeStyles()]);
+export function highlight(){return async(tree)=>{const pending=[];visit(tree,'element',(node,index,parent)=>{if(node.tagName==='pre'&&node.children?.[0]?.tagName==='code'&&parent)pending.push({node,index,parent})});for(const {node,index,parent}of pending){const code=node.children[0];const text=code.children.filter(c=>c.type==='text').map(c=>c.value).join('');const language=(code.properties?.className||[]).find(c=>c.startsWith('language-'))?.slice(9)||'text';try{const rendered=await engine.render({code:text.replace(/\n$/,''),language,meta:code.data?.meta||''});for(const style of rendered.styles)css.add(style);parent.children[index]=rendered.renderedGroupAst}catch{ /* Unknown languages retain readable code. */ }}}}
+export async function writeCodeStyles(){await mkdir('public/styles',{recursive:true});await writeFile('public/styles/expressive-engine.css',[...css].join('\n'))}
