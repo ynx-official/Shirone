@@ -1,0 +1,200 @@
+[
+  {
+    "target": "topbar onload-entry",
+    "delay": 0,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "sidebar onload-entry",
+    "delay": 100,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "onload-entry panel",
+    "delay": 150,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "onload-entry panel",
+    "delay": 200,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "onload-entry panel",
+    "delay": 250,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "category-bar onload-entry",
+    "delay": 0,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "page-entry onload-entry",
+    "delay": 150,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card has-cover onload-entry",
+    "delay": 150,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card onload-entry",
+    "delay": 200,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card onload-entry",
+    "delay": 250,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card onload-entry",
+    "delay": 300.00000000000006,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card onload-entry",
+    "delay": 350,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card onload-entry",
+    "delay": 400,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card onload-entry",
+    "delay": 450.00000000000006,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "post-card onload-entry",
+    "delay": 500,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "row pagination onload-entry",
+    "delay": 550,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "site-footer onload-entry",
+    "delay": 250,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "sidebar onload-entry secondary-sidebar",
+    "delay": 100,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "both",
+    "iterationStart": 0,
+    "iterations": 1
+  }
+]

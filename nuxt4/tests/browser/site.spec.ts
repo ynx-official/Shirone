@@ -80,6 +80,17 @@ test("invalid JSON import preserves edits", async ({ page }) => {
 test("home has no serious accessibility violations", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator(".post-card").first()).toBeVisible();
+  await page.evaluate(() =>
+    Promise.all(
+      document
+        .getAnimations()
+        .filter(
+          (animation) =>
+            (animation as CSSAnimation).animationName === "shirone-enter-up",
+        )
+        .map((animation) => animation.finished.catch(() => {})),
+    ),
+  );
   const result = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa"])
     .analyze();

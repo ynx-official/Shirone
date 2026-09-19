@@ -863,6 +863,11 @@ html {
 .public-site .prose pre {
   font-size: 0.875rem;
 }
+/* Keep wide display equations scrollable without widening mobile SSR pages. */
+.public-site .prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 .public-site .prose table {
   display: block;
   max-width: 100%;

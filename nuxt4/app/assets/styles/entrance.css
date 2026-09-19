@@ -1,0 +1,63 @@
+/* Source: Astro transition.css / PostPage.astro / SideBar.astro.
+   Preserve the original 300ms, ease curve, 2rem rise and 50ms stagger as
+   dedicated entrance tokens; general M3 interaction timings stay unchanged. */
+.public-site {
+  --m3e-duration-page-enter: 300ms;
+  --m3e-easing-page-enter: ease;
+  --m3e-distance-page-enter: 2rem;
+  --m3e-delay-sidebar-enter: 100ms;
+  --m3e-delay-footer-enter: 250ms;
+  --m3e-delay-entry-step: 50ms;
+}
+@keyframes shirone-enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--m3e-distance-page-enter));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.public-site .onload-entry {
+  animation: shirone-enter-up var(--m3e-duration-page-enter)
+    var(--m3e-easing-page-enter) both;
+}
+.public-site .sidebar.onload-entry {
+  animation-delay: var(--m3e-delay-sidebar-enter);
+}
+.public-site .sidebar > .onload-entry,
+.public-site .post-card.onload-entry,
+.public-site .pagination.onload-entry {
+  animation-delay: calc(
+    var(--content-delay) + var(--entry-index, 0) * var(--m3e-delay-entry-step)
+  );
+}
+.public-site .page-entry {
+  animation-delay: var(--content-delay);
+}
+.public-site .site-footer.onload-entry {
+  animation-delay: var(--m3e-delay-footer-enter);
+}
+.public-site .article-reading.onload-entry {
+  animation-delay: var(--content-delay);
+}
+.public-site .article-heading.onload-entry {
+  animation-delay: calc(var(--content-delay) + var(--m3e-delay-entry-step));
+}
+.public-site .post-meta.onload-entry {
+  animation-delay: calc(var(--content-delay) + 2 * var(--m3e-delay-entry-step));
+}
+.public-site .article-body-entry {
+  animation-delay: calc(var(--content-delay) + 175ms);
+}
+/* No permanent opacity:0 baseline: CSS-only SSR remains readable with scripts
+   disabled; either motion preference bypasses the entrance completely. */
+html.motion-reduced .public-site .onload-entry {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-site .onload-entry {
+    animation: none;
+  }
+}

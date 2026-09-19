@@ -94,13 +94,27 @@ test("route progress remains perceptible on fast local navigation", async ({
   await expect(
     page.getByRole("button", { name: "Theme", exact: true }),
   ).toBeEnabled();
+  await page.evaluate(() => {
+    const bar = document.querySelector(".route-progress")!;
+    let started = 0;
+    (window as any).__progressVisibleFor = 0;
+    const observer = new MutationObserver(() => {
+      if (bar.classList.contains("route-progress--visible"))
+        started ||= performance.now();
+      else if (started) {
+        (window as any).__progressVisibleFor = performance.now() - started;
+        observer.disconnect();
+      }
+    });
+    observer.observe(bar, { attributes: true, attributeFilter: ["class"] });
+  });
   await page
     .locator(".desktop-navigation")
     .getByRole("link", { name: "Archive", exact: true })
     .click();
-  await expect(page.locator(".route-progress")).toHaveClass(
-    /route-progress--visible/,
-  );
+  await expect
+    .poll(() => page.evaluate(() => (window as any).__progressVisibleFor))
+    .toBeGreaterThanOrEqual(240);
   await expect(page.locator(".archive-panel")).toBeVisible();
   await expect(page.locator(".route-progress")).toHaveCSS("opacity", "0");
 });
@@ -113,7 +127,7 @@ test("route progress sits below the mobile header when its banner is hidden", as
   const header = await page.locator(".topbar").boundingBox();
   await expect(page.locator(".route-progress")).toHaveCSS(
     "top",
-    `${header!.height}px`,
+    `${Math.round(header!.height)}px`,
   );
   await expect(page.locator(".route-progress")).toHaveCSS("opacity", "0");
   await expect(

@@ -47,7 +47,10 @@ async function unlock() {
 </script>
 <template>
   <article class="panel article-panel">
-    <div v-if="!post.protected || unlocked" class="article-reading">
+    <div
+      v-if="!post.protected || unlocked"
+      class="article-reading onload-entry"
+    >
       <span
         ><span class="meta-icon"><LocalIcon name="words" /></span
         >{{ post.words }} {{ t("wordsCount") }}</span
@@ -56,10 +59,10 @@ async function unlock() {
         >{{ post.minutes }} {{ t("minutesCount") }}</span
       >
     </div>
-    <h1 class="article-heading">
+    <h1 class="article-heading onload-entry">
       <span class="title-accent" />{{ post.title }}
     </h1>
-    <div class="post-meta">
+    <div class="post-meta onload-entry">
       <span
         ><span class="meta-icon"><LocalIcon name="date" /></span
         ><time :datetime="post.published">{{
@@ -99,6 +102,7 @@ async function unlock() {
     </form>
     <template v-else>
       <MarkdownBody
+        class="onload-entry article-body-entry"
         :html="content.html || ''"
         :styles="content.styles"
         :syntaxes="content.syntaxes"

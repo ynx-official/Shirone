@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     "~/assets/styles/main.css",
     "~/assets/styles/public.css",
     "~/assets/styles/settings.css",
+    "~/assets/styles/entrance.css",
   ],
   vite: { plugins: [tailwindcss()] },
   runtimeConfig: {

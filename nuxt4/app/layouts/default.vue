@@ -64,7 +64,7 @@ useHead(() => ({
       : []),
     {
       innerHTML:
-        "try{if(localStorage.getItem('shirone:theme')==='dark'||((!localStorage.getItem('shirone:theme')||localStorage.getItem('shirone:theme')==='auto')&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}",
+        "try{if(JSON.parse(localStorage.getItem('shirone:display')||'null')?.reduced)document.documentElement.classList.add('motion-reduced');if(localStorage.getItem('shirone:theme')==='dark'||((!localStorage.getItem('shirone:theme')||localStorage.getItem('shirone:theme')==='auto')&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}",
     },
   ],
 }));
@@ -95,7 +95,7 @@ function top() {
       :style="{ '--texture-opacity': site.texture.defaultOpacity }"
     />
     <a class="skip" href="#main">{{ t("skipContent") }}</a
-    ><SiteHeader :site="site" />
+    ><SiteHeader :site="site" class="onload-entry" />
     <RouteProgress
       :site="site"
       :over-banner="wallpaper !== 'none' && !scrolled"
@@ -123,7 +123,7 @@ function top() {
       <main id="main" tabindex="-1">
         <nav
           v-if="!['tags', 'categories'].includes(currentPage?.kind || '')"
-          class="category-bar"
+          class="category-bar onload-entry"
           :aria-label="t('categories')"
         >
           <NuxtLink
@@ -156,8 +156,8 @@ function top() {
             >
           </div>
         </nav>
-        <slot />
-        <footer class="site-footer">
+        <div class="page-entry onload-entry"><slot /></div>
+        <footer class="site-footer onload-entry">
           <p>
             © {{ site.today.slice(0, 4) }} {{ site.profileName }}.
             <NuxtLink to="/rss/">RSS</NuxtLink> /

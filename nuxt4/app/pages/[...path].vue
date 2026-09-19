@@ -147,11 +147,18 @@ const pageLink = (n: number) => ({
         /></template>
       </div>
       <div class="post-list">
-        <PostCard v-for="post in page.posts" :key="post.id" :post="post" />
+        <PostCard
+          v-for="(post, index) in page.posts"
+          :key="post.id"
+          :post="post"
+          class="onload-entry"
+          :style="{ '--entry-index': index }"
+        />
       </div>
       <nav
         v-if="page.pages > 1"
-        class="row pagination"
+        class="row pagination onload-entry"
+        :style="{ '--entry-index': page.posts.length }"
         :aria-label="t('navigation')"
       >
         <NuxtLink

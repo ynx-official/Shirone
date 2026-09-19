@@ -84,6 +84,7 @@ export interface Site {
     type: string;
     enable: boolean;
     column?: string;
+    slot?: "top" | "sticky";
     pages?: string[];
     collapseAfter?: number;
   }[];

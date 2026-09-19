@@ -94,3 +94,13 @@
 - `scripts/capture-route-progress.mjs` 对原版/新版分别延迟真实导航请求，保存横幅/滚动状态截图和几何数据至 `docs/comparison/route-progress/`。
 
 验收：新增 4 项路由浏览器测试全部通过（6.9 秒），既有 10 项公开回归通过；类型检查、ESLint、8 项数据测试及 Node 24 独立产物检查通过。对照截图见 `docs/comparison/route-progress/README.md`。
+
+## 刷新入场动画（2026-09-19）
+
+- 检查原 `transition.css`、MainGridLayout、SideBar 和 PostPage 的实际时序：2rem 上移、300ms/ease、顶栏/分类栏 0ms、侧栏 100ms、正文 150ms、卡片逐张 50ms、页脚 250ms。
+- 在 Nuxt 的 SSR 标记上应用 CSS 入场，不依赖挂载后把整页隐藏；侧栏 top 区只随整列进入，sticky 区逐项错峰。持久顶栏和播放器不因路由切换重建。
+- 系统或本地减少动效直接显示；保存的减少动效在 head 脚本中提前恢复，避免刷新先动画后关掉。
+- 新增刷新时序/位移/淡入、刷新重播/持久外壳、动效偏好和禁用 JS 的移动端正文测试。
+- `scripts/compare-entrance.mjs` 使用真实 CSS Animation 对象，将原版/新版动画固定到 150/350/800ms，记录截图与实际时序；横幅图片加载状态独立于入场动画。
+
+本轮最终验证：17 项公开浏览器回归全部通过（20.2 秒），类型检查、ESLint、8 项数据测试、Node 24 构建与独立产物启动通过。手机长公式保留内部横向滚动，不撑宽页面；动画对照见 `docs/comparison/entrance/README.md`。

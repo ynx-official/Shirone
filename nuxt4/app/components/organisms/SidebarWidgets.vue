@@ -26,6 +26,11 @@ const widgets = computed(() =>
       (!w.pages?.length || w.pages.includes(page.value)),
   ),
 );
+function stickyIndex(index: number) {
+  return widgets.value
+    .slice(0, index)
+    .filter((widget) => widget.slot === "sticky").length;
+}
 const stats = computed(() => [
   ["statsPosts", "words", props.site.stats.posts],
   [
@@ -103,11 +108,16 @@ const player = props.site.music
 </script>
 <template>
   <aside
-    class="sidebar"
+    class="sidebar onload-entry"
     :class="{ 'secondary-sidebar': column === 'secondary' }"
   >
     <template v-for="(widget, i) in widgets" :key="`${widget.type}-${i}`"
-      ><section v-if="widget.type === 'profile'" class="panel profile">
+      ><section
+        v-if="widget.type === 'profile'"
+        :style="{ '--entry-index': stickyIndex(i) }"
+        :class="{ 'onload-entry': widget.slot === 'sticky' }"
+        class="panel profile"
+      >
         <NuxtLink to="/about/" class="profile-avatar" :aria-label="t('about')"
           ><img :src="site.avatar" alt="" width="256" height="256"
         /></NuxtLink>
@@ -127,6 +137,8 @@ const player = props.site.music
       </section>
       <section
         v-else-if="widget.type === 'announcement' && !hidden"
+        :style="{ '--entry-index': stickyIndex(i) }"
+        :class="{ 'onload-entry': widget.slot === 'sticky' }"
         class="panel"
       >
         <div class="row">
@@ -141,7 +153,12 @@ const player = props.site.music
           >{{ site.announcement.link.text }} ↗</a
         >
       </section>
-      <section v-else-if="site.taxonomy[widget.type]" class="panel">
+      <section
+        v-else-if="site.taxonomy[widget.type]"
+        :style="{ '--entry-index': stickyIndex(i) }"
+        :class="{ 'onload-entry': widget.slot === 'sticky' }"
+        class="panel"
+      >
         <h2>{{ t(widget.type) }}</h2>
         <div
           :class="widget.type === 'tags' ? 'row widget-tags' : 'widget-rows'"
@@ -161,7 +178,12 @@ const player = props.site.music
           >
         </div>
       </section>
-      <section v-else-if="widget.type === 'stats'" class="panel">
+      <section
+        v-else-if="widget.type === 'stats'"
+        :style="{ '--entry-index': stickyIndex(i) }"
+        :class="{ 'onload-entry': widget.slot === 'sticky' }"
+        class="panel"
+      >
         <h2>{{ t("stats") }}</h2>
         <div
           v-for="[label, icon, value] in stats"
@@ -177,10 +199,14 @@ const player = props.site.music
       </section>
       <CalendarWidget
         v-else-if="widget.type === 'calendar'"
+        :class="{ 'onload-entry': widget.slot === 'sticky' }"
+        :style="{ '--entry-index': stickyIndex(i) }"
         :dates="site.stats.dates"
         :today="site.today" />
       <nav
         v-else-if="widget.type === 'toc' && toc.length"
+        :style="{ '--entry-index': stickyIndex(i) }"
+        :class="{ 'onload-entry': widget.slot === 'sticky' }"
         class="panel toc"
         :aria-label="t('tableOfContents')"
       >
@@ -199,6 +225,8 @@ const player = props.site.music
       <component
         :is="player"
         v-else-if="widget.type === 'music' && player && site.music"
+        :class="{ 'onload-entry': widget.slot === 'sticky' }"
+        :style="{ '--entry-index': stickyIndex(i) }"
         :config="site.music"
     /></template>
   </aside>

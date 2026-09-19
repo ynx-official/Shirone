@@ -1,0 +1,200 @@
+[
+  {
+    "target": "navbar",
+    "delay": 0,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "sidebar",
+    "delay": 100,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "onload-animation",
+    "delay": 150,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "onload-animation",
+    "delay": 200,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "onload-animation",
+    "delay": 250,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "sidebar-secondary",
+    "delay": 100,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "category-bar",
+    "delay": 0,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "content-wrapper",
+    "delay": 150,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard m3-blog-postcard--cover onload-animation",
+    "delay": 150,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard onload-animation",
+    "delay": 200,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard onload-animation",
+    "delay": 250,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard onload-animation",
+    "delay": 300,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard onload-animation",
+    "delay": 350,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard onload-animation",
+    "delay": 400,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard onload-animation",
+    "delay": 449.99999999999994,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-postcard onload-animation",
+    "delay": 500,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "m3-blog-pagination mx-auto onload-animation",
+    "delay": 550,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  },
+  {
+    "target": "footer col-span-2 onload-animation hidden lg:block",
+    "delay": 250,
+    "direction": "normal",
+    "duration": 300,
+    "easing": "linear",
+    "endDelay": 0,
+    "fill": "forwards",
+    "iterationStart": 0,
+    "iterations": 1
+  }
+]
