@@ -125,3 +125,53 @@ test("theme panel fits mobile and shows texture controls", async ({ page }) => {
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);
 });
+
+test("theme panel changes homepage colors without a header color transition", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await expect(
+    page.getByRole("button", { name: "Theme", exact: true }),
+  ).toBeEnabled();
+  await page.getByRole("button", { name: "Theme Color", exact: true }).click();
+  const panel = page.locator(".display-settings");
+  await panel.getByRole("radio", { name: "Solid", exact: true }).check();
+  await expect(page.locator(".topbar")).toHaveCSS("opacity", "1");
+  await page.evaluate(() => {
+    Object.assign(window, { paletteTransitions: [] });
+    document.addEventListener("transitionrun", (event) => {
+      if ((event.target as Element).closest(".topbar")) {
+        (
+          window as unknown as { paletteTransitions: string[] }
+        ).paletteTransitions.push((event as TransitionEvent).propertyName);
+      }
+    });
+  });
+  const before = await page
+    .locator("html")
+    .evaluate((el) => el.style.getPropertyValue("--primary"));
+  await panel.getByRole("radio", { name: "Vibrant", exact: true }).check();
+  await panel.getByRole("slider").fill("180");
+  await expect
+    .poll(() =>
+      page
+        .locator("html")
+        .evaluate((el) => el.style.getPropertyValue("--primary")),
+    )
+    .not.toBe(before);
+  await page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      ),
+  );
+  expect(
+    await page.evaluate(
+      () =>
+        (window as unknown as { paletteTransitions: string[] })
+          .paletteTransitions,
+    ),
+  ).toEqual([]);
+  await expect(page.locator(".topbar")).toHaveCSS("transition-duration", "0s");
+});

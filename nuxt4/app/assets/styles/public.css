@@ -28,7 +28,7 @@ html {
   border: 0;
   color: white;
   z-index: 50;
-  transition: background var(--m3e-duration-medium) var(--m3e-easing-standard);
+  /* Palette colors update atomically with the page; do not tween the header. */
 }
 /* White is restricted to controls over the banner image, matching the original overlay. */
 .public-site .topbar.is-scrolled,
