@@ -9,3 +9,10 @@ AdminRepository loads `/api/mock/admin` only when mockAdmin was enabled at build
 Images use IndexedDB `shirone-media-v1` / `media`; records contain id/name/type/size/blob. References use `media:<id>` and are resolved only in local preview. Object URLs are revoked. JSON exports contain structured data, not binary files; media export is a separate remaining task (see progress). No real server publication or authentication exists.
 
 Future adapters must preserve DTOs, asynchronous repository signatures, validation and failure behavior. Credentials belong to future private server configuration, never public DTOs or browser storage.
+
+Theme preferences remain in `shirone:palette` and `shirone:theme`. The derived
+`shirone:palette-cache:v1` stores a resolved color map with a signature of
+`[hue, style, spec, effectiveDark]`, solely for pre-hydration paint. It is not
+content or an authoritative preference. The head bootstrap only restores matching
+signatures and hex color values; invalid/unavailable storage falls back to SSR
+colors. Bump the cache version when changing the palette engine contract.

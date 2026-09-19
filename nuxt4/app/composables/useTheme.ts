@@ -16,15 +16,28 @@ export function useTheme(listenToSystem = false) {
     );
   async function apply() {
     const { resolveScheme } = await import("~/utils/mc-utils");
-    for (const [role, value] of Object.entries(
-      resolveScheme(hue.value, dark.value, style.value, spec.value),
-    )) {
+    const colors = resolveScheme(
+      hue.value,
+      dark.value,
+      style.value,
+      spec.value,
+    );
+    for (const [role, value] of Object.entries(colors)) {
       if (value) {
         const name = role.replace(/[A-Z]/g, (c) => "-" + c.toLowerCase());
         document.documentElement.style.setProperty("--" + name, value);
         document.documentElement.style.setProperty("--mc-" + name, value);
       }
     }
+    try {
+      localStorage.setItem(
+        "shirone:palette-cache:v1",
+        JSON.stringify({
+          key: JSON.stringify([hue.value, style.value, spec.value, dark.value]),
+          colors,
+        }),
+      );
+    } catch {}
   }
   function persist() {
     try {

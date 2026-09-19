@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { themeBootstrapScript } from "~/utils/theme-bootstrap";
 import SidebarWidgets from "~/components/organisms/SidebarWidgets.vue";
 import RouteProgress from "~/components/organisms/RouteProgress.vue";
 import SiteHeader from "~/components/organisms/SiteHeader.vue";
@@ -63,8 +64,7 @@ useHead(() => ({
         ]
       : []),
     {
-      innerHTML:
-        "try{if(JSON.parse(localStorage.getItem('shirone:display')||'null')?.reduced)document.documentElement.classList.add('motion-reduced');if(localStorage.getItem('shirone:theme')==='dark'||((!localStorage.getItem('shirone:theme')||localStorage.getItem('shirone:theme')==='auto')&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}",
+      innerHTML: themeBootstrapScript,
     },
   ],
 }));

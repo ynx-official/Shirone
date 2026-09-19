@@ -175,3 +175,56 @@ test("theme panel changes homepage colors without a header color transition", as
   ).toEqual([]);
   await expect(page.locator(".topbar")).toHaveCSS("transition-duration", "0s");
 });
+
+test("Theme Color restores the saved palette before hydration on refresh", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("button", { name: "Theme", exact: true }),
+  ).toBeEnabled();
+  await page.getByRole("button", { name: "Theme Color", exact: true }).click();
+  await page.locator(".display-settings").getByRole("slider").fill("180");
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          JSON.parse(localStorage.getItem("shirone:palette-cache:v1") || "null")
+            ?.key,
+      ),
+    )
+    .toContain("180");
+  const expected = await page.locator(".public-site").evaluate((el) => ({
+    background: getComputedStyle(el).backgroundColor,
+    primary: document.documentElement.style.getPropertyValue("--primary"),
+  }));
+  // The inline head bootstrap must work even if Vue and the color engine never load.
+  await page.route("**/_nuxt/**", (route) =>
+    route.request().resourceType() === "script"
+      ? route.abort()
+      : route.continue(),
+  );
+  await page.reload({ waitUntil: "domcontentloaded" });
+  expect(
+    await page.locator(".public-site").evaluate((el) => ({
+      background: getComputedStyle(el).backgroundColor,
+      primary: document.documentElement.style.getPropertyValue("--primary"),
+    })),
+  ).toEqual(expected);
+  await expect(
+    page.getByRole("button", { name: "Theme", exact: true }),
+  ).toBeDisabled();
+  // A stale palette cache must never override a different saved color selection.
+  await page.evaluate(() =>
+    localStorage.setItem(
+      "shirone:palette",
+      JSON.stringify({ hue: 90, style: "tonalSpot", spec: "2025" }),
+    ),
+  );
+  await page.reload({ waitUntil: "domcontentloaded" });
+  expect(
+    await page
+      .locator("html")
+      .evaluate((el) => el.style.getPropertyValue("--primary")),
+  ).toBe("");
+});
