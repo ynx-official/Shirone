@@ -135,3 +135,50 @@ test("refresh entrance leaves SSR content readable without JavaScript", async ({
   ).toBeLessThanOrEqual(390);
   await context.close();
 });
+
+test("refresh entrance keeps header geometry stable during font loading", async ({
+  page,
+}) => {
+  await page.route("**/fonts/outfit/font.css", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+    await route.continue();
+  });
+  await page.addInitScript(() => {
+    const samples: { x: number; width: number; y: number }[] = [];
+    Object.assign(window, { headerSamples: samples });
+    function sample() {
+      const nav = document.querySelector(".desktop-navigation");
+      if (nav) {
+        const { x, width, y } = nav.getBoundingClientRect();
+        samples.push({ x, width, y });
+      }
+      if (performance.now() < 5000) requestAnimationFrame(sample);
+    }
+    requestAnimationFrame(sample);
+  });
+  for (const reload of [false, true]) {
+    if (reload) await page.reload();
+    else await page.goto("/");
+    await page.waitForTimeout(1600);
+    const samples = await page.evaluate(
+      () =>
+        (
+          window as unknown as {
+            headerSamples: { x: number; width: number; y: number }[];
+          }
+        ).headerSamples,
+    );
+    expect(samples.length).toBeGreaterThan(5);
+    expect(
+      Math.max(...samples.map((s) => s.x)) -
+        Math.min(...samples.map((s) => s.x)),
+    ).toBeLessThan(1);
+    expect(
+      Math.max(...samples.map((s) => s.width)) -
+        Math.min(...samples.map((s) => s.width)),
+    ).toBeLessThan(1);
+    expect(samples.slice(1).every((s, i) => s.y <= samples[i]!.y + 0.1)).toBe(
+      true,
+    );
+  }
+});

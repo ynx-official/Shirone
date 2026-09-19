@@ -35,7 +35,10 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: "en" },
-      link: [{ rel: "icon", href: "/logo/icon.webp" }],
+      link: [
+        { rel: "icon", href: "/logo/icon.webp" },
+        { rel: "stylesheet", href: "/fonts/outfit/font.css" },
+      ],
     },
   },
   hooks: {

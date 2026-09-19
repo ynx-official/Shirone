@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource/outfit/400.css";
 @import "@fontsource-variable/jetbrains-mono";
 @import "./palette.css";
 @import "./textures.css";
@@ -8,7 +7,6 @@
 :root {
   --font-body: system-ui;
   --font-cjk: system-ui;
-  --font-sans: system-ui, sans-serif;
   --m3e-type-body: 400 1rem/1.65 var(--font-sans);
   --m3e-type-headline: 600 1.7rem/1.3 var(--font-sans);
   --m3e-type-title: 600 1.1rem/1.4 var(--font-sans);
@@ -537,13 +535,7 @@ footer {
   }
 }
 
-@font-face {
-  font-family: Yozai;
-  src: url(/assets/fonts/Yozai-Medium.ttf) format("truetype");
-  font-display: swap;
-}
 :root {
-  --font-sans: Outfit, Yozai, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
 }
 
