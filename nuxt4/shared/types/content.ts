@@ -31,6 +31,7 @@ export interface NavigationLink {
   children?: NavigationLink[];
 }
 export interface Site {
+  progressIndicator: { style: "dual" | "single" | "wave" };
   displaySettings: {
     colorStyle: boolean;
     colorSpec: boolean;

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SidebarWidgets from "~/components/organisms/SidebarWidgets.vue";
+import RouteProgress from "~/components/organisms/RouteProgress.vue";
 import SiteHeader from "~/components/organisms/SiteHeader.vue";
 import SiteBanner from "~/components/organisms/SiteBanner.vue";
 import LocalIcon from "~/components/atoms/LocalIcon.vue";
@@ -95,6 +96,10 @@ function top() {
     />
     <a class="skip" href="#main">{{ t("skipContent") }}</a
     ><SiteHeader :site="site" />
+    <RouteProgress
+      :site="site"
+      :over-banner="wallpaper !== 'none' && !scrolled"
+    />
     <SiteBanner
       v-if="wallpaper !== 'none'"
       :site="site"
