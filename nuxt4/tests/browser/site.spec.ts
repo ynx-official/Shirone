@@ -38,6 +38,7 @@ test("navigation and theme have no hydration errors", async ({ page }) => {
   await page.goBack();
   await expect(page.locator(".post-card").first()).toBeVisible();
   await page.getByRole("button", { name: "Theme", exact: true }).click();
+  await page.getByRole("button", { name: "Dark", exact: true }).click();
   await expect(page.locator("html")).toHaveClass(/dark/);
   expect(errors).toEqual([]);
 });

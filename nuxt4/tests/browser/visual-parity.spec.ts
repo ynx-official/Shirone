@@ -81,6 +81,7 @@ test("display preferences persist and music stays mounted during navigation", as
     .locator(".music-panel audio")
     .evaluate((e) => e.setAttribute("data-persistence-probe", "kept"));
   await page.getByRole("button", { name: "Theme", exact: true }).click();
+  await page.getByRole("button", { name: "Dark", exact: true }).click();
   await expect(page.locator("html")).toHaveClass(/dark/);
   await page.locator(".post-card h2 a").first().click();
   await expect(page.locator(".article-panel")).toBeVisible();
@@ -91,8 +92,9 @@ test("display preferences persist and music stays mounted during navigation", as
   await expect(page.locator("html")).toHaveClass(/dark/);
   await page.getByRole("button", { name: "Theme Color", exact: true }).click();
   await page
-    .getByRole("combobox", { name: "Page background", exact: true })
-    .selectOption("none");
+    .getByRole("radiogroup", { name: "Page background", exact: true })
+    .getByRole("radio", { name: "Solid", exact: true })
+    .check();
   await expect(page.locator(".banner")).toHaveCount(0);
   await page.reload();
   await expect(page.locator(".banner")).toHaveCount(0);

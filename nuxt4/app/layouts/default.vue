@@ -36,6 +36,7 @@ onMounted(() => {
     }
   } catch {}
 });
+const dark = useState("dark", () => false);
 const scrolled = useState("shell:scrolled", () => false);
 const home = computed(() => currentPage.value?.kind === "home");
 const title = computed(() => t(currentPage.value?.title || "search"));
@@ -48,7 +49,7 @@ useHead(() => ({
   htmlAttrs: {
     lang: locale.value,
     "data-texture-preset": site.value?.texture.enable ? texture.value : "none",
-    class: reduced.value ? "motion-reduced" : undefined,
+    class: { dark: dark.value, "motion-reduced": reduced.value },
   },
   script: [
     ...(site.value?.analytics
@@ -62,7 +63,7 @@ useHead(() => ({
       : []),
     {
       innerHTML:
-        "try{if(localStorage.getItem('shirone:theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}",
+        "try{if(localStorage.getItem('shirone:theme')==='dark'||((!localStorage.getItem('shirone:theme')||localStorage.getItem('shirone:theme')==='auto')&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}",
     },
   ],
 }));

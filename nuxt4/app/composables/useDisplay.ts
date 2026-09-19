@@ -1,7 +1,18 @@
+import type { Site } from "#shared/types/content";
 export function useDisplay() {
-  const wallpaper = useState("display:wallpaper", () => "banner");
-  const layout = useState("display:layout", () => "list");
-  const texture = useState("display:texture", () => "starlight");
+  const { data: site } = useNuxtData<Site>("site");
+  const wallpaper = useState(
+    "display:wallpaper",
+    () => site.value?.wallpaperMode || "banner",
+  );
+  const layout = useState(
+    "display:layout",
+    () => site.value?.layout.mode || "list",
+  );
+  const texture = useState(
+    "display:texture",
+    () => site.value?.texture.defaultPreset || "starlight",
+  );
   const reduced = useState("display:reduced", () => false);
   function persist() {
     try {

@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: "./tests/browser",
   workers: 1,
   timeout: 90000,
-  grep: /protected article decrypts|home has no serious|display preferences|without JavaScript|desktop shell|mobile retains|archive grouping/,
+  grep: /theme panel|More menu|protected article decrypts|home has no serious|display preferences|without JavaScript|desktop shell|mobile retains|archive grouping/,
   use: {
     ...devices["Desktop Chrome"],
     baseURL: "http://127.0.0.1:4323",

@@ -23,6 +23,7 @@ export interface Post {
   hideHomeContent?: boolean;
 }
 export interface NavigationLink {
+  name?: string;
   label: string;
   url?: string;
   icon?: string;
@@ -30,6 +31,15 @@ export interface NavigationLink {
   children?: NavigationLink[];
 }
 export interface Site {
+  displaySettings: {
+    colorStyle: boolean;
+    colorSpec: boolean;
+    wallpaperMode: boolean;
+    layoutMode: boolean;
+    texture: boolean;
+    reduceMotion: boolean;
+  };
+  wallpaperMode: string;
   bannerMobile: string;
   bannerOptions: {
     dim: { enable: boolean; opacity: number };
@@ -52,7 +62,21 @@ export interface Site {
   profileLinks: { name: string; url: string; icon: string }[];
   texture: { enable: boolean; defaultPreset: string; defaultOpacity: number };
   today: string;
-  themeColor: { hue: number; style: string; spec: string; fixed: boolean };
+  themeColor: {
+    hue: number;
+    style:
+      | "tonalSpot"
+      | "vibrant"
+      | "content"
+      | "expressive"
+      | "rainbow"
+      | "fruitSalad"
+      | "monochrome"
+      | "neutral"
+      | "fidelity";
+    spec: "2021" | "2025";
+    fixed: boolean;
+  };
   layout: { mode: string; cover: string; cardWidth: string };
 
   widgets: {

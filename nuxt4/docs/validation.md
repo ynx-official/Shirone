@@ -67,3 +67,12 @@
 截图：`screenshots/home-desktop.png`、`screenshots/home-mobile.png`、`screenshots/admin-posts.png`。
 
 上述结果覆盖核心可运行性，不等于完整原版视觉/交互验收。尚未执行旧站逐页像素对照、全站所有主题/浏览器的 a11y 矩阵、第三方 provider 启用 fixtures 和性能预算测试。详见 migration-progress.md。
+
+## 2026-09-19 主题面板及 More 菜单复核
+
+- `pnpm typecheck`、`pnpm lint`：通过。
+- `pnpm test`：8/8 通过。
+- Node 24.11.1 内容生成、生产构建、复制独立产物启动：通过。
+- `pnpm exec playwright test --config playwright.production.config.ts`：10/10 通过（最终产物 14.6 秒）。包含新增主题单选/动态颜色/保存/重置/系统模式、面板 axe、More 悬停/本地图标/外链/键盘/焦点、手机设置面板，以及原有 7 项公开 UI 验收。
+- 调试中修复重置按钮隐藏导致 Esc 失效、自定义 GitHub 名称回退错误；结束旧预览进程后用新产物重新执行完整公开回归。没有将中断的旧进程测试计入通过结果。
+- 对照截图及复现方法见 [主题面板记录](comparison/settings/README.md)。本轮验证限于这些设置和导航行为，不代表全站迁移已完成。

@@ -155,28 +155,6 @@ html {
 .public-site .mobile-nav a:hover {
   background: var(--surface-container-high);
 }
-.public-site .display-settings {
-  top: 4.5rem;
-  right: 1rem;
-  width: 22rem;
-  max-height: calc(100dvh - 6rem);
-  overflow: auto;
-  padding: 1.25rem;
-}
-.settings-styles {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.35rem;
-}
-.settings-styles button {
-  font: var(--m3e-type-label-medium);
-  padding: 0.6rem 0.2rem;
-  background: var(--surface-container-high);
-}
-.settings-styles button[aria-pressed="true"] {
-  background: var(--primary-container);
-  color: var(--on-primary-container);
-}
 .public-site .banner {
   position: relative;
   height: 65vh;
