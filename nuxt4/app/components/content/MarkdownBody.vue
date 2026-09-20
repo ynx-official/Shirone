@@ -31,7 +31,11 @@ async function enhance() {
   }
   for (const pre of el.querySelectorAll("pre")) {
     if (pre.closest("[data-mermaid]")) continue;
-    if (pre.closest(".not-prose") && !pre.closest(".m3-code-tree")) continue;
+    if (
+      pre.closest(".not-prose") &&
+      !pre.closest(".m3-code-tree, .m3-option-group")
+    )
+      continue;
     const host = pre.closest(".frame") || pre;
     if (host.querySelector("[data-copy-code]")) continue;
     const button = document.createElement("button");
@@ -71,6 +75,17 @@ async function enhance() {
     if (current !== generation) return;
     disposers.push(initGithub(el));
   }
+  if (el.querySelector("abbr[data-abbreviation-expansion]")) {
+    const { initAbbreviations } =
+      await import("~/utils/markdown/abbreviations");
+    if (current !== generation) return;
+    disposers.push(initAbbreviations(el));
+  }
+  if (el.querySelector(".m3-option-group")) {
+    const { initOptionGroups } = await import("~/utils/markdown/option-groups");
+    if (current !== generation) return;
+    disposers.push(initOptionGroups(el));
+  }
   if (el.querySelector(".m3-code-tree")) {
     const { initTrees } = await import("~/utils/markdown/trees");
     if (current !== generation) return;
@@ -109,19 +124,6 @@ async function enhance() {
 }
 function activate(event: MouseEvent) {
   const target = event.target as HTMLElement;
-  const tab = target.closest<HTMLElement>("[role=tab]");
-  if (tab && root.value?.contains(tab)) {
-    const group = tab.closest("[role=tablist]");
-    group?.querySelectorAll("[role=tab]").forEach((t) => {
-      const selected = t === tab;
-      t.setAttribute("aria-selected", String(selected));
-      t.setAttribute("tabindex", selected ? "0" : "-1");
-      const panel = root.value?.querySelector<HTMLElement>(
-        `[id="${CSS.escape(t.getAttribute("aria-controls") || "")}"]`,
-      );
-      if (panel) panel.hidden = !selected;
-    });
-  }
   const spoiler = target.closest<HTMLElement>("[data-spoiler]");
   if (spoiler) {
     spoiler.classList.toggle("revealed");
@@ -130,30 +132,6 @@ function activate(event: MouseEvent) {
       String(spoiler.classList.contains("revealed")),
     );
   }
-}
-function keyboard(event: KeyboardEvent) {
-  const target = event.target as HTMLElement;
-  if (
-    target.getAttribute("role") !== "tab" ||
-    !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)
-  )
-    return;
-  const tabs = [
-    ...(target
-      .closest("[role=tablist]")
-      ?.querySelectorAll<HTMLElement>("[role=tab]") || []),
-  ];
-  const index = tabs.indexOf(target);
-  const next =
-    event.key === "Home"
-      ? 0
-      : event.key === "End"
-        ? tabs.length - 1
-        : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) %
-          tabs.length;
-  event.preventDefault();
-  tabs[next]?.focus();
-  tabs[next]?.click();
 }
 onMounted(enhance);
 watch(() => props.html, enhance);
@@ -169,7 +147,6 @@ onBeforeUnmount(() => {
     ref="root"
     class="prose custom-md"
     @click="activate"
-    @keydown="keyboard"
     v-html="html"
   />
 </template>

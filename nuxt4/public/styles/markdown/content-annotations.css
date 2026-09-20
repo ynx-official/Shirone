@@ -121,6 +121,15 @@
 	padding-inline-start: var(--m3e-space-5);
 }
 
+/* This not-prose widget owns list markers after the global CSS reset. */
+.m3-content-note__popover ul {
+	list-style-type: disc;
+}
+
+.m3-content-note__popover ol:not(.m3-content-note__list) {
+	list-style-type: decimal;
+}
+
 .m3-content-note__popover :last-child {
 	margin-bottom: 0;
 }

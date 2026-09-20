@@ -808,7 +808,7 @@ html {
   color: var(--on-surface);
   overflow-wrap: break-word;
 }
-.public-site .prose p {
+.public-site .prose p:not(:where(.not-prose *)) {
   margin: 1.25em 0;
 }
 .public-site .prose h1 {
@@ -853,7 +853,7 @@ html {
 .public-site .prose blockquote p:last-child {
   margin-bottom: 0;
 }
-.public-site .prose :not(pre) > code {
+.public-site .prose :not(pre) > code:not(:where(.not-prose *)) {
   padding: 0.15rem 0.3rem;
   border-radius: var(--shape-corner-xs);
   background: var(--inline-code-bg);

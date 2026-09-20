@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: "./tests/browser",
   workers: 1,
   timeout: 90000,
-  grep: /trees retain|switching files|Mermaid diagrams|article (header|code|headings|content|controls)|homepage resources|all public route|Chinese mock|language switch|refresh entrance|route progress|theme panel|Theme Color|More menu|protected article decrypts|home has no serious|display preferences|without JavaScript|desktop shell|mobile retains|archive grouping/,
+  grep: /annotations open|annotations work|option group|mobile tab keyboard|abbreviation|trees retain|switching files|Mermaid diagrams|article (header|code|headings|content|controls)|homepage resources|all public route|Chinese mock|language switch|refresh entrance|route progress|theme panel|Theme Color|More menu|protected article decrypts|home has no serious|display preferences|without JavaScript|desktop shell|mobile retains|archive grouping/,
   use: {
     ...devices["Desktop Chrome"],
     // Existing interaction regressions explicitly use English; Chinese defaults

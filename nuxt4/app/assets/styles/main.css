@@ -309,7 +309,7 @@ footer {
   line-height: 1.85;
   overflow-wrap: anywhere;
 }
-.prose p {
+.prose p:not(:where(.not-prose *)) {
   margin: 1rem 0;
 }
 .prose h1,

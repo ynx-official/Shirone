@@ -18,3 +18,21 @@ test("plain content does not load widget styles and unsafe links remain filtered
   assert.equal(result.styles.length, 0);
   assert(!result.html.includes("javascript:"));
 });
+
+test("abbreviation popovers keep their native visibility and SSR explanation", async () => {
+  const result = await compileMarkdown("SSR and `SSR`.\n\n*[SSR]: 服务端渲染");
+  assert.match(result.html, /popover="manual"/);
+  assert.match(result.html, /<abbr[^>]+title="服务端渲染"/);
+  assert.match(result.html, /<code>SSR<\/code>/);
+  assert(result.styles.includes("/styles/markdown/abbreviations.css"));
+});
+
+test("content annotations retain native trigger and popover linkage", async () => {
+  const result = await compileMarkdown("正文 [+note]。\n\n[+note]: **补充说明**");
+  const target = result.html.match(/popovertarget="([^"]+)"/)?.[1];
+  assert(target);
+  assert(result.html.includes(`id="${target}"`));
+  assert.match(result.html, /<aside[^>]+popover="auto"/);
+  assert(result.html.includes("<strong>补充说明</strong>"));
+  assert(result.styles.includes("/styles/markdown/content-annotations.css"));
+});
