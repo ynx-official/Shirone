@@ -40,6 +40,14 @@ node --experimental-transform-types node_modules/astro/bin/astro.mjs dev --port 
 
 该参数仅用于旧站对比，没有升级系统 Node，也没有修改原站跟踪文件。
 
+## 2026-09-20 文件树与代码树补齐
+
+实际对照旧站 `markdown-enhancements`，修复 HTML 清洗丢失 `details.open` 与 SVG `viewBox`、遗漏 disclosure/Expressive Code 样式依赖，以及正文列表样式侵入 `not-prose` 组件的问题。文件切换清除 SSR 的内联隐藏样式，更新键盘焦点；放大窗口保留样式作用域、名称和退出焦点，代码复制在窗口内仍可使用。
+
+[旧版代码树](code-tree-original.png) · [Nuxt 代码树](code-tree-nuxt.png) · [手机放大窗口](code-tree-mobile.png)
+
+开发和生产各 10 项浏览器回归通过，覆盖文件切换、键盘、复制、窗口退出、客户端返回、无 JavaScript、手机布局与 axe；15 项 Node 测试、类型检查、ESLint 和生产构建通过。仅修复本篇增强组件链路，不代表所有 Markdown 扩展均已完整迁移。
+
 ## 尚未纳入本轮
 
 原版的相关推荐、稳定随机推荐、系列上下篇、全站上一篇/下一篇，以及完整海报封面配置仍需继续迁移。本轮没有将文章详情标记为完全对齐。

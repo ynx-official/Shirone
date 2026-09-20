@@ -828,16 +828,16 @@ html {
   line-height: 1.5;
   font-weight: 600;
 }
-.public-site .prose ul,
-.public-site .prose ol {
+.public-site .prose ul:not(:where(.not-prose *)),
+.public-site .prose ol:not(:where(.not-prose *)) {
   padding-left: 1.625rem;
   margin: 1.25rem 0;
 }
-.public-site .prose li {
+.public-site .prose li:not(:where(.not-prose *)) {
   padding-left: 0.35rem;
   margin: 0.5rem 0;
 }
-.public-site .prose li::marker {
+.public-site .prose li:not(:where(.not-prose *))::marker {
   color: var(--outline-variant);
 }
 .public-site .prose blockquote {

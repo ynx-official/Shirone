@@ -52,11 +52,11 @@
   margin-block: var(--m3e-space-4);
   min-width: 0;
 }
-.prose .frame,
+.custom-md .frame,
 .prose pre:not(:where(.expressive-code *)) {
   position: relative;
 }
-.prose .article-code-copy {
+.custom-md .article-code-copy {
   position: absolute;
   inset-block-start: var(--m3e-space-2);
   inset-inline-end: var(--m3e-space-2);
@@ -72,16 +72,16 @@
   opacity: 0;
   transition: opacity var(--m3e-duration-short) var(--m3e-easing-standard);
 }
-.prose :is(.frame, pre):hover > .article-code-copy,
-.prose .article-code-copy:focus-visible {
+.custom-md :is(.frame, pre):hover > .article-code-copy,
+.custom-md .article-code-copy:focus-visible {
   opacity: 1;
 }
-.prose .article-code-copy:focus-visible {
+.custom-md .article-code-copy:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: var(--m3e-space-1);
 }
 @media (hover: none) {
-  .prose .article-code-copy {
+  .custom-md .article-code-copy {
     opacity: 1;
   }
 }

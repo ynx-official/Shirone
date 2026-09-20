@@ -317,8 +317,8 @@ footer {
 .prose h3 {
   margin: 1.8rem 0 1rem;
 }
-.prose ul,
-.prose ol {
+.prose ul:not(:where(.not-prose *)),
+.prose ol:not(:where(.not-prose *)) {
   padding-left: 1.6rem;
   list-style: revert;
 }

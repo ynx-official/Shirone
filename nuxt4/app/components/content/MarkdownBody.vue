@@ -30,7 +30,8 @@ async function enhance() {
     scrollable.tabIndex = 0;
   }
   for (const pre of el.querySelectorAll("pre")) {
-    if (pre.closest("[data-mermaid], .not-prose")) continue;
+    if (pre.closest("[data-mermaid]")) continue;
+    if (pre.closest(".not-prose") && !pre.closest(".m3-code-tree")) continue;
     const host = pre.closest(".frame") || pre;
     if (host.querySelector("[data-copy-code]")) continue;
     const button = document.createElement("button");

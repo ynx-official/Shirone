@@ -8,6 +8,7 @@ export function initTrees(root: HTMLElement) {
     if (!tree || !path) return;
     tree.querySelectorAll<HTMLElement>("[data-file-target]").forEach((b) => {
       b.classList.toggle("m3-code-tree__file-btn--active", b === button);
+      b.tabIndex = b === button ? 0 : -1;
       b.closest("[role=treeitem]")?.setAttribute(
         "aria-selected",
         String(b === button),
@@ -16,6 +17,7 @@ export function initTrees(root: HTMLElement) {
     tree.querySelectorAll<HTMLElement>("[data-file-path]").forEach((panel) => {
       panel.hidden = panel.dataset.filePath !== path;
       panel.classList.toggle("hidden", panel.hidden);
+      panel.style.removeProperty("display");
     });
   }
   function keyboard(event: KeyboardEvent) {
@@ -29,7 +31,7 @@ export function initTrees(root: HTMLElement) {
       ...button
         .closest(".m3-code-tree")!
         .querySelectorAll<HTMLElement>("[data-file-target]"),
-    ];
+    ].filter((item) => item.getClientRects().length > 0);
     const next =
       list[
         (list.indexOf(button) +
@@ -56,8 +58,10 @@ export function initTrees(root: HTMLElement) {
     const placeholder = document.createComment("code-tree");
     tree.before(placeholder);
     const dialog = document.createElement("dialog");
-    dialog.className = "panel";
-    dialog.style.cssText = "max-width:95vw;width:1100px;max-height:90vh";
+    dialog.className = "m3-code-tree-dialog custom-md";
+    dialog.setAttribute("aria-label", tree.getAttribute("aria-label") || "");
+    expand.setAttribute("aria-label", expand.dataset.collapseLabel || "");
+    expand.title = expand.dataset.collapseLabel || "";
     dialog.append(tree);
     document.body.append(dialog);
     dialogs.add(dialog);
@@ -67,6 +71,8 @@ export function initTrees(root: HTMLElement) {
         placeholder.replaceWith(tree);
         dialog.remove();
         dialogs.delete(dialog);
+        expand.setAttribute("aria-label", expand.dataset.expandLabel || "");
+        expand.title = expand.dataset.expandLabel || "";
         if (root.isConnected) expand.focus();
       },
       { once: true },
@@ -84,7 +90,9 @@ export function initTrees(root: HTMLElement) {
   }
   root.addEventListener("click", click, { signal });
   root.addEventListener("keydown", keyboard, { signal });
+  root.dataset.treesReady = "true";
   return () => {
+    delete root.dataset.treesReady;
     dialogs.forEach((dialog) => dialog.close());
     controller.abort();
   };
