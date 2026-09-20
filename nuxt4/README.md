@@ -86,6 +86,8 @@ node scripts/verify-docker.mjs
 
 ## 迁移说明
 
+[文章详情对比与优化](docs/comparison/article/README.md) 提供旧站、修复前后截图及本轮范围。
+
 [实施计划](docs/migration-plan.md) · [进度与差异](docs/migration-progress.md) · [来源记录](docs/source-attribution.md) · [路由/组件基线](docs/baseline.json)
 
 旧 Svelte MDX 示例入口保留，改用原生 Vue 展示组件。其他新增 MDX 必须显式转换，构建不会执行任意 Svelte/JSX。

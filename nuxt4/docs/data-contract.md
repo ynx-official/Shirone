@@ -29,3 +29,8 @@ updating the locale/cookie; stale responses cannot overwrite a newer selection.
 Post summaries may include `imageSrcset`, and site data may include
 `bannerSrcset`, `bannerMobileSrcset`, and `avatarSrcset`. Original content images
 remain available; these fields point to generated local WebP candidates.
+
+Post metadata may include `updated` (ISO date). Site data carries the existing
+`license` and `article.share` / `article.lastUpdated` settings. Disabled footer
+features render no placeholder; last-updated notices use build-time `site.today`
+and UTC calendar dates to preserve identical SSR and client output.

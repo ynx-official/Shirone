@@ -322,7 +322,7 @@ footer {
   padding-left: 1.6rem;
   list-style: revert;
 }
-.prose pre {
+.prose pre:not(:where(.expressive-code *, .not-prose *)) {
   padding: 1.2rem;
   border-radius: var(--shape-corner-medium);
   background: var(--surface-container-high);

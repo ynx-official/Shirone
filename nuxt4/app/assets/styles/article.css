@@ -1,0 +1,172 @@
+/* Article-owned layout. Generated Markdown widgets keep their own geometry. */
+.article-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--m3e-space-3);
+  margin-block: var(--m3e-space-3);
+}
+.public-site .article-title-row .article-heading {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.article-copy-link {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border-radius: var(--shape-corner-full);
+  color: var(--on-surface-variant);
+  background: transparent;
+}
+.article-copy-link:hover {
+  color: var(--primary);
+  background: var(--surface-container);
+}
+.article-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--shape-corner-medium);
+  margin-block: var(--m3e-space-5) var(--m3e-space-8);
+}
+.article-panel .prose :is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 5.5rem;
+}
+.article-panel .prose > :first-child,
+.article-panel .prose > section:first-child > :first-child {
+  margin-top: 0;
+}
+.article-panel .prose .katex-display:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: var(--m3e-space-1);
+}
+.article-panel .prose .expressive-code {
+  margin-block: var(--m3e-space-4);
+  min-width: 0;
+}
+.prose .frame,
+.prose pre:not(:where(.expressive-code *)) {
+  position: relative;
+}
+.prose .article-code-copy {
+  position: absolute;
+  inset-block-start: var(--m3e-space-2);
+  inset-inline-end: var(--m3e-space-2);
+  z-index: 2;
+  min-height: 2rem;
+  padding: var(--m3e-space-1) var(--m3e-space-2);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--shape-corner-s);
+  font: var(--m3e-type-label-small);
+  color: var(--on-surface);
+  background: var(--surface-container-high);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--m3e-duration-short) var(--m3e-easing-standard);
+}
+.prose :is(.frame, pre):hover > .article-code-copy,
+.prose .article-code-copy:focus-visible {
+  opacity: 1;
+}
+.prose .article-code-copy:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: var(--m3e-space-1);
+}
+@media (hover: none) {
+  .prose .article-code-copy {
+    opacity: 1;
+  }
+}
+.article-footer {
+  display: grid;
+  gap: var(--m3e-space-6);
+  margin: var(--m3e-space-8) 0 0;
+  padding: 0;
+  border: 0;
+  max-width: none;
+  color: var(--on-surface);
+}
+.article-license,
+.article-share {
+  padding: var(--m3e-space-5);
+  border-radius: var(--shape-corner-medium);
+  background: var(--surface-container-low);
+}
+.article-license-title {
+  font: var(--m3e-type-title-medium);
+  margin: 0 0 var(--m3e-space-4);
+  overflow-wrap: anywhere;
+}
+.article-license dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--m3e-space-4) var(--m3e-space-8);
+  margin: 0;
+  font: var(--m3e-type-body-small);
+}
+.article-license dt {
+  color: var(--on-surface-variant);
+}
+.article-license dd {
+  margin: var(--m3e-space-1) 0 0;
+}
+.article-license a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.article-share {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--m3e-space-4);
+}
+.article-share-heading {
+  flex: 1 1 14rem;
+}
+.article-share-heading h2 {
+  font: var(--m3e-type-title-medium);
+  margin: 0;
+}
+.article-share-heading p {
+  font: var(--m3e-type-body-small);
+  color: var(--on-surface-variant);
+  margin: var(--m3e-space-1) 0 0;
+}
+.article-share-actions {
+  gap: var(--m3e-space-2);
+  flex-wrap: wrap;
+}
+.article-share-status:empty {
+  display: none;
+}
+.article-update {
+  display: flex;
+  align-items: center;
+  gap: var(--m3e-space-3);
+}
+.article-update p {
+  margin: 0;
+  font: var(--m3e-type-body-medium);
+}
+.article-update small {
+  color: var(--on-surface-variant);
+  font: var(--m3e-type-body-small);
+}
+.public-site .sidebar .toc {
+  max-height: calc(100dvh - 6rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+@media (max-width: 767px) {
+  .public-site .article-title-row .article-heading {
+    font-size: 1.75rem;
+  }
+}

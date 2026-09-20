@@ -4,6 +4,7 @@ export interface Post {
   title: string;
   description: string;
   published: string;
+  updated?: string;
   tags: string[];
   category: string;
   series: string;
@@ -32,6 +33,11 @@ export interface NavigationLink {
   children?: NavigationLink[];
 }
 export interface Site {
+  article?: {
+    share: { enable: boolean };
+    lastUpdated: { enable: boolean; minimumAgeDays: number };
+  };
+  license?: { enable: boolean; name: string; url: string };
   progressIndicator: { style: "dual" | "single" | "wave" };
   displaySettings: {
     colorStyle: boolean;

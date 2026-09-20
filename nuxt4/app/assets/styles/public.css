@@ -860,7 +860,7 @@ html {
   color: var(--on-surface);
   font-size: 0.875em;
 }
-.public-site .prose pre {
+.public-site .prose pre:not(:where(.expressive-code *, .not-prose *)) {
   font-size: 0.875rem;
 }
 /* Keep wide display equations scrollable without widening mobile SSR pages. */

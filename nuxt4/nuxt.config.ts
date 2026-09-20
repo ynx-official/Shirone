@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     "~/assets/styles/variables.styl",
     "~/assets/styles/main.css",
     "~/assets/styles/public.css",
+    "~/assets/styles/article.css",
     "~/assets/styles/settings.css",
     "~/assets/styles/entrance.css",
   ],

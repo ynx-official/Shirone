@@ -39,12 +39,16 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-  <section class="panel">
-    <div class="row">
+  <section class="article-share" :aria-label="t('shareArticle')">
+    <div class="article-share-heading">
+      <h2>{{ t("shareArticle") }}</h2>
+      <p>{{ t("shareArticleDescription") }}</p>
+    </div>
+    <div class="row article-share-actions">
       <button @click="copy">{{ t("copyLink") }}</button
       ><button :disabled="busy" @click="poster">
         {{ t(busy ? "generatingSharePoster" : "generateSharePoster") }}</button
-      ><span role="status">{{ message }}</span>
+      ><span role="status" class="article-share-status">{{ message }}</span>
     </div>
     <dialog ref="dialog" class="panel">
       <button @click="dialog?.close()">{{ t("close") }}</button

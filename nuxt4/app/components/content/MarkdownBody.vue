@@ -26,24 +26,34 @@ async function enhance() {
   await nextTick();
   const el = root.value;
   if (!el) return;
+  for (const scrollable of el.querySelectorAll<HTMLElement>(".katex-display")) {
+    scrollable.tabIndex = 0;
+  }
   for (const pre of el.querySelectorAll("pre")) {
-    if (pre.closest("[data-mermaid]") || pre.querySelector("[data-copy-code]"))
-      continue;
+    if (pre.closest("[data-mermaid], .not-prose")) continue;
+    const host = pre.closest(".frame") || pre;
+    if (host.querySelector("[data-copy-code]")) continue;
     const button = document.createElement("button");
     button.type = "button";
     button.dataset.copyCode = "";
     button.textContent = t("copyCode");
+    button.setAttribute("aria-label", t("copyCode"));
+    button.className = "article-code-copy";
     button.addEventListener("click", async () => {
       try {
+        const lines = pre.querySelectorAll(".ec-line > .code");
         await navigator.clipboard.writeText(
-          pre.querySelector("code")?.textContent || "",
+          lines.length
+            ? [...lines].map((line) => line.textContent || "").join("\n")
+            : pre.querySelector("code")?.textContent || "",
         );
         button.textContent = t("copySuccess");
       } catch {
         button.textContent = t("copyFailed");
       }
     });
-    pre.append(button);
+    host.append(button);
+    disposers.push(() => button.remove());
   }
 
   if (
@@ -79,17 +89,19 @@ async function enhance() {
       ...el.querySelectorAll<HTMLElement>("[data-mermaid]"),
     ].entries()) {
       const source = figure.querySelector("pre")?.textContent || "";
+      figure.dataset.mermaidState = "loading";
       try {
         const { svg } = await mermaid.render(`diagram-${current}-${i}`, source);
         if (current !== generation) return;
         const target = figure.querySelector(".markdown-mermaid__diagram");
         if (target) {
           target.innerHTML = svg;
-          const fallback = figure.querySelector("pre");
-          if (fallback) fallback.hidden = true;
+          // The shared stylesheet owns diagram/source visibility through this state.
+          figure.dataset.mermaidState = "ready";
         }
       } catch {
-        /* readable source remains */
+        if (current !== generation) return;
+        figure.dataset.mermaidState = "error";
       }
     }
   }
