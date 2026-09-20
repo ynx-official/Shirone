@@ -36,11 +36,6 @@ const widgetGroups = computed(() =>
     }))
     .filter((group) => group.widgets.length),
 );
-function stickyIndex(index: number) {
-  return widgets.value
-    .slice(0, index)
-    .filter((widget) => widget.slot === "sticky").length;
-}
 const stats = computed(() => [
   ["statsPosts", "words", props.site.stats.posts],
   [
@@ -131,7 +126,7 @@ const player = props.site.music
         :key="`${widget.type}-${i}`"
         ><section
           v-if="widget.type === 'profile'"
-          :style="{ '--entry-index': stickyIndex(i) }"
+          :style="{ '--entry-index': i }"
           :class="{ 'onload-entry': widget.slot === 'sticky' }"
           class="panel profile"
         >
@@ -161,7 +156,7 @@ const player = props.site.music
         </section>
         <section
           v-else-if="widget.type === 'announcement' && !hidden"
-          :style="{ '--entry-index': stickyIndex(i) }"
+          :style="{ '--entry-index': i }"
           :class="{ 'onload-entry': widget.slot === 'sticky' }"
           class="panel"
         >
@@ -179,7 +174,7 @@ const player = props.site.music
         </section>
         <section
           v-else-if="site.taxonomy[widget.type]"
-          :style="{ '--entry-index': stickyIndex(i) }"
+          :style="{ '--entry-index': i }"
           :class="{ 'onload-entry': widget.slot === 'sticky' }"
           class="panel"
         >
@@ -204,7 +199,7 @@ const player = props.site.music
         </section>
         <section
           v-else-if="widget.type === 'stats'"
-          :style="{ '--entry-index': stickyIndex(i) }"
+          :style="{ '--entry-index': i }"
           :class="{ 'onload-entry': widget.slot === 'sticky' }"
           class="panel"
         >
@@ -224,12 +219,12 @@ const player = props.site.music
         <CalendarWidget
           v-else-if="widget.type === 'calendar'"
           :class="{ 'onload-entry': widget.slot === 'sticky' }"
-          :style="{ '--entry-index': stickyIndex(i) }"
+          :style="{ '--entry-index': i }"
           :dates="site.stats.dates"
           :today="site.today" />
         <nav
           v-else-if="widget.type === 'toc' && toc.length"
-          :style="{ '--entry-index': stickyIndex(i) }"
+          :style="{ '--entry-index': i }"
           :class="{ 'onload-entry': widget.slot === 'sticky' }"
           class="panel toc"
           :aria-label="t('tableOfContents')"
@@ -250,7 +245,7 @@ const player = props.site.music
           :is="player"
           v-else-if="widget.type === 'music' && player && site.music"
           :class="{ 'onload-entry': widget.slot === 'sticky' }"
-          :style="{ '--entry-index': stickyIndex(i) }"
+          :style="{ '--entry-index': i }"
           :config="site.music"
       /></template>
     </div>

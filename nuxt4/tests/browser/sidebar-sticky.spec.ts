@@ -20,6 +20,13 @@ test("article sidebars pin below the header and stop at the shell boundary", asy
     expect(box!.y).toBeLessThanOrEqual(90);
     expect(box!.y + box!.height).toBeLessThanOrEqual(900);
   }
+  await page.locator(".sidebar-sticky .toc a").last().click();
+  await expect(page).toHaveURL(/#/);
+  await page.locator(".article-panel .post-meta a").first().click();
+  await expect(page).toHaveURL(/archive/);
+  await expect(page.locator(".secondary-sidebar .toc")).toHaveCount(0);
+  await page.goBack();
+  await expect(page.locator(".secondary-sidebar .toc")).toBeVisible();
   await page.evaluate(() =>
     window.scrollTo({
       top: document.documentElement.scrollHeight,
