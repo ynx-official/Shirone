@@ -93,3 +93,22 @@ test("album detail separates its cover metadata and gallery", async ({
   await hero.getByRole("link", { name: "Back to albums" }).click();
   await expect(page).toHaveURL(/\/albums\/$/);
 });
+
+test("album external metadata and photos render without local files", async ({
+  page,
+}) => {
+  await page.goto("/albums/ExternalExample/");
+  await expect(page.locator("[data-album-ready]")).toBeVisible();
+  await expect(page.locator(".album-detail__meta")).toContainText("2 photos");
+  await expect(page.locator(".album-gallery a")).toHaveCount(2);
+  const { default: AxeBuilder } = await import("@axe-core/playwright");
+  const results = await new AxeBuilder({ page })
+    .include(".album-detail")
+    .withTags(["wcag2a", "wcag2aa"])
+    .analyze();
+  expect(
+    results.violations.filter((v) =>
+      ["serious", "critical"].includes(v.impact || ""),
+    ),
+  ).toEqual([]);
+});

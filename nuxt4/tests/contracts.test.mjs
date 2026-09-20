@@ -25,11 +25,7 @@ test("public payload excludes drafts and encrypted plaintext", () => {
   assert.equal(protectedPost.html, undefined);
   assert.equal(protectedPost.body, undefined);
   assert.equal(protectedPost.password, undefined);
-  assert(
-    !JSON.stringify(db).includes(
-      "恭喜！你已成功解锁",
-    ),
-  );
+  assert(!JSON.stringify(db).includes("恭喜！你已成功解锁"));
 });
 test("all post routes uniquely resolve to canonical paths", () => {
   assert.equal(new Set(db.posts.map((p) => p.url)).size, db.posts.length);
@@ -94,4 +90,13 @@ test("article HTML contains real headings, ordinary and extended content", () =>
 test("public album directory contains no password-bearing metadata", async () => {
   const files = await fs.readdir("public/images/albums", { recursive: true });
   assert(!files.some((p) => String(p).endsWith("info.json")));
+});
+
+test("external albums do not require a local photo directory", () => {
+  const album = db.collections.albums.find(
+    (item) => item.id === "ExternalExample",
+  );
+  assert(album, "external album must be published");
+  assert.equal(album.data.photos.length, 2);
+  assert.match(album.image, /^https:/);
 });

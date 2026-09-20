@@ -62,10 +62,11 @@ for(const [domain,items] of Object.entries(rawData)){if(!collections[domain])con
 for(const [domain,field] of [['categories','category'],['tags','tags']])collections[domain]=[...new Set(posts.flatMap(p=>Array.isArray(p[field])?p[field]:[p[field]]).filter(Boolean))].map((v,i)=>entity(String(i+1),v));
 for(const [folder,d] of Object.entries(JSON.parse(await readFile('mock/admin/albums.json','utf8')))){
  try{const dir=`public/images/albums/${folder}`;const protectedAlbum=Boolean(d.password||d.encrypted);if(d.hidden)continue;
- const photos=(await readdir(dir)).filter(f=>/\.(webp|png|jpe?g|avif)$/i.test(f)&&!/^cover\./i.test(f)).sort().map(f=>({src:`/images/albums/${folder}/${f}`,alt:d.title||folder}));
+ const files=d.mode === 'external' ? [] : await readdir(dir);
+ const photos=files.filter(f=>/\.(webp|png|jpe?g|avif)$/i.test(f)&&!/^cover\./i.test(f)).sort().map(f=>({src:`/images/albums/${folder}/${f}`,alt:d.title||folder}));
  const preparedPhotos=await Promise.all((d.photos||photos).map(image=>prepareImage(image,true)));
  const clean={...d};delete clean.password;delete clean.encrypted;
- const coverFiles=(await readdir(dir)).filter(f=>/^cover\.(webp|png|jpe?g|avif)$/i.test(f));
+ const coverFiles=files.filter(f=>/^cover\.(webp|png|jpe?g|avif)$/i.test(f));
  const cover=d.cover || (coverFiles[0]?`/images/albums/${folder}/${coverFiles[0]}`:'');
  const e={...entity(folder,d.title||folder),image:cover,description:d.description||'',date:d.date||'',tags:d.tags||[],data:clean};
  if(protectedAlbum){if(!d.password)throw Error('Missing album password');e.data={protected:true,location:d.location||'',layout:d.layout||'masonry',columns:d.columns||3,cipher:await encrypt({photos:preparedPhotos},String(d.password))};}else e.data.photos=preparedPhotos;
