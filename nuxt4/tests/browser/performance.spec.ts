@@ -16,12 +16,16 @@ test("homepage resources use optimized images and reuse the SSR language payload
   expect(
     await image.evaluate((node: HTMLImageElement) => node.currentSrc),
   ).toContain("/assets/optimized/");
-  const loadedFonts = await page.evaluate(async () =>
-    (await document.fonts.load("16px Yozai", "首页字体")).map(
-      (font) => font.status,
+  const fontFamily = await page
+    .locator("body")
+    .evaluate((node) => getComputedStyle(node).fontFamily);
+  expect(fontFamily).toContain("system-ui");
+  expect(fontFamily).not.toMatch(/Yozai|Outfit/i);
+  expect(
+    urls.some((url) =>
+      /\/fonts\/outfit\/|\/fonts\/yozai\/.*\.(woff2?|ttf)/.test(url),
     ),
-  );
-  expect(loadedFonts).toEqual(["loaded"]);
+  ).toBe(false);
   expect(urls.some((url) => /\.ttf(?:\?|$)|\/logo\/icon.webp/.test(url))).toBe(
     false,
   );

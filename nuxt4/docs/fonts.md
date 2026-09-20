@@ -1,6 +1,10 @@
 # 字体构建
 
-Nuxt 保留原有 Outfit + Yozai 字体栈及 `font-display: optional`。
+当前默认使用系统无衬线字体（`font.mode: system`），公开页面、管理页面及分享海报采用相同字体令牌。代码继续使用等宽字体，公式保留 KaTeX 字体。
+
+系统模式不加载 Outfit 样式或 Yozai 字体文件，也不执行 Yozai 子集化。下面记录的是保留的自定义字体模式及历史验证。
+
+自定义模式保留原有 Outfit + Yozai 字体栈及 `font-display: optional`。
 Yozai 原始字体放在 `assets/fonts/`，不再位于 `public/`。
 
 `nuxt.config.ts` 的 `nitro:config` 钩子调用 `scripts/fonts.mjs`，因此

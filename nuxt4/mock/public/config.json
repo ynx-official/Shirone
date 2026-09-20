@@ -213,7 +213,7 @@
     ]
   },
   "font": {
-    "mode": "custom",
+    "mode": "system",
     "fontFamilies": [
       {
         "id": "outfit-body",

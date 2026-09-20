@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { build } from "esbuild";
+import { fileURLToPath } from "node:url";
 await fs.mkdir(".cache/tests", { recursive: true });
 await build({
   entryPoints: ["app/repositories/admin.ts"],
@@ -11,7 +12,7 @@ await build({
   platform: "node",
   format: "esm",
   packages: "external",
-  alias: { "#shared": new URL("../shared", import.meta.url).pathname },
+  alias: { "#shared": fileURLToPath(new URL("../shared", import.meta.url)) },
 });
 const { validateSnapshot, createAdminRepository, references, STORAGE_KEY } =
   await import("../.cache/tests/admin.mjs");

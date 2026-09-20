@@ -1,7 +1,12 @@
 import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
 import tailwindcss from "@tailwindcss/vite";
 import { prepareFonts, checkFonts } from "./scripts/fonts.mjs";
 import { prepareShellAssets } from "./scripts/shell-assets.mjs";
+const systemFonts =
+  JSON.parse(
+    readFileSync(new URL("./mock/public/config.json", import.meta.url), "utf8"),
+  ).font?.mode === "system";
 const adminEnabled =
   process.env.NUXT_MOCK_ADMIN === "true" ||
   process.env.NODE_ENV === "development";
@@ -58,7 +63,9 @@ export default defineNuxtConfig({
           type: "image/png",
           sizes: "48x48",
         },
-        { rel: "stylesheet", href: "/fonts/outfit/font.css" },
+        ...(!systemFonts
+          ? [{ rel: "stylesheet", href: "/fonts/outfit/font.css" }]
+          : []),
         { rel: "stylesheet", href: "/fonts/yozai/font.css" },
       ],
     },

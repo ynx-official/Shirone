@@ -24,14 +24,14 @@ await mkdir('public/content-assets',{recursive:true});
 await cp('node_modules/katex/dist','public/styles/katex',{recursive:true});
 const b64=(v)=>Buffer.from(v).toString('base64');
 async function encrypt(value,password){const salt=webcrypto.getRandomValues(new Uint8Array(16)),iv=webcrypto.getRandomValues(new Uint8Array(12));const material=await webcrypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);const key=await webcrypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['encrypt']);return {salt:b64(salt),iv:b64(iv),data:b64(await webcrypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(JSON.stringify(value))))}}
-async function walk(dir){let out=[];for(const e of await readdir(dir,{withFileTypes:true})){const path=join(dir,e.name);if(e.isDirectory())out.push(...await walk(path));else out.push(path)}return out}
+async function walk(dir){let out=[];for(const e of await readdir(dir,{withFileTypes:true})){const path=join(dir,e.name).replaceAll('\\','/');if(e.isDirectory())out.push(...await walk(path));else out.push(path)}return out}
 const normalize=(s)=>'/'+s.replace(/^\/+|\/+$/g,'')+'/';
 const reserved=new Set(['admin','api','archive','tags','categories','series','albums','moments','friends','compass','anime','projects','skills','devices','games','timeline','about','rss','atom','search']);
 const posts=[], paths={}, spec={};
 for(const file of await walk('content')){
  if(!/\.(md|mdx)$/.test(file)) continue;
  const {data,content}=matter(await readFile(file,'utf8'));
- const group=file.split('/')[1]; const id=relative(`content/${group}`,file).replace(/\.(md|mdx)$/,'').replace(/\/index$/,'').toLowerCase();
+ const group=file.split('/')[1]; const id=relative(`content/${group}`,file).replaceAll('\\','/').replace(/\.(md|mdx)$/,'').replace(/\/index$/,'').toLowerCase();
  if(data.draft) continue;
  if(data.encrypted && !String(data.password||'').trim())throw Error(`Missing encryption password: ${file}`);
  let body=content;

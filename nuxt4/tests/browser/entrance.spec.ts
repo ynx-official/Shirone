@@ -136,13 +136,9 @@ test("refresh entrance leaves SSR content readable without JavaScript", async ({
   await context.close();
 });
 
-test("refresh entrance keeps header geometry stable during font loading", async ({
+test("refresh entrance keeps header geometry stable with system fonts", async ({
   page,
 }) => {
-  await page.route("**/fonts/outfit/font.css", async (route) => {
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    await route.continue();
-  });
   await page.addInitScript(() => {
     const samples: { x: number; width: number; y: number }[] = [];
     Object.assign(window, { headerSamples: samples });

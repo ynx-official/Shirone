@@ -1505,8 +1505,6 @@ html.motion-reduced .wave-layer {
     grid-row: auto;
   }
 }
-/* Astro's reference font output loads Outfit 400; browser weight matching is
-   intentionally retained here so the migrated typography has the same metrics. */
 .public-site .prose .anchor {
   opacity: 0;
   display: inline-block;

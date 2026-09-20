@@ -1,12 +1,12 @@
 import sharp from "sharp";
-import { resolve, dirname } from "node:path";
+import { resolve, dirname, sep } from "node:path";
 import { mkdir, stat, readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 const publicRoot = resolve("public");
 export async function responsiveImage(src, widths, quality = 72) {
   if (!src?.startsWith("/") || src.startsWith("//")) return { src };
   const source = resolve(publicRoot, "." + src);
-  if (!source.startsWith(publicRoot + "/"))
+  if (!source.startsWith(publicRoot + sep))
     throw Error("Image path outside public directory");
   try {
     await stat(source);
@@ -52,7 +52,7 @@ export async function prepareImage(value, thumbnail = false) {
   )
     return image;
   const source = resolve("public", "." + image.src);
-  if (!source.startsWith(publicRoot + "/"))
+  if (!source.startsWith(publicRoot + sep))
     throw Error("Image path outside public directory");
   try {
     const meta = await sharp(source).metadata();
