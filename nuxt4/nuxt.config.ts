@@ -64,7 +64,7 @@ export default defineNuxtConfig({
           sizes: "48x48",
         },
         ...(!systemFonts
-          ? [{ rel: "stylesheet", href: "/fonts/outfit/font.css" }]
+          ? [{ rel: "stylesheet" as const, href: "/fonts/outfit/font.css" }]
           : []),
         { rel: "stylesheet", href: "/fonts/yozai/font.css" },
       ],

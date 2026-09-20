@@ -141,7 +141,7 @@ export async function checkFonts(directory, budget) {
   let total = 0;
   for (const file of await files(directory)) {
     // KaTeX ships its own multi-format math fonts, outside the site font budget.
-    if (file.includes("/styles/katex/")) continue;
+    if (file.replaceAll("\\", "/").includes("/styles/katex/")) continue;
     const extension = extname(file).toLowerCase();
     if ([".ttf", ".otf"].includes(extension))
       throw new Error(`[fonts] Raw font in production: ${file}`);

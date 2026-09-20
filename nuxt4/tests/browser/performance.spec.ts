@@ -34,6 +34,13 @@ test("homepage resources use optimized images and reuse the SSR language payload
   expect(favicon.ok()).toBe(true);
   expect((await favicon.body()).length).toBeLessThan(10000);
   await page
+    .getByRole("button", { name: "Theme", exact: true })
+    .waitFor({ state: "visible" });
+  // The SSR select is visible before Vue attaches its change handler.
+  await expect(
+    page.getByRole("button", { name: "Theme", exact: true }),
+  ).toBeEnabled();
+  await page
     .getByRole("combobox", { name: "Language", exact: true })
     .selectOption("ja");
   await expect(page.locator("html")).toHaveAttribute("lang", "ja");

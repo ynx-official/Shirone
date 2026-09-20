@@ -45,6 +45,9 @@ test("font build covers content, all locales and decoded data; production never 
   assert.match(await readFile(join(dev, "font.css"), "utf8"), /\.ttf/);
   const css = await readFile(join(production, "font.css"), "utf8");
   assert.match(css, /\.woff2/);
+  // KaTeX owns its math fonts and is excluded on Windows as well as POSIX.
+  await mkdir(join(production, "styles/katex/fonts"), { recursive: true });
+  await writeFile(join(production, "styles/katex/fonts/math.ttf"), "math fixture");
   await checkFonts(production, {
     maxFamilyBytes: 100000,
     maxTotalBytes: 100000,
