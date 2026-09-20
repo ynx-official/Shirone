@@ -161,9 +161,8 @@
   font: var(--m3e-type-body-small);
 }
 .public-site .sidebar .toc {
-  max-height: calc(100dvh - 6rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  /* The sticky group owns scrolling, including the TOC card's padding. */
+  max-height: none;
 }
 @media (max-width: 767px) {
   .public-site .article-title-row .article-heading {

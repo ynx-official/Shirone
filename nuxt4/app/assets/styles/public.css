@@ -297,6 +297,21 @@ html {
 .public-site .sidebar {
   min-width: 0;
   grid-column: 1;
+  align-self: stretch;
+}
+/* A full-height column bounds the sticky group to the article shell. */
+@media (min-width: 1024px) {
+  .public-site .sidebar-sticky {
+    position: sticky;
+    top: 5rem;
+    max-height: calc(100dvh - 6rem);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+  }
+  .public-site .sidebar-sticky > .panel:last-child {
+    margin-bottom: 0;
+  }
 }
 .public-site .secondary-sidebar {
   display: none;

@@ -26,6 +26,16 @@ const widgets = computed(() =>
       (!w.pages?.length || w.pages.includes(page.value)),
   ),
 );
+const widgetGroups = computed(() =>
+  ["top", "sticky"]
+    .map((slot) => ({
+      slot,
+      widgets: widgets.value.filter(
+        (widget) => (widget.slot || "top") === slot,
+      ),
+    }))
+    .filter((group) => group.widgets.length),
+);
 function stickyIndex(index: number) {
   return widgets.value
     .slice(0, index)
@@ -111,130 +121,138 @@ const player = props.site.music
     class="sidebar onload-entry"
     :class="{ 'secondary-sidebar': column === 'secondary' }"
   >
-    <template v-for="(widget, i) in widgets" :key="`${widget.type}-${i}`"
-      ><section
-        v-if="widget.type === 'profile'"
-        :style="{ '--entry-index': stickyIndex(i) }"
-        :class="{ 'onload-entry': widget.slot === 'sticky' }"
-        class="panel profile"
-      >
-        <NuxtLink to="/about/" class="profile-avatar" :aria-label="t('about')"
-          ><img
-            :src="site.avatar"
-            :srcset="site.avatarSrcset"
-            sizes="112px"
-            alt=""
-            width="256"
-            height="256"
-            loading="lazy"
-        /></NuxtLink>
-        <h2>{{ site.profileName }}</h2>
-        <div class="profile-accent" />
-        <p class="muted">{{ site.bio }}</p>
-        <div class="profile-socials">
+    <div
+      v-for="group in widgetGroups"
+      :key="group.slot"
+      :class="`sidebar-${group.slot}`"
+    >
+      <template
+        v-for="(widget, i) in group.widgets"
+        :key="`${widget.type}-${i}`"
+        ><section
+          v-if="widget.type === 'profile'"
+          :style="{ '--entry-index': stickyIndex(i) }"
+          :class="{ 'onload-entry': widget.slot === 'sticky' }"
+          class="panel profile"
+        >
+          <NuxtLink to="/about/" class="profile-avatar" :aria-label="t('about')"
+            ><img
+              :src="site.avatar"
+              :srcset="site.avatarSrcset"
+              sizes="112px"
+              alt=""
+              width="256"
+              height="256"
+              loading="lazy"
+          /></NuxtLink>
+          <h2>{{ site.profileName }}</h2>
+          <div class="profile-accent" />
+          <p class="muted">{{ site.bio }}</p>
+          <div class="profile-socials">
+            <a
+              v-for="link in site.profileLinks"
+              :key="link.url"
+              :href="link.url"
+              :aria-label="link.name"
+              rel="noopener noreferrer"
+              ><LocalIcon :name="link.icon"
+            /></a>
+          </div>
+        </section>
+        <section
+          v-else-if="widget.type === 'announcement' && !hidden"
+          :style="{ '--entry-index': stickyIndex(i) }"
+          :class="{ 'onload-entry': widget.slot === 'sticky' }"
+          class="panel"
+        >
+          <div class="row">
+            <h2>{{ t("announcement") }}</h2>
+            <button :aria-label="t('close')" @click="hidden = true">×</button>
+          </div>
+          <p>{{ site.announcement.content }}</p>
           <a
-            v-for="link in site.profileLinks"
-            :key="link.url"
-            :href="link.url"
-            :aria-label="link.name"
+            v-if="site.announcement.link?.enable"
+            :href="site.announcement.link.url"
             rel="noopener noreferrer"
-            ><LocalIcon :name="link.icon"
-          /></a>
-        </div>
-      </section>
-      <section
-        v-else-if="widget.type === 'announcement' && !hidden"
-        :style="{ '--entry-index': stickyIndex(i) }"
-        :class="{ 'onload-entry': widget.slot === 'sticky' }"
-        class="panel"
-      >
-        <div class="row">
-          <h2>{{ t("announcement") }}</h2>
-          <button :aria-label="t('close')" @click="hidden = true">×</button>
-        </div>
-        <p>{{ site.announcement.content }}</p>
-        <a
-          v-if="site.announcement.link?.enable"
-          :href="site.announcement.link.url"
-          rel="noopener noreferrer"
-          >{{ site.announcement.link.text }} ↗</a
-        >
-      </section>
-      <section
-        v-else-if="site.taxonomy[widget.type]"
-        :style="{ '--entry-index': stickyIndex(i) }"
-        :class="{ 'onload-entry': widget.slot === 'sticky' }"
-        class="panel"
-      >
-        <h2>{{ t(widget.type) }}</h2>
-        <div
-          :class="widget.type === 'tags' ? 'row widget-tags' : 'widget-rows'"
-        >
-          <NuxtLink
-            v-for="item in site.taxonomy[widget.type]?.slice(
-              0,
-              widget.collapseAfter || 10,
-            )"
-            :key="item.id"
-            :class="{ chip: widget.type === 'tags' }"
-            :to="item.url"
-            >{{ item.title
-            }}<span v-if="widget.type !== 'tags'" class="widget-count">{{
-              item.count
-            }}</span></NuxtLink
+            >{{ site.announcement.link.text }} ↗</a
           >
-        </div>
-      </section>
-      <section
-        v-else-if="widget.type === 'stats'"
-        :style="{ '--entry-index': stickyIndex(i) }"
-        :class="{ 'onload-entry': widget.slot === 'sticky' }"
-        class="panel"
-      >
-        <h2>{{ t("stats") }}</h2>
-        <div
-          v-for="[label, icon, value] in stats"
-          :key="String(label)"
-          class="stats-row"
+        </section>
+        <section
+          v-else-if="site.taxonomy[widget.type]"
+          :style="{ '--entry-index': stickyIndex(i) }"
+          :class="{ 'onload-entry': widget.slot === 'sticky' }"
+          class="panel"
         >
-          <span class="meta-icon"><LocalIcon :name="String(icon)" /></span
-          ><span>{{ t(String(label)) }}</span
-          ><span class="stats-rule" /><span>{{
-            label === "statsUpdated" ? lastUpdated : value
-          }}</span>
-        </div>
-      </section>
-      <CalendarWidget
-        v-else-if="widget.type === 'calendar'"
-        :class="{ 'onload-entry': widget.slot === 'sticky' }"
-        :style="{ '--entry-index': stickyIndex(i) }"
-        :dates="site.stats.dates"
-        :today="site.today" />
-      <nav
-        v-else-if="widget.type === 'toc' && toc.length"
-        :style="{ '--entry-index': stickyIndex(i) }"
-        :class="{ 'onload-entry': widget.slot === 'sticky' }"
-        class="panel toc"
-        :aria-label="t('tableOfContents')"
-      >
-        <h2>{{ t("tableOfContents") }}</h2>
-        <a
-          v-for="item in toc"
-          :key="item.id"
-          :href="'#' + item.id"
-          :aria-current="activeHeading === item.id ? 'location' : undefined"
-          :style="{
-            paddingLeft: `${0.5 + Math.max(0, item.depth - 1) * 0.5}rem`,
-          }"
-          >{{ item.text }}</a
+          <h2>{{ t(widget.type) }}</h2>
+          <div
+            :class="widget.type === 'tags' ? 'row widget-tags' : 'widget-rows'"
+          >
+            <NuxtLink
+              v-for="item in site.taxonomy[widget.type]?.slice(
+                0,
+                widget.collapseAfter || 10,
+              )"
+              :key="item.id"
+              :class="{ chip: widget.type === 'tags' }"
+              :to="item.url"
+              >{{ item.title
+              }}<span v-if="widget.type !== 'tags'" class="widget-count">{{
+                item.count
+              }}</span></NuxtLink
+            >
+          </div>
+        </section>
+        <section
+          v-else-if="widget.type === 'stats'"
+          :style="{ '--entry-index': stickyIndex(i) }"
+          :class="{ 'onload-entry': widget.slot === 'sticky' }"
+          class="panel"
         >
-      </nav>
-      <component
-        :is="player"
-        v-else-if="widget.type === 'music' && player && site.music"
-        :class="{ 'onload-entry': widget.slot === 'sticky' }"
-        :style="{ '--entry-index': stickyIndex(i) }"
-        :config="site.music"
-    /></template>
+          <h2>{{ t("stats") }}</h2>
+          <div
+            v-for="[label, icon, value] in stats"
+            :key="String(label)"
+            class="stats-row"
+          >
+            <span class="meta-icon"><LocalIcon :name="String(icon)" /></span
+            ><span>{{ t(String(label)) }}</span
+            ><span class="stats-rule" /><span>{{
+              label === "statsUpdated" ? lastUpdated : value
+            }}</span>
+          </div>
+        </section>
+        <CalendarWidget
+          v-else-if="widget.type === 'calendar'"
+          :class="{ 'onload-entry': widget.slot === 'sticky' }"
+          :style="{ '--entry-index': stickyIndex(i) }"
+          :dates="site.stats.dates"
+          :today="site.today" />
+        <nav
+          v-else-if="widget.type === 'toc' && toc.length"
+          :style="{ '--entry-index': stickyIndex(i) }"
+          :class="{ 'onload-entry': widget.slot === 'sticky' }"
+          class="panel toc"
+          :aria-label="t('tableOfContents')"
+        >
+          <h2>{{ t("tableOfContents") }}</h2>
+          <a
+            v-for="item in toc"
+            :key="item.id"
+            :href="'#' + item.id"
+            :aria-current="activeHeading === item.id ? 'location' : undefined"
+            :style="{
+              paddingLeft: `${0.5 + Math.max(0, item.depth - 1) * 0.5}rem`,
+            }"
+            >{{ item.text }}</a
+          >
+        </nav>
+        <component
+          :is="player"
+          v-else-if="widget.type === 'music' && player && site.music"
+          :class="{ 'onload-entry': widget.slot === 'sticky' }"
+          :style="{ '--entry-index': stickyIndex(i) }"
+          :config="site.music"
+      /></template>
+    </div>
   </aside>
 </template>
