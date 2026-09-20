@@ -10,10 +10,7 @@ const runtime = useRuntimeConfig(),
   route = useRoute();
 const { data: site } = await useAsyncData("site", repository.site);
 const { t, locale } = useCopy();
-const pageKey = computed(() => `page:${route.fullPath}`);
-const { data: currentPage } = await useAsyncData(pageKey, () =>
-  repository.page(route.path, route.query),
-);
+const { data: currentPage } = await usePublicPage();
 const { wallpaper, layout, texture, reduced } = useDisplay();
 onMounted(() => {
   try {

@@ -1,0 +1,62 @@
+{
+  "original-desktop": {
+    "section": {
+      "x": 312,
+      "y": 110,
+      "width": 801,
+      "height": 577.59375
+    },
+    "card": {
+      "x": 344,
+      "y": 391.59375,
+      "width": 360.5,
+      "height": 128
+    },
+    "errors": []
+  },
+  "original-mobile": {
+    "section": {
+      "x": 7,
+      "y": 110,
+      "width": 361,
+      "height": 697.390625
+    },
+    "card": {
+      "x": 35,
+      "y": 371.390625,
+      "width": 305,
+      "height": 123.75
+    },
+    "errors": []
+  },
+  "nuxt-desktop": {
+    "section": {
+      "x": 312,
+      "y": 110,
+      "width": 801,
+      "height": 577.59375
+    },
+    "card": {
+      "x": 344,
+      "y": 391.59375,
+      "width": 360.5,
+      "height": 128
+    },
+    "errors": []
+  },
+  "nuxt-mobile": {
+    "section": {
+      "x": 7,
+      "y": 42,
+      "width": 361,
+      "height": 663.265625
+    },
+    "card": {
+      "x": 35,
+      "y": 285.015625,
+      "width": 305,
+      "height": 123.75
+    },
+    "errors": []
+  }
+}

@@ -2,6 +2,9 @@
 const CollectionView = defineAsyncComponent(
   () => import("~/components/organisms/CollectionView.vue"),
 );
+const FriendSection = defineAsyncComponent(
+  () => import("~/components/organisms/FriendSection.vue"),
+);
 const ArchiveView = defineAsyncComponent(
   () => import("~/components/organisms/ArchiveView.vue"),
 );
@@ -21,10 +24,7 @@ const MarkdownBody = defineAsyncComponent(
 const route = useRoute(),
   repository = usePublicRepository(),
   { t } = useCopy();
-const key = computed(() => `page:${route.fullPath}`);
-const { data: page, error } = await useAsyncData(key, () =>
-  repository.page(route.path, route.query),
-);
+const { data: page, error } = await usePublicPage();
 if (error.value)
   throw createError({
     statusCode: error.value.statusCode || 500,
@@ -76,6 +76,9 @@ const pageLink = (n: number) => ({
     /><ArchiveView
       v-else-if="page.kind === 'archive'"
       :posts="page.posts"
+    /><FriendSection
+      v-else-if="page.kind === 'friends'"
+      :friends="page.items"
     /><CollectionView
       v-else-if="page.kind === 'projects' || page.kind === 'albums'"
       :domain="page.kind"
