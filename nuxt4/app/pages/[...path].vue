@@ -5,6 +5,15 @@ const CollectionView = defineAsyncComponent(
 const FriendSection = defineAsyncComponent(
   () => import("~/components/organisms/FriendSection.vue"),
 );
+const MomentSection = defineAsyncComponent(
+  () => import("~/components/organisms/MomentSection.vue"),
+);
+const AnimeSection = defineAsyncComponent(
+  () => import("~/components/organisms/AnimeSection.vue"),
+);
+const CompassSection = defineAsyncComponent(
+  () => import("~/components/organisms/CompassSection.vue"),
+);
 const ArchiveView = defineAsyncComponent(
   () => import("~/components/organisms/ArchiveView.vue"),
 );
@@ -79,6 +88,15 @@ const pageLink = (n: number) => ({
     /><FriendSection
       v-else-if="page.kind === 'friends'"
       :friends="page.items"
+    /><MomentSection
+      v-else-if="page.kind === 'moments'"
+      :moments="page.items"
+    /><AnimeSection
+      v-else-if="page.kind === 'anime'"
+      :items="page.items"
+    /><CompassSection
+      v-else-if="page.kind === 'compass'"
+      :items="page.items"
     /><CollectionView
       v-else-if="page.kind === 'projects' || page.kind === 'albums'"
       :domain="page.kind"
@@ -136,30 +154,12 @@ const pageLink = (n: number) => ({
         v-if="page.items.length && !['tags', 'categories'].includes(page.kind)"
         class="grid"
       >
-        <template v-for="item in page.items" :key="item.id"
-          ><article v-if="page.kind === 'moments'" class="panel">
-            <time>{{ item.date.slice(0, 10) }}</time
-            ><MarkdownBody :html="item.data.html || ''" />
-            <div v-if="item.data.images?.length" class="moment-gallery">
-              <a
-                v-for="photo in item.data.images"
-                :key="photo.src"
-                :href="photo.src"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><img
-                  :src="photo.thumbnail || photo.src"
-                  :srcset="photo.srcset"
-                  sizes="(max-width: 600px) 40vw, 240px"
-                  :alt="photo.alt || ''"
-                  :width="photo.width || 600"
-                  :height="photo.height || 400"
-                  loading="lazy"
-              /></a>
-            </div>
-          </article>
-          <DataTile v-else :item="item" :domain="page.kind"
-        /></template>
+        <DataTile
+          v-for="item in page.items"
+          :key="item.id"
+          :item="item"
+          :domain="page.kind"
+        />
       </div>
       <div class="post-list">
         <PostCard

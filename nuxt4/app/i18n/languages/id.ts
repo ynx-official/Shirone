@@ -402,4 +402,25 @@ export const id: Translation = {
   [Key.searchError]: "Pencarian tidak tersedia. Coba lagi.",
   [Key.enable]: "Aktifkan",
   [Key.progress]: "Kemajuan",
+  [Key.adminContent]: "Konten",
+  [Key.adminOrganize]: "Organisasi",
+  [Key.adminMediaDescription]:
+    "Kelola gambar lokal yang digunakan dalam konten.",
+  [Key.adminUploadHint]:
+    "JPG, PNG, GIF, WebP atau AVIF, hingga 20 MB. Unggah otomatis.",
+  [Key.adminChooseImages]: "Pilih gambar",
+  [Key.adminCleanUnused]: "Hapus gambar tak terpakai",
+  [Key.adminCleanConfirm]:
+    "Hapus semua gambar lokal tanpa referensi? Tidak dapat dibatalkan.",
+  [Key.adminReferenced]: "Gambar yang digunakan tidak dapat dihapus",
+  [Key.adminReferenceCount]: "Digunakan oleh {count} item",
+  [Key.adminOverviewIntro]: "Ringkasan konten Anda.",
+  [Key.adminRecentHint]: "Artikel menurut tanggal konten.",
+  [Key.adminQuickActions]: "Aksi cepat",
+  [Key.adminModuleHint]: "Kelola kategori dan halaman",
+  [Key.adminMediaSearch]: "Cari nama berkas",
+  [Key.adminGridView]: "Tampilan kisi",
+  [Key.adminListView]: "Tampilan daftar",
+  [Key.adminMediaTotal]: "{count} gambar",
+  [Key.adminCopyReference]: "Salin referensi",
 };

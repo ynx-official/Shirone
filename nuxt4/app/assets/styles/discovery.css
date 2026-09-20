@@ -1,0 +1,128 @@
+.public-site .anime-section,
+.public-site .compass-section {
+  padding: 1.5rem 2rem;
+}
+.discovery-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.discovery-chips button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2rem;
+  padding: 0 1rem;
+  border: 1px solid var(--outline);
+  border-radius: var(--shape-corner-s);
+  background: transparent;
+  color: var(--on-surface-variant);
+  font: var(--m3e-type-label-large);
+  white-space: nowrap;
+}
+.discovery-chips svg {
+  width: 18px;
+  height: 18px;
+}
+.discovery-chips button[aria-pressed="true"] {
+  border-color: transparent;
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+.discovery-chips button:hover {
+  background: color-mix(in oklab, var(--on-surface) 8%, var(--surface));
+}
+.anime-section__more button {
+  background: transparent;
+  border: 1px solid var(--outline);
+  color: var(--primary);
+}
+.anime-card,
+.compass-tile {
+  min-width: 0;
+  animation: discovery-reveal var(--m3e-duration-medium)
+    var(--m3e-easing-emphasized-decelerate) var(--discovery-delay, 0ms)
+    backwards;
+}
+@keyframes discovery-reveal {
+  from {
+    opacity: 0;
+    translate: 0 0.25rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+.anime-card__progress-track {
+  position: relative;
+  height: 4px;
+  border-radius: var(--shape-corner-full);
+  /* Original determinate geometry leaves a 4px gap after the active track. */
+  background: linear-gradient(
+    to right,
+    transparent calc(var(--progress) + 4px),
+    var(--secondary-container) 0
+  );
+  overflow: hidden;
+}
+.anime-card__progress-track > span {
+  display: block;
+  width: var(--progress);
+  height: 4px;
+  background: var(--primary);
+  border-radius: inherit;
+}
+.anime-card__progress-track > i {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+.compass-shelf__heading {
+  margin-bottom: 0.75rem;
+}
+.compass-shelf__heading > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.compass-shelf__heading svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary);
+}
+.compass-shelf__heading h2 {
+  margin: 0;
+  color: var(--on-surface);
+  font: var(--m3e-type-title-large);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.compass-shelf__heading p {
+  margin: 0.25rem 0 0;
+  color: var(--on-surface-variant);
+  font: var(--m3e-type-body-small);
+  line-height: 1.5;
+}
+.anime-card__cover:focus-visible,
+.compass-tile__link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Accessibility override owns descendant hover/entrance motion. */
+  .anime-section *,
+  .compass-section * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.motion-reduced .anime-section *,
+.motion-reduced .compass-section * {
+  animation: none !important;
+  transition: none !important;
+}

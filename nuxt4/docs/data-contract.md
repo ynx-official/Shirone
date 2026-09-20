@@ -8,6 +8,11 @@ AdminRepository loads `/api/mock/admin` only when mockAdmin was enabled at build
 
 Images use IndexedDB `shirone-media-v1` / `media`; records contain id/name/type/size/blob. References use `media:<id>` and are resolved only in local preview. Object URLs are revoked. JSON exports contain structured data, not binary files; media export is a separate remaining task (see progress). No real server publication or authentication exists.
 
+Admin routes render on the client when enabled; public routes retain SSR. Admin
+appearance uses independent neutral light/dark Ant Design tokens and
+`shirone:admin:appearance` persistence; see [admin UI contract](admin-ui.md). Media cleanup excludes
+referenced items and deletes the confirmed unused set in one IndexedDB transaction.
+
 Future adapters must preserve DTOs, asynchronous repository signatures, validation and failure behavior. Credentials belong to future private server configuration, never public DTOs or browser storage.
 
 Theme preferences remain in `shirone:palette` and `shirone:theme`. The derived
@@ -34,3 +39,23 @@ Post metadata may include `updated` (ISO date). Site data carries the existing
 `license` and `article.share` / `article.lastUpdated` settings. Disabled footer
 features render no placeholder; last-updated notices use build-time `site.today`
 and UTC calendar dates to preserve identical SSR and client output.
+
+Moments render one complete collection per route. `q` and `tag` are applied
+locally for SSR and client navigation, preserving all available tag choices and
+empty-result controls. Ordering is pinned first, then publication descending;
+the client reveals ten items per batch. `Site.timeZone` carries the configured
+IANA time zone (default `Asia/Shanghai`) for identical server/client timestamps.
+`MomentData` and `MomentImage` are defined in `shared/types/moments.ts`; images
+retain original links plus optional thumbnail/srcset/dimensions. Images use an
+inline viewer before the on-demand Fancybox viewer; owners dispose the viewer
+on unmount, including pending async loads.
+
+Anime and compass also retain complete route collections for local filters.
+Anime uses `q` (title/description/studio/year/genres) and `status`; compass uses
+`q` (entry label/note/hostname) and shelf `group`. Empty shelves are omitted
+from results, but all original filter choices remain available. SSR applies
+the same predicates. `shared/types/discovery.ts` describes both domain payloads.
+Anime reveals twelve items per batch and resets the batch on filter changes.
+Its independent `shirone:anime-layout-mode` preference accepts `grid` or `list`,
+defaults to grid, and gracefully tolerates unavailable browser storage. This
+migration retains local mock data and does not enable remote anime providers.

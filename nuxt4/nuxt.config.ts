@@ -13,12 +13,18 @@ const adminEnabled =
 export default defineNuxtConfig({
   compatibilityDate: "2026-09-19",
   ssr: true,
+  // The local admin workspace is CSR; the public blog remains SSR.
+  routeRules: adminEnabled
+    ? { "/admin": { ssr: false }, "/admin/**": { ssr: false } }
+    : {},
   devtools: { enabled: false },
+
   experimental: {
     defaults: {
       nuxtLink: { prefetchOn: { visibility: false, interaction: true } },
     },
   },
+
   css: [
     "~/assets/styles/variables.styl",
     "~/assets/styles/main.css",
@@ -27,13 +33,16 @@ export default defineNuxtConfig({
     "~/assets/styles/settings.css",
     "~/assets/styles/entrance.css",
   ],
+
   vite: { plugins: [tailwindcss()] },
+
   runtimeConfig: {
     public: {
       mockAdmin: adminEnabled,
       remoteFeatures: process.env.NUXT_REMOTE_FEATURES === "true",
     },
   },
+
   nitro: {
     preset: "node-server",
     // Keep the shared locale bridge inside Nitro instead of a dev-time file import.
@@ -53,7 +62,9 @@ export default defineNuxtConfig({
       },
     ],
   },
+
   typescript: { strict: true },
+
   app: {
     head: {
       htmlAttrs: { lang: "zh-CN" },
@@ -71,7 +82,24 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   hooks: {
+    "build:manifest"(manifest) {
+      // A viewer is an explicit interaction, not a likely next navigation.
+      // Keep Nuxt's SSR resource hints from eagerly fetching its async assets.
+      for (const [id, resource] of Object.entries(manifest)) {
+        if (/album-viewer|fancybox/i.test(`${id} ${resource.file}`)) {
+          resource.prefetch = false;
+          resource.preload = false;
+        }
+      }
+    },
+    "app:resolve"(app) {
+      // Removing routes alone leaves the auto-discovered layout (and its UI
+      // dependencies) in the production module graph.
+      if (!adminEnabled && process.env.NODE_ENV === "production")
+        delete app.layouts.admin;
+    },
     async "nitro:config"(config) {
       const dir = await prepareFonts({ dev: Boolean(config.dev) });
       config.publicAssets ||= [];
@@ -96,4 +124,6 @@ export default defineNuxtConfig({
       }
     },
   },
+
+  modules: adminEnabled ? ["@antdv-next/nuxt"] : [],
 });

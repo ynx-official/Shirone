@@ -397,4 +397,25 @@ export const ja: Translation = {
   [Key.searchError]: "検索できません。もう一度お試しください。",
   [Key.enable]: "有効にする",
   [Key.progress]: "進捗",
+  [Key.adminContent]: "コンテンツ",
+  [Key.adminOrganize]: "整理",
+  [Key.adminMediaDescription]:
+    "本文の画像を管理します。画像はこのブラウザーに保存されます。",
+  [Key.adminUploadHint]:
+    "JPG、PNG、GIF、WebP、AVIF、最大20 MB。選択すると自動でアップロードします。",
+  [Key.adminChooseImages]: "画像を選択",
+  [Key.adminCleanUnused]: "未使用画像を削除",
+  [Key.adminCleanConfirm]:
+    "未使用のローカル画像をすべて削除しますか？元に戻せません。",
+  [Key.adminReferenced]: "使用中の画像は削除できません",
+  [Key.adminReferenceCount]: "{count} 件で使用",
+  [Key.adminOverviewIntro]: "コンテンツの状況を確認して、執筆を続けましょう。",
+  [Key.adminRecentHint]: "コンテンツの日付順に表示。",
+  [Key.adminQuickActions]: "クイック操作",
+  [Key.adminModuleHint]: "分類と追加ページを管理",
+  [Key.adminMediaSearch]: "ファイル名を検索",
+  [Key.adminGridView]: "グリッド表示",
+  [Key.adminListView]: "リスト表示",
+  [Key.adminMediaTotal]: "画像 {count} 枚",
+  [Key.adminCopyReference]: "参照をコピー",
 };

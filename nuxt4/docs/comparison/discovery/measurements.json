@@ -1,0 +1,130 @@
+{
+  "original-anime-desktop": {
+    "section": {
+      "width": 801,
+      "height": 1163.296875
+    },
+    "padding": "24px 32px",
+    "card": {
+      "width": 172.25,
+      "height": 429.15625
+    },
+    "cover": {
+      "width": 170.25,
+      "height": 255.375
+    },
+    "count": 5,
+    "overflow": false,
+    "errors": []
+  },
+  "original-anime-mobile": {
+    "section": {
+      "width": 361,
+      "height": 1455.453125
+    },
+    "padding": "21px 28px",
+    "card": {
+      "width": 146.375,
+      "height": 374.859375
+    },
+    "cover": {
+      "width": 144.375,
+      "height": 216.5625
+    },
+    "count": 5,
+    "overflow": false,
+    "errors": []
+  },
+  "original-compass-desktop": {
+    "section": {
+      "width": 801,
+      "height": 1077.15625
+    },
+    "padding": "24px 32px",
+    "card": {
+      "width": 175.25,
+      "height": 120.296875
+    },
+    "count": 11,
+    "overflow": false,
+    "errors": []
+  },
+  "original-compass-mobile": {
+    "section": {
+      "width": 361,
+      "height": 1374.703125
+    },
+    "padding": "21px 28px",
+    "card": {
+      "width": 148.125,
+      "height": 110.5
+    },
+    "count": 11,
+    "overflow": false,
+    "errors": []
+  },
+  "nuxt-anime-desktop": {
+    "section": {
+      "width": 801,
+      "height": 1141.90625
+    },
+    "padding": "24px 32px",
+    "card": {
+      "width": 172.25,
+      "height": 429.15625
+    },
+    "cover": {
+      "width": 170.25,
+      "height": 255.375
+    },
+    "count": 5,
+    "overflow": false,
+    "errors": []
+  },
+  "nuxt-anime-mobile": {
+    "section": {
+      "width": 361,
+      "height": 1383.34375
+    },
+    "padding": "21px 28px",
+    "card": {
+      "width": 146.375,
+      "height": 374.859375
+    },
+    "cover": {
+      "width": 144.375,
+      "height": 216.5625
+    },
+    "count": 5,
+    "overflow": false,
+    "errors": []
+  },
+  "nuxt-compass-desktop": {
+    "section": {
+      "width": 801,
+      "height": 1121.15625
+    },
+    "padding": "24px 32px",
+    "card": {
+      "width": 175.25,
+      "height": 120.296875
+    },
+    "count": 11,
+    "overflow": false,
+    "errors": []
+  },
+  "nuxt-compass-mobile": {
+    "section": {
+      "width": 361,
+      "height": 1394.828125
+    },
+    "padding": "21px 28px",
+    "card": {
+      "width": 148.125,
+      "height": 110.5
+    },
+    "count": 11,
+    "overflow": false,
+    "errors": []
+  }
+}

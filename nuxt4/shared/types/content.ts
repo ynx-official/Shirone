@@ -70,6 +70,7 @@ export interface Site {
     position: string;
   };
   profileName: string;
+  timeZone?: string;
   profileLinks: { name: string; url: string; icon: string }[];
   texture: { enable: boolean; defaultPreset: string; defaultOpacity: number };
   today: string;

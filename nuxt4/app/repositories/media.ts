@@ -60,6 +60,13 @@ export const mediaRepository = {
   async remove(id: string) {
     await transaction("readwrite", (s) => s.delete(id));
   },
+  async removeMany(ids: string[]) {
+    // A single transaction prevents partially completed cleanup.
+    await transaction("readwrite", (store) => {
+      for (const id of ids) store.delete(id);
+      return store.count();
+    });
+  },
   async clear() {
     await transaction("readwrite", (s) => s.clear());
   },

@@ -1,14 +1,16 @@
 export function usePublicPage() {
   const route = useRoute();
   const repository = usePublicRepository();
-  const isFriends = computed(
-    () => route.path.replace(/\/$/, "") === "/friends",
+  const localFilters = computed(() =>
+    ["/friends", "/moments", "/anime", "/compass"].includes(
+      route.path.replace(/\/$/, ""),
+    ),
   );
   const key = computed(
-    () => `page:${isFriends.value ? route.path : route.fullPath}`,
+    () => `page:${localFilters.value ? route.path : route.fullPath}`,
   );
-  // The persistent layout and page share one handler and complete friend list.
+  // Local filters retain the complete collection, including all tag options.
   return useAsyncData(key, () =>
-    repository.page(route.path, isFriends.value ? {} : route.query),
+    repository.page(route.path, localFilters.value ? {} : route.query),
   );
 }

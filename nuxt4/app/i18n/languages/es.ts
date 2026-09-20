@@ -400,4 +400,25 @@ export const es: Translation = {
   [Key.searchError]: "La búsqueda no está disponible. Inténtalo de nuevo.",
   [Key.enable]: "Activar",
   [Key.progress]: "Progreso",
+  [Key.adminContent]: "Contenido",
+  [Key.adminOrganize]: "Organización",
+  [Key.adminMediaDescription]:
+    "Gestiona imágenes locales usadas en el contenido.",
+  [Key.adminUploadHint]:
+    "JPG, PNG, GIF, WebP o AVIF, hasta 20 MB. Carga automática.",
+  [Key.adminChooseImages]: "Elegir imágenes",
+  [Key.adminCleanUnused]: "Eliminar imágenes sin uso",
+  [Key.adminCleanConfirm]:
+    "¿Eliminar todas las imágenes locales sin referencias? No se puede deshacer.",
+  [Key.adminReferenced]: "No se pueden eliminar imágenes en uso",
+  [Key.adminReferenceCount]: "Usada en {count} elementos",
+  [Key.adminOverviewIntro]: "Tu contenido de un vistazo.",
+  [Key.adminRecentHint]: "Artículos por fecha de contenido.",
+  [Key.adminQuickActions]: "Acciones rápidas",
+  [Key.adminModuleHint]: "Organiza categorías y páginas",
+  [Key.adminMediaSearch]: "Buscar archivos",
+  [Key.adminGridView]: "Vista de cuadrícula",
+  [Key.adminListView]: "Vista de lista",
+  [Key.adminMediaTotal]: "{count} imágenes",
+  [Key.adminCopyReference]: "Copiar referencia",
 };

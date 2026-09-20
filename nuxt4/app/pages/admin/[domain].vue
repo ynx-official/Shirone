@@ -133,61 +133,94 @@ async function preview() {
 </script>
 <template>
   <section>
-    <div
-      class="row"
-      style="justify-content: space-between; margin-bottom: 1rem"
-    >
+    <div class="admin-page-heading">
       <h1>{{ t(domain) }}</h1>
-      <button v-if="domain !== 'settings'" @click="create">
+      <AButton v-if="domain !== 'settings'" type="primary" @click="create">
         {{ t("newItem") }}
-      </button>
+      </AButton>
     </div>
     <p v-if="failure" role="alert">{{ failure }}</p>
     <p v-if="message" role="status">{{ message }}</p>
     <div v-if="snapshot" class="admin-editor">
-      <div>
-        <label>{{ t("search") }}<input v-model="query" type="search" /></label>
-        <label v-if="domain !== 'settings'"
-          >{{ t("status")
-          }}<select v-model="statusFilter">
-            <option value="">—</option>
-            <option value="draft">{{ t("draft") }}</option>
-            <option value="published">{{ t("published") }}</option>
-          </select></label
-        >
+      <div v-show="!draft" class="admin-list-panel">
+        <div class="admin-list-toolbar">
+          <label
+            >{{ t("search") }}<AInput v-model:value="query" type="search"
+          /></label>
+          <label v-if="domain !== 'settings'"
+            >{{ t("status")
+            }}<ASelect
+              v-model:value="statusFilter"
+              :options="[
+                { value: '', label: '—' },
+                { value: 'draft', label: t('draft') },
+                { value: 'published', label: t('published') },
+              ]"
+          /></label>
+        </div>
         <div class="entity-list">
-          <button
-            v-for="item in items"
-            :key="item.id"
-            :class="{ selected: item.id === selected }"
-            @click="edit(item)"
+          <ATable
+            :data-source="items"
+            row-key="id"
+            size="small"
+            :pagination="{ pageSize: 12, showSizeChanger: false }"
+            :locale="{ emptyText: t('empty') }"
+            :columns="[
+              { title: t('title'), key: 'title', dataIndex: 'title' },
+              { title: t('status'), key: 'status', width: 140 },
+              { title: t('date'), key: 'date', width: 180 },
+            ]"
           >
-            {{ item.title }}
-          </button>
+            <template #bodyCell="{ record, column }"
+              ><AButton
+                v-if="column.key === 'title'"
+                type="text"
+                :class="{ selected: record.id === selected }"
+                @click="edit(record as Entity)"
+                >{{ record.title }}</AButton
+              ><ATag v-else-if="column.key === 'status'">{{
+                t(record.status)
+              }}</ATag
+              ><span v-else>{{ record.date || "—" }}</span></template
+            >
+          </ATable>
         </div>
       </div>
       <form v-if="draft" class="panel form-stack" @submit.prevent="commit">
-        <label>{{ t("title") }}<input v-model="draft.title" required /></label
+        <div class="admin-editor-heading">
+          <h2>{{ draft.title }}</h2>
+          <AButton @click="draft = undefined">{{ t("close") }}</AButton>
+        </div>
+        <label
+          >{{ t("title")
+          }}<AInput v-model:value="draft.title" required /></label
         ><label
-          >{{ t("description") }}<textarea v-model="draft.description" /></label
+          >{{ t("description")
+          }}<ATextarea v-model:value="draft.description" /></label
         ><template v-if="domain !== 'settings'"
           ><div class="form-grid">
-            <label>{{ t("date") }}<input v-model="draft.date" /></label
+            <label>{{ t("date") }}<AInput v-model:value="draft.date" /></label
             ><label
               >{{ t("status")
-              }}<select v-model="draft.status">
-                <option value="draft">{{ t("draft") }}</option>
-                <option value="published">{{ t("published") }}</option>
-              </select></label
-            >
+              }}<ASelect
+                v-model:value="draft.status"
+                :options="[
+                  { value: 'draft', label: t('draft') },
+                  { value: 'published', label: t('published') },
+                ]"
+            /></label>
           </div>
           <label v-if="['posts', 'moments', 'series'].includes(domain)"
             >{{ t("body")
-            }}<textarea v-model="draft.body" class="markdown-input" /></label
+            }}<ATextarea
+              v-model:value="draft.body"
+              class="markdown-input" /></label
           ><template v-if="domain === 'posts'"
             ><label
               >{{ t("categories")
-              }}<input v-model="draft.category" list="categories" /></label
+              }}<AInput
+                v-model:value="draft.category"
+                list="categories" /></label
             ><datalist id="categories">
               <option
                 v-for="item in snapshot.collections.categories"
@@ -196,45 +229,47 @@ async function preview() {
               /></datalist
             ><label
               >{{ t("series")
-              }}<select v-model="draft.series">
-                <option value="">—</option>
-                <option
-                  v-for="item in snapshot.collections.series"
-                  :key="item.id"
-                  :value="item.id"
-                >
-                  {{ item.title }}
-                </option>
-              </select></label
-            ></template
+              }}<ASelect
+                v-model:value="draft.series"
+                :options="[
+                  { value: '', label: '—' },
+                  ...snapshot.collections.series.map((item) => ({
+                    value: item.id,
+                    label: item.title,
+                  })),
+                ]" /></label></template
           ><JsonField v-model="draft.tags" :label="t('tags')" /><label
-            >{{ t("media") }}<input v-model="draft.image" /></label></template
+            >{{ t("media")
+            }}<AInput v-model:value="draft.image" /></label></template
         ><JsonField v-model="draft.data" :label="t('sourceData')" />
         <div class="row">
-          <button
+          <AButton
             v-if="selected && domain !== 'settings'"
-            type="button"
+            html-type="button"
             :aria-label="t('previous')"
             @click="reorder(-1)"
           >
             ↑
-          </button>
-          <button
+          </AButton>
+          <AButton
             v-if="selected && domain !== 'settings'"
-            type="button"
+            html-type="button"
             :aria-label="t('next')"
             @click="reorder(1)"
           >
             ↓
-          </button>
-          <button type="submit">{{ t("saveLocal") }}</button
-          ><button type="button" @click="preview">{{ t("preview") }}</button
-          ><button v-if="selected" type="button" @click="remove">
+          </AButton>
+          <AButton type="primary" html-type="submit">{{
+            t("saveLocal")
+          }}</AButton
+          ><AButton html-type="button" @click="preview">{{
+            t("preview")
+          }}</AButton
+          ><AButton v-if="selected" html-type="button" @click="remove">
             {{ t("deleteItem") }}
-          </button>
+          </AButton>
         </div>
       </form>
-      <p v-else>{{ t("selectItem") }}</p>
     </div>
   </section>
 </template>

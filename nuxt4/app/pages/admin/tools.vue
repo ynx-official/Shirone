@@ -50,7 +50,7 @@ async function clear() {
       {{ t("storage") }}:
       {{ (JSON.stringify(snapshot).length / 1024).toFixed(1) }} KB
     </p>
-    <button @click="download">{{ t("exportData") }}</button
+    <AButton @click="download">{{ t("exportData") }}</AButton
     ><label
       >{{ t("importData")
       }}<input
@@ -58,6 +58,6 @@ async function clear() {
         accept="application/json,.json"
         :disabled="!snapshot"
         @change="upload" /></label
-    ><button @click="clear">{{ t("resetData") }}</button>
+    ><AButton @click="clear">{{ t("resetData") }}</AButton>
   </section>
 </template>

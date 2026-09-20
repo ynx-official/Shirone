@@ -32,7 +32,10 @@ export function openAlbumViewer(
       >
     )[locale] || en_EN;
   const l10n = { ...translations, ...labels };
-  return Fancybox.show(
+  // v6.1.15's runtime show() returns undefined despite its declaration.
+  // Capture this viewer during synchronous initialization so owners can dispose it.
+  let instance: ReturnType<typeof Fancybox.getInstance>;
+  Fancybox.show(
     photos.map((photo) => ({
       src: photo.src,
       type: "image",
@@ -52,10 +55,25 @@ export function openAlbumViewer(
     })),
     {
       ...config,
+      on: {
+        init: (viewer) => {
+          instance = viewer;
+        },
+      },
       l10n,
       triggerEl: trigger,
       startIndex,
       Carousel: { ...config.Carousel, l10n },
     },
+  );
+  const owned = instance;
+  return (
+    owned && {
+      destroy() {
+        // close() releases document listeners; destroy() removes the dialog now.
+        owned.close();
+        owned.destroy();
+      },
+    }
   );
 }

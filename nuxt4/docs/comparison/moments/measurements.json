@@ -1,0 +1,130 @@
+{
+  "original-desktop": {
+    "panel": {
+      "width": 801,
+      "height": 3131.90625
+    },
+    "padding": "24px 32px",
+    "firstCard": {
+      "width": 737,
+      "height": 212
+    },
+    "font": "14px / 24.5px Outfit-8b10f21ee7afb56d, \"Yozai Medium-3ed3e12e0718cac1\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Noto Color Emoji\"",
+    "grid": {
+      "width": 480,
+      "height": 322.65625
+    },
+    "tiles": [
+      {
+        "width": 314.65625,
+        "height": 322.65625
+      },
+      {
+        "width": 157.328125,
+        "height": 157.328125
+      },
+      {
+        "width": 157.328125,
+        "height": 157.328125
+      }
+    ],
+    "cards": 6,
+    "errors": []
+  },
+  "original-mobile": {
+    "panel": {
+      "width": 361,
+      "height": 2576.890625
+    },
+    "padding": "21px 28px",
+    "firstCard": {
+      "width": 305,
+      "height": 211.6875
+    },
+    "font": "12.25px / 21.4375px Outfit-8b10f21ee7afb56d, \"Yozai Medium-3ed3e12e0718cac1\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Noto Color Emoji\"",
+    "grid": {
+      "width": 275,
+      "height": 185.6875
+    },
+    "tiles": [
+      {
+        "width": 178.65625,
+        "height": 185.6875
+      },
+      {
+        "width": 89.34375,
+        "height": 89.34375
+      },
+      {
+        "width": 89.34375,
+        "height": 89.34375
+      }
+    ],
+    "cards": 6,
+    "errors": []
+  },
+  "nuxt-desktop": {
+    "panel": {
+      "width": 801,
+      "height": 3009.40625
+    },
+    "padding": "24px 32px",
+    "firstCard": {
+      "width": 737,
+      "height": 187.5
+    },
+    "font": "14px / 24.5px system-ui, sans-serif",
+    "grid": {
+      "width": 480,
+      "height": 322.65625
+    },
+    "tiles": [
+      {
+        "width": 314.65625,
+        "height": 322.65625
+      },
+      {
+        "width": 157.328125,
+        "height": 157.328125
+      },
+      {
+        "width": 157.328125,
+        "height": 157.328125
+      }
+    ],
+    "cards": 6,
+    "errors": []
+  },
+  "nuxt-mobile": {
+    "panel": {
+      "width": 361,
+      "height": 2386.015625
+    },
+    "padding": "21px 28px",
+    "firstCard": {
+      "width": 305,
+      "height": 190.25
+    },
+    "font": "12.25px / 21.4375px system-ui, sans-serif",
+    "grid": {
+      "width": 275,
+      "height": 185.6875
+    },
+    "tiles": [
+      {
+        "width": 178.65625,
+        "height": 185.6875
+      },
+      {
+        "width": 89.34375,
+        "height": 89.34375
+      },
+      {
+        "width": 89.34375,
+        "height": 89.34375
+      }
+    ],
+    "cards": 6,
+    "errors": []
+  }
+}

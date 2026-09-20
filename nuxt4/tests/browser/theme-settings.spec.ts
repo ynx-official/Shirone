@@ -7,6 +7,10 @@ test("theme panel preserves palette choices, reset and system appearance", async
   await page.emulateMedia({ colorScheme: "light", reducedMotion: "reduce" });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
+  // Public controls are SSR-rendered; wait for theme initialization before clicking.
+  await expect(
+    page.getByRole("button", { name: "Theme", exact: true }),
+  ).toBeEnabled();
   const trigger = page.getByRole("button", {
     name: "Theme Color",
     exact: true,
@@ -35,6 +39,9 @@ test("theme panel preserves palette choices, reset and system appearance", async
   await panel.getByRole("radio", { name: "Solid", exact: true }).check();
   await panel.getByRole("radio", { name: "Grid", exact: true }).check();
   await page.reload();
+  await expect(
+    page.getByRole("button", { name: "Theme", exact: true }),
+  ).toBeEnabled();
   await trigger.click();
   await expect(panel.locator("output")).toHaveText("355");
   for (const name of ["Rainbow", "MD3 2021", "Solid", "Grid"])

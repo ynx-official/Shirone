@@ -28,9 +28,7 @@ test("all public route families, posts, feeds and concurrent SSR respond", async
       paths.slice(i, i + 8).map(async (path) => {
         const result = await request.get(`http://127.0.0.1:4323${path}`);
         expect(result.status(), path).toBe(200);
-        expect(await result.text(), path).not.toContain(
-          "恭喜！你已成功解锁",
-        );
+        expect(await result.text(), path).not.toContain("恭喜！你已成功解锁");
       }),
     );
     expect(results.length).toBeGreaterThan(0);
@@ -87,6 +85,10 @@ test("media persists in IndexedDB and can be removed", async ({ page }) => {
   await page.reload();
   await expect(page.locator(".media-grid article")).toHaveCount(1);
   await page.getByRole("button", { name: "Delete", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Delete", exact: true })
+    .last()
+    .click();
   await expect(page.locator(".media-grid article")).toHaveCount(0);
 });
 
@@ -117,7 +119,10 @@ test("local Markdown preview compiles extended syntax and reset restores seed", 
       "# Preview heading\n\n:::tip\nPreview callout\n:::\n\n$$x^2 + y^2 = z^2$$",
     );
   await page.getByRole("button", { name: "Preview", exact: true }).click();
-  await expect(page.locator(".prose")).toContainText("Preview heading");
+  // The on-demand browser compiler can take several seconds on a cold dev server.
+  await expect(page.locator(".prose")).toContainText("Preview heading", {
+    timeout: 20000,
+  });
   await expect(page.locator(".prose .katex").first()).toBeVisible();
   await page.goto("/admin/tools");
   await expect(page.getByLabel("Import JSON")).toBeEnabled();

@@ -56,6 +56,7 @@ async function unlock() {
   }
 }
 async function open(event: MouseEvent, index: number) {
+  if (import.meta.server) return;
   if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
   event.preventDefault();
   if (opening) return;

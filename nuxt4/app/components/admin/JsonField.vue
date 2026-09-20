@@ -39,52 +39,46 @@ function add() {
 </script>
 <template>
   <label v-if="typeof modelValue === 'boolean'" class="row"
-    ><input
-      type="checkbox"
+    ><ACheckbox
       :checked="modelValue"
-      @change="
-        emit('update:modelValue', ($event.target as HTMLInputElement).checked)
-      "
-    />{{ label }}</label
-  ><label v-else-if="typeof modelValue === 'number'"
+      @update:checked="emit('update:modelValue', $event)"
+      >{{ label }}</ACheckbox
+    ></label
+  >
+  <label v-else-if="typeof modelValue === 'number'"
     >{{ label
-    }}<input
-      type="number"
+    }}<AInputNumber
       :value="modelValue"
-      @input="
-        emit(
-          'update:modelValue',
-          Number(($event.target as HTMLInputElement).value),
-        )
-      " /></label
-  ><label v-else-if="typeof modelValue === 'string' || modelValue === null"
+      @update:value="emit('update:modelValue', $event ?? 0)"
+  /></label>
+  <label v-else-if="typeof modelValue === 'string' || modelValue === null"
     >{{ label
-    }}<textarea
+    }}<ATextarea
       v-if="String(modelValue || '').length > 120"
       :value="modelValue || ''"
-      @input="
-        emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)
-      " /><input
+      @update:value="emit('update:modelValue', $event)" /><AInput
       v-else
       :value="modelValue || ''"
-      @input="
-        emit('update:modelValue', ($event.target as HTMLInputElement).value)
-      "
+      @update:value="emit('update:modelValue', $event)"
   /></label>
   <details v-else class="nested-field" :open="depth < 1">
     <summary>{{ label }}</summary>
     <div>
-      <template v-if="Array.isArray(modelValue)"
-        ><div v-for="(value, i) in modelValue" :key="i">
+      <template v-if="Array.isArray(modelValue)">
+        <div v-for="(value, i) in modelValue" :key="i">
           <JsonField
             :model-value="value"
             :label="`${label} ${i + 1}`"
             :depth="depth + 1"
             @update:model-value="child(i, $event)"
-          /><button type="button" @click="remove(i)">{{ t("remove") }}</button
-          ><button
+          />
+          <AButton danger size="small" @click="remove(i)">{{
+            t("remove")
+          }}</AButton>
+          <AButton
             v-if="i > 0"
-            type="button"
+            size="small"
+            :aria-label="t('previous')"
             @click="
               () => {
                 const next = [...modelValue];
@@ -92,12 +86,12 @@ function add() {
                 emit('update:modelValue', next);
               }
             "
+            >↑</AButton
           >
-            ↑
-          </button>
         </div>
-        <button type="button" @click="add">{{ t("add") }}</button></template
-      ><template v-else
+        <AButton @click="add">{{ t("add") }}</AButton>
+      </template>
+      <template v-else
         ><JsonField
           v-for="(value, key) in modelValue"
           :key="key"
